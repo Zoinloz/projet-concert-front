@@ -1,0 +1,22 @@
+.fondNavbar{
+    background: linear-gradient(#bb76e5, #6e6ec2);
+}
+
+.navbar-light .navbar-nav .nav-link{
+    color: white;
+    padding-right: 2vh;
+    padding-left: 2vh;
+}
+
+.loginLink{
+    color: white;
+    text-decoration: none;
+
+}
+
+.test{
+    width: 5%;
+}
+/* .navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link {
+    color: red;
+} */
