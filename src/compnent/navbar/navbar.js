@@ -81,7 +81,7 @@ function NavBar() {
       </NavDropdown>
       </div>
       <div class="col-sm">
-      <Nav.Link href="#home" >Contact</Nav.Link>
+      <Nav.Link href="contact" >Contact</Nav.Link>
       </div>
       <div class="col-sm-8" >
       <Nav.Link href="#home" className="loginLink">Se connecter / S'inscrire</Nav.Link>

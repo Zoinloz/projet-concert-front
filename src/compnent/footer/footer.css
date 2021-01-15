@@ -1,0 +1,27 @@
+.main-footer{
+    background: linear-gradient(#bb76e5, #6e6ec2);
+    color: white;
+
+}
+
+.copyright{
+    text-align: center;
+}
+
+.borderColumn{
+    border-right: 3px solid white;
+}
+
+.centerNewsReseau{
+    text-align: center;
+}
+.formNewsletter{
+    margin-left: 27%;
+}
+
+.buttonNewsletter{
+    background-color: #64BAA9;
+    color: white;
+    /* AMELIORER LE CSS */
+    margin-top: -2.5%;
+}
