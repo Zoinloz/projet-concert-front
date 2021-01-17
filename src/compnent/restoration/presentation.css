@@ -1,0 +1,18 @@
+.reservationRestorationButton{
+    background-color: #64BAA9;
+    color: white;
+    border-color: #64BAA9;
+    width: 30%;
+}
+
+.cardRestoration{
+    background-color: #8C52FF;
+    color: white;
+    border-color: #8C52FF;
+    width: 30%;
+    
+}
+
+.restoImage{
+    width: 80%;
+}

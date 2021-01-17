@@ -3,7 +3,11 @@ import NavBar from './compnent/navbar/navbar.js'
 import Footer from './compnent/footer/footer.js'
 import Home from './compnent/home/home.js'
 import Contact from './compnent/contact/contact.js'
+import Cgu from './compnent/cgu/cgu.js'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import LegalNotices from './compnent/legalNotices/legalNotices';
+import PresentationRestoration from './compnent/restoration/presentation';
+
 
 function App() {
   return (
@@ -11,21 +15,25 @@ function App() {
 
 
     <div>
-   
-   
-    <Router forceRefresh={true}>
-    <NavBar />
-     <Switch>
-        <Route exact path="/"  component={Home}/>
-         <Route exact path="/contact"  component={Contact}/>
-         <Route path="/" component={() => <div>ERREUR 404</div>} />
-      </Switch>
+
+
+      <Router forceRefresh={true}>
+        <NavBar />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/contact" component={Contact} />
+          <Route exact path="/cgu" component={Cgu} />
+          <Route exact path="/legalNotices" component={LegalNotices} />
+          <Route exact path="/presentationRestoration" component={PresentationRestoration} />
+
+          <Route path="/" component={() => <div>ERREUR 404</div>} />
+        </Switch>
         <Footer />
-  </Router>
+      </Router>
 
     </div>
 
-   
+
 
   );
 }

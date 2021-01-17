@@ -1,3 +1,13 @@
-.test{
-    margin: auto;
+
+.card-header{
+    background-color: #9239D6;
+    color: white;
+    text-align: center;
+}
+
+.buttonContact{
+    background-color: #64BAA9;
+    color: white;
+    border-color: #64BAA9;
+    font-weight: bold;
 }
