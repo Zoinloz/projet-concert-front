@@ -1,6 +1,10 @@
+@import './../../App.css';
+
 .main-footer{
-    background: linear-gradient(#bb76e5, #6e6ec2);
+
+    background-image: linear-gradient(to right, #b8cbb8 0%, #b8cbb8 0%, #b465da 0%, #cf6cc9 33%, #ee609c 66%, #ee609c 100%);
     color: white;
+    /* text-shadow: 1px 1px 10px black !veryimportant; */
     bottom: 0;
 }
 
@@ -9,7 +13,7 @@
 }
 
 .borderColumn{
-    border-right: 3px solid white;
+    border-right: 1px solid white;
 }
 
 .centerNewsReseau{
@@ -20,7 +24,7 @@
 }
 
 .buttonNewsletter{
-    background-color: #64BAA9;
+    background-color: var(--secondary-bg-color,#32BEAF);
     color: white;
     /* AMELIORER LE CSS */
 }

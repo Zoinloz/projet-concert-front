@@ -1,9 +1,13 @@
 .fondNavbar{
-    background: linear-gradient(#bb76e5, #6e6ec2);
+    background: white;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    
 }
 
 .navbar-light .navbar-nav .nav-link{
-    color: white;
+    color: #8F00E6;
     padding-right: 2vh;
     padding-left: 2vh;
 }
@@ -34,3 +38,13 @@
 /* .navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link {
     color: red;
 } */
+
+.navbarTop__icon{
+    color: #cfc4da;
+    
+}
+
+.navbar__logo{
+    height: 80px !important;
+    object-fit: contain !important;
+}
