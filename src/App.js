@@ -7,6 +7,9 @@ import Cgu from './compnent/cgu/cgu.js'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import LegalNotices from './compnent/legalNotices/legalNotices';
 import PresentationRestoration from './compnent/restoration/presentation';
+import PresentationPrivatisation from './compnent/privatisation/presentation';
+import ReservationPrivatisation from './compnent/privatisation/reservation';
+
 
 
 function App() {
@@ -25,6 +28,8 @@ function App() {
           <Route exact path="/cgu" component={Cgu} />
           <Route exact path="/legalNotices" component={LegalNotices} />
           <Route exact path="/presentationRestoration" component={PresentationRestoration} />
+          <Route exact path="/presentationPrivatisation" component={PresentationPrivatisation} />
+          <Route exact path="/reservationPrivatisation" component={ReservationPrivatisation} />
 
           <Route path="/" component={() => <div>ERREUR 404</div>} />
         </Switch>

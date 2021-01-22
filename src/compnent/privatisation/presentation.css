@@ -1,0 +1,35 @@
+.titleCard{
+    background: linear-gradient(to right, #b8cbb8 0%, #b8cbb8 0%, #b465da 0%, #cf6cc9 33%, #ee609c 66%, #ee609c 100%);
+}
+
+.reservationPrivatisationButton{
+    background-color: #64BAA9;
+    color: white;
+    border-color: #64BAA9;
+    width: 30%;
+}
+
+
+
+.carousel-control-next ,.carousel-control-prev{
+    width: 55%;
+    margin: auto;
+}
+
+/* .carouselContent{
+    background-color: #0501075d;
+} */
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  height: 40px;
+  width: 40px;
+
+}
+
+.textCardCarousel{
+    background-color: rgba(255, 255, 255, 0.8);
+    color: black;
+    padding-bottom: 1%;
+    padding-top: 1%;
+}

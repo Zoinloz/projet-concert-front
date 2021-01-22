@@ -60,9 +60,9 @@ function NavBar() {
               </div>
               <div className="col-sm">
                 <NavDropdown title="Privatisation" id="basic-nav-dropdown">
-                  <NavDropdown.Item href="#action/3.1">Présentation</NavDropdown.Item>
+                  <NavDropdown.Item href="/presentationPrivatisation">Présentation</NavDropdown.Item>
                   <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action/3.2">Réserver</NavDropdown.Item>
+                  <NavDropdown.Item href="/reservationPrivatisation">Réserver</NavDropdown.Item>
                 </NavDropdown>
               </div>
               <div className="col-sm">
