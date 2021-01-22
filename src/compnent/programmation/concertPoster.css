@@ -1,0 +1,13 @@
+.titleConcertPage{
+    background: rgba(211, 211, 211, 0.5);
+}
+
+.imageConcert{
+    width: 70%;
+}
+
+.concertInformations{
+    color: black;
+    text-align: justify;
+    /* background-color: rebeccapurple; */
+}

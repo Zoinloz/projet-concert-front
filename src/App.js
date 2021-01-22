@@ -9,7 +9,7 @@ import LegalNotices from './compnent/legalNotices/legalNotices';
 import PresentationRestoration from './compnent/restoration/presentation';
 import PresentationPrivatisation from './compnent/privatisation/presentation';
 import ReservationPrivatisation from './compnent/privatisation/reservation';
-
+import ConcertPoster from './compnent/programmation/concertPoster';
 
 
 function App() {
@@ -30,6 +30,8 @@ function App() {
           <Route exact path="/presentationRestoration" component={PresentationRestoration} />
           <Route exact path="/presentationPrivatisation" component={PresentationPrivatisation} />
           <Route exact path="/reservationPrivatisation" component={ReservationPrivatisation} />
+          <Route exact path="/concertPoster" component={ConcertPoster} />
+
 
           <Route path="/" component={() => <div>ERREUR 404</div>} />
         </Switch>
