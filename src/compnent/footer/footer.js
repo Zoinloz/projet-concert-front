@@ -12,6 +12,7 @@ import TwitterIcon from '@material-ui/icons/Twitter';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import YouTubeIcon from '@material-ui/icons/YouTube';
 import InstagramIcon from '@material-ui/icons/Instagram';
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -104,8 +105,8 @@ function Footer() {
           <div className="col-md-2 col-sm-4 mt-4 borderColumn">
             <h6>PRIVATISATION</h6>
             <ul className="list-unstyled">
-              <li>Présentation</li>
-              <li>Réserver</li>
+              <li><Link className="footer__link" to="/privatisation-presentation">Présentation</Link></li>
+              <li><Link className="footer__link" to="/privatisation-reserver">Comment réserver ?</Link>Réserver</li>
             </ul>
             <h6>ACTUALITES</h6>
           </div>
