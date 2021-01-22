@@ -19,7 +19,8 @@ const Home = () => {
       <div className="row">
 
         <div className="col-sm">
-          <Slide {...proprietes}>
+          hello
+          {/* <Slide {...proprietes}>
 
             <div className="each-slide">
               <div>
@@ -39,7 +40,7 @@ const Home = () => {
               </div>
             </div>
 
-          </Slide>
+          </Slide> */}
 
         </div>
       </div>
