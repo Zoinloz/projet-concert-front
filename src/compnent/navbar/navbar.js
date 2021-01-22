@@ -69,11 +69,11 @@ function NavBar() {
                 <NavDropdown title="Infos pratiques" id="basic-nav-dropdown">
                   <NavDropdown.Item href="#action/3.1">Comment venir</NavDropdown.Item>
                   <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action/3.2">FAQ</NavDropdown.Item>
+                  <NavDropdown.Item href="/concertPoster">FAQ</NavDropdown.Item>
                 </NavDropdown>
               </div>
               <div className="col-sm">
-                <Nav.Link href="contact" >Contact</Nav.Link>
+                <Nav.Link href="/contact" >Contact</Nav.Link>
               </div>
               <div className="ml-1">
                 <Nav.Link href="#" >Connexion / Inscription</Nav.Link>
