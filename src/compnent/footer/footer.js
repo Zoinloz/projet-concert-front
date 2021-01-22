@@ -8,6 +8,18 @@ import facebook from '../../logo/facebook.png'
 import twitter from '../../logo/twitter.jpg'
 import youtube from '../../logo/youtube.png'
 
+import TwitterIcon from '@material-ui/icons/Twitter';
+import FacebookIcon from '@material-ui/icons/Facebook';
+import YouTubeIcon from '@material-ui/icons/YouTube';
+import InstagramIcon from '@material-ui/icons/Instagram';
+
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+
 function Footer() {
   return (
 
@@ -21,40 +33,39 @@ function Footer() {
             <h5 className="centerNewsReseau">Réseaux sociaux</h5>
             <p className="text-xs centerNewsReseau w-50 mx-auto">Suivez-nous pour
             vous tenir informé des concerts à venir !
-              </p>
-            <div className="socialIcons">
-              <img
-                src={twitter}
-                width="40"
-                height="40"
-                className="d-inline-block align-top"
-                alt="React Bootstrap logo"
-              />
-              <img
-                src={facebook
-                }
-                width="40"
-                height="40"
-                className="d-inline-block align-top"
-                alt="React Bootstrap logo"
-              />
-              <img
-                src={instagram
-                }
-                width="60"
-                height="40"
-                className="d-inline-block align-top"
-                alt="React Bootstrap logo"
-              />
-              <img
-                src={youtube
-                }
-                width="50"
-                height="40"
-                className="d-inline-block align-top"
-                alt="React Bootstrap logo"
-              />
+            </p>
+            <div className="socialIcons text-center">
+              <div 
+                  width="36"
+                  height="36"
+                  className="d-inline-block align-top m-2"
+                  alt="Facebook">
+                  <FacebookIcon />
+                </div>
 
+                <div 
+                  width="36"
+                  height="36"
+                  className="d-inline-block align-top m-2"
+                  alt="Facebook">
+                    <InstagramIcon/>
+                </div>
+
+                <div 
+                width="36"
+                height="36"
+                className="d-inline-block align-top m-2"
+                alt="Facebook">
+                  <TwitterIcon/>
+                </div>
+
+              <div 
+                width="36"
+                height="36"
+                className="d-inline-block align-top m-2"
+                alt="Facebook">
+                  <YouTubeIcon/>
+              </div>
             </div>
           </div>
           {/* NEWSLETTER */}
