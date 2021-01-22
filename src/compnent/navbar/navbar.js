@@ -53,9 +53,9 @@ function NavBar() {
               </div>
               <div className="col-sm">
                 <NavDropdown title="Parking" id="basic-nav-dropdown">
-                  <NavDropdown.Item href="#action/3.1">Présentation</NavDropdown.Item>
+                  <NavDropdown.Item href="/parking">Présentation</NavDropdown.Item>
                   <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action/3.2">Réserver</NavDropdown.Item>
+                  <NavDropdown.Item href="/parking/reservation">Réserver</NavDropdown.Item>
                 </NavDropdown>
               </div>
               <div className="col-sm">
