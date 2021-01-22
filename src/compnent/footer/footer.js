@@ -12,6 +12,12 @@ import TwitterIcon from '@material-ui/icons/Twitter';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import YouTubeIcon from '@material-ui/icons/YouTube';
 import InstagramIcon from '@material-ui/icons/Instagram';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
 function Footer() {
   return (
@@ -71,27 +77,27 @@ function Footer() {
           <div className="col-md-2 col-sm-4 mt-4 borderColumn">
             {/* <div className="col-md-3 col-sm-6"> */}
             <h6>PROGRAMMATION</h6>
-            <ul className="list-unstyled">
-              <li>Tous les évènements</li>
-              <li>Aix-en-Provence</li>
-              <li>Bourges</li>
-              <li>Cannes</li>
-              <li>Dunkerque</li>
-              <li>Echirolles</li>
-              <li>Comment réserver ? </li>
+            <ul className="list-unstyled">            
+              <li><Link className="footer__link" to="/tous-les-evenements">Tous les évènements</Link></li>
+              <li><Link className="footer__link" to="/ville-aix-en-provence">Aix-en-Provence</Link></li>
+              <li><Link className="footer__link" to="/ville-bourges">Bourges</Link></li>
+              <li><Link className="footer__link" to="/ville-cannes">Cannes</Link></li>
+              <li><Link className="footer__link" to="/ville-dunkerque">Dunkerque</Link></li>
+              <li><Link className="footer__link" to="/ville-echirolles">Echirolles</Link></li>
+              <li><Link className="footer__link" to="/comment-reserver">Comment réserver ?</Link></li>
             </ul>
           </div>
           {/* COLUMN 2 */}
           <div className="col-md-2 col-sm-4 mt-4 borderColumn">
             <h6>RESTAURATION</h6>
             <ul className="list-unstyled">
-              <li>Présentation</li>
-              <li>Réserver</li>
+              <li><Link className="footer__link" to="/restauration-presentation">Présentation</Link></li>
+              <li><Link className="footer__link" to="/restauration-reserver">Réserver</Link></li>
             </ul>
             <h6>PARKING</h6>
             <ul className="list-unstyled">
-              <li>Présentation</li>
-              <li>Réserver</li>
+              <li><Link className="footer__link" to="/parking-presentation">Présentation</Link></li>
+              <li><Link className="footer__link" to="/parking-reserver">Réserver</Link></li>
             </ul>
           </div>
           {/* COLUMN 3 */}

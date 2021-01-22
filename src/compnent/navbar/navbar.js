@@ -3,48 +3,174 @@ import './navbar.css';
 import React from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown'
+import InputGroup from 'react-bootstrap/InputGroup';
 import Nav from 'react-bootstrap/Nav'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import FormControl from 'react-bootstrap/FormControl'
 import logo from '../../logo/logo_projet_concert.png'
-<<<<<<< HEAD
-=======
 import SearchIcon from '@material-ui/icons/Search'
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
->>>>>>> 79947b6 (redesign 1)
 
 function NavBar() {
   return (
+    <div>
 
-    <Navbar bg="light" expand="lg" className="fondNavbar">
-      <Navbar.Brand href="#home">
-        <img
-          src={logo}
-<<<<<<< HEAD
-          width="70"
-          height="40"
-          className="d-inline-block align-top"
-          alt="React Bootstrap logo" />
-      </Navbar.Brand>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
 
-      <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="mr-auto">
-=======
-          
-          className="d-inline-block align-top ml-5 mr-3 navbar__logo"
-          alt="SNRK" />
-      </Navbar.Brand>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
 
-      <Navbar.Collapse id="navbar navbar-expand-sm bg-light justify-content-center">
-        <Nav className="mr-auto align-items-center">
->>>>>>> 79947b6 (redesign 1)
-          <div className="container">
-            <div className="row">
-              <div className="col-sm">
+
+      <div className=" header__style">
+
+      
+        <Navbar bg="light" expand="lg" className="fondNavbar">
+
+          <Navbar.Brand href="#home">
+            <img
+              src={logo}
+              className="d-inline-flex align-top ml-5 mr-3 navbar__logo"
+              alt="SNRK" 
+            />
+          </Navbar.Brand>
+
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+
+          <Navbar.Collapse id="responsive-navbar-nav">
+
+            <Nav className="m-auto"> 
+
+              <NavDropdown title="Programmation" id="basic-nav-dropdown">
+                <NavDropdown.Item href="#action/3.1">Tous les évènements</NavDropdown.Item>
+                <NavDropdown.Divider />
+                <NavDropdown.Item href="#action/3.2">Aix-en-Provence</NavDropdown.Item>
+                <NavDropdown.Divider />
+                <NavDropdown.Item href="#action/3.3">Bourges</NavDropdown.Item>
+                <NavDropdown.Divider />
+                <NavDropdown.Item href="#action/3.3">Cannes</NavDropdown.Item>
+                <NavDropdown.Divider />
+                <NavDropdown.Item href="#action/3.3">Dunkerque</NavDropdown.Item>
+                <NavDropdown.Divider />
+                <NavDropdown.Item href="#action/3.3">Echirolles</NavDropdown.Item>
+                <NavDropdown.Divider />
+                <NavDropdown.Item href="#action/3.3">Comment réserver ?</NavDropdown.Item>
+              </NavDropdown>
+
+              <NavDropdown title="Restauration" id="basic-nav-dropdown">
+                <NavDropdown.Item href="presentationRestoration">Présentation</NavDropdown.Item>
+                <NavDropdown.Divider />
+                <NavDropdown.Item href="#action/3.2">Réserver</NavDropdown.Item>
+              </NavDropdown>
+
+              <NavDropdown title="Parking" id="basic-nav-dropdown">
+                <NavDropdown.Item href="#action/3.1">Présentation</NavDropdown.Item>
+                <NavDropdown.Divider />
+                <NavDropdown.Item href="#action/3.2">Réserver</NavDropdown.Item>
+              </NavDropdown> 
+
+              <NavDropdown title="Privatisation" id="basic-nav-dropdown">
+                <NavDropdown.Item href="#action/3.1">Présentation</NavDropdown.Item>
+                <NavDropdown.Divider />
+                <NavDropdown.Item href="#action/3.2">Réserver</NavDropdown.Item>
+              </NavDropdown> 
+
+              <Nav.Link href="actuality" >Actualités</Nav.Link>
+
+              <NavDropdown title="Infos pratiques" id="basic-nav-dropdown">
+                <NavDropdown.Item href="#action/3.1">Comment venir</NavDropdown.Item>
+                <NavDropdown.Divider />
+                <NavDropdown.Item href="#action/3.2">FAQ</NavDropdown.Item>
+              </NavDropdown> 
+
+              <Nav.Link href="contact" >Contact</Nav.Link>
+
+            </Nav>
+
+            <Nav>
+
+              <Nav.Link href="#" >Connexion / Inscription</Nav.Link>
+
+              <Nav.Link className="ml-3 mr-5" href="#" ><ShoppingBasketIcon /></Nav.Link>
+
+            </Nav>
+
+          </Navbar.Collapse>
+
+        </Navbar>
+
+        <Navbar bg="light" expand="lg" className="fondNavbar">
+          <div className="d-flex justify-content-center w-50 m-auto">            
+            <InputGroup className="mb-3">
+              <InputGroup.Prepend>
+                <Button variant="outline-secondary"><SearchIcon style={{ fontSize: 20 }}/></Button>
+              </InputGroup.Prepend>
+                <FormControl aria-label="Small" aria-describedby="basic-addon1 inputGroup-sizing-sm-6" />
+            </InputGroup>
+          </div>
+        </Navbar>
+              
+      </div>
+      
+
+
+{/* La version officiel bootstrap */}
+
+{/* <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+  <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+  <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+  <Navbar.Collapse id="responsive-navbar-nav">
+    <Nav className="mr-auto">
+      <Nav.Link href="#features">Features</Nav.Link>
+      <Nav.Link href="#pricing">Pricing</Nav.Link>
+      <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
+        <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+        <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
+        <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+        <NavDropdown.Divider />
+        <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
+      </NavDropdown>
+    </Nav>
+    <Nav>
+      <Nav.Link href="#deets">More deets</Nav.Link>
+      <Nav.Link eventKey={2} href="#memes">
+        Dank memes
+      </Nav.Link>
+    </Nav>
+  </Navbar.Collapse>
+</Navbar> */}
+
+
+
+
+{/* La presque navbar non-responsive */}
+
+{/* <Navbar bg="light" expand="lg" className="fondNavbar">
+  
+    <div className="contain">
+      <div className="row justify-content-md-center">
+
+        <div className="col-sm-2">
+          <Navbar.Brand href="#home">
+            <img
+              src={logo} 
+              className="d-inline-flex align-top ml-5 mr-3 navbar__logo"
+              alt="SNRK" />
+          </Navbar.Brand>
+        </div>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+
+        <div className="col-sm-6">
+
+          <div className="contain">
+
+            <div className="row align-self-star justify-content-md-center p-3">
+
+              <div className="col-sm ">
                 <NavDropdown title="Programmation" id="basic-nav-dropdown">
                   <NavDropdown.Item href="#action/3.1">Tous les évènements</NavDropdown.Item>
                   <NavDropdown.Divider />
@@ -59,15 +185,17 @@ function NavBar() {
                   <NavDropdown.Item href="#action/3.3">Echirolles</NavDropdown.Item>
                   <NavDropdown.Divider />
                   <NavDropdown.Item href="#action/3.3">Comment réserver ?</NavDropdown.Item>
-                </NavDropdown>
-              </div>
-              <div className="col-sm">
+                </NavDropdown>       
+            </div>
+
+            <div className="col-sm">
                 <NavDropdown title="Restauration" id="basic-nav-dropdown">
                   <NavDropdown.Item href="presentationRestoration">Présentation</NavDropdown.Item>
                   <NavDropdown.Divider />
                   <NavDropdown.Item href="#action/3.2">Réserver</NavDropdown.Item>
                 </NavDropdown>
               </div>
+
               <div className="col-sm">
                 <NavDropdown title="Parking" id="basic-nav-dropdown">
                   <NavDropdown.Item href="#action/3.1">Présentation</NavDropdown.Item>
@@ -75,6 +203,7 @@ function NavBar() {
                   <NavDropdown.Item href="#action/3.2">Réserver</NavDropdown.Item>
                 </NavDropdown>
               </div>
+
               <div className="col-sm">
                 <NavDropdown title="Privatisation" id="basic-nav-dropdown">
                   <NavDropdown.Item href="#action/3.1">Présentation</NavDropdown.Item>
@@ -82,6 +211,11 @@ function NavBar() {
                   <NavDropdown.Item href="#action/3.2">Réserver</NavDropdown.Item>
                 </NavDropdown>
               </div>
+
+              <div className="col-sm">
+                <Nav.Link href="actuality" >Actualités</Nav.Link>
+              </div>
+
               <div className="col-sm">
                 <NavDropdown title="Infos pratiques" id="basic-nav-dropdown">
                   <NavDropdown.Item href="#action/3.1">Comment venir</NavDropdown.Item>
@@ -89,56 +223,50 @@ function NavBar() {
                   <NavDropdown.Item href="#action/3.2">FAQ</NavDropdown.Item>
                 </NavDropdown>
               </div>
+
               <div className="col-sm">
                 <Nav.Link href="contact" >Contact</Nav.Link>
               </div>
-<<<<<<< HEAD
-              <div className="ml-1">
-                <Nav.Link href="#" >Connexion / Inscription</Nav.Link>
-              </div>
-            </div>
-            {/* <div class="row"> */}
-            {/* <div class="col-sm"> */}
-            <Form inline className="formSearch">
-              <FormControl type="text" placeholder="Search" className="mr-sm-2 w-50" />
-              <Button variant="outline-success" className="searchButton">Search</Button>
-            </Form>
-=======
-              <div className="ml-0">
-                <Nav.Link href="#" >Connexion / Inscription</Nav.Link>
-              </div>
-              <div className="ml-0">
-                <Nav.Link href="#" ><ShoppingBasketIcon /></Nav.Link>
-              </div>
+
+             </div>
+
+             <div className="row">
+               
+              <InputGroup className=" p-2">
+                <InputGroup.Prepend >
+                  <Button variant="outline-secondary"><SearchIcon className="sidebarRow__icon"/></Button>
+                </InputGroup.Prepend>
+                <FormControl
+                  placeholder="Rechercher"
+                  aria-label="Search"
+                  aria-describedby="basic-addon1"
+                />
+                </InputGroup>
               
-              
-            </div>
-            {/* <div class="row  w-100"> */}
-            {/* <div class="col-sm"> */}
-            <center>
-              <div class="input-group ">
-                
-              <input type="search" class="form-control rounded " placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-              <span class="input-group-text border-0" id="search-addon"><SearchIcon className="sidebarRow__icon"/>
-  
-              </span>
-              </div>
-              {/* display: flex;
-    align-items: center; */}
-              {/* <Form inline className="formSearch">
-              <FormControl type="text" placeholder="Search" className="mr-sm-2 w-50" />
-              <Button variant="outline-success" className="searchButton">Search</Button>
-            </Form> */}
-            </center>
-            
->>>>>>> 79947b6 (redesign 1)
-            {/* </div> */}
-            {/* </div> */}
-            {/* </div> */}
+             </div>
           </div>
-        </Nav>
-      </Navbar.Collapse>
-    </Navbar>
+
+          </div>
+        
+          <div className="col-sm-3">
+            <div className="d-flex justify-content-end align-self-star">
+              <div><Nav.Link href="#" >Connexion / Inscription</Nav.Link></div>
+              <div><Nav.Link href="#" ><ShoppingBasketIcon /></Nav.Link></div>
+            </div>
+
+            
+          </div>
+
+        </div>
+
+
+
+      </div>
+      </Navbar>
+
+    */}
+
+    </div>
 
   );
 }

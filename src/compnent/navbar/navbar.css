@@ -1,13 +1,13 @@
 .fondNavbar{
     background: white;
-    position: sticky;
-    top: 0;
-    z-index: 100;
     
+}
+.basic-navbar-nav{
+    background: var(--main-bg-color);
 }
 
 .navbar-light .navbar-nav .nav-link{
-    color: #8F00E6;
+    color: var(--main-bg-color);
     padding-right: 2vh;
     padding-left: 2vh;
 }
@@ -45,6 +45,74 @@
 }
 
 .navbar__logo{
-    height: 80px !important;
+    height: 100px !important;
     object-fit: contain !important;
+}
+
+.dropdown-toggle::after { 
+    /* cacher la petite fleche à côté des items de la navbar  */
+    content: none; 
+} 
+/* .header__search__line{
+    display:flex !important;
+    justify-content: center !important;
+    width: 40% !important;
+    background-color: var(--main-bg-color) !important;
+} */
+
+.btn:hover, .btn:focus, .btn:active, .btn.active, .open>.dropdown-toggle.btn {
+    color: #fff;
+    background-color: var(--main-bg-color);
+    border-color: var(--main-bg-color); /*set the color you want here*/
+}
+
+.btn-outline-secondary {
+    color: var(--main-bg-color);
+    border-color: var(--main-bg-color);
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    height: calc(1.5em + .75rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--main-bg-color);
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid var(--main-bg-color);
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.form-control:focus {
+    color:var(--main-bg-color);
+    border-color: var(--main-bg-color);
+    box-shadow: 0 0 0 0.2rem rgba(143, 0, 230, .25);
+}
+
+.dropdown-menu {
+    color: var(--main-bg-color);
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(143,0,230,.15);
+}
+.dropdown-item:hover{
+    color:#fff;
+    background-color: var(--main-bg-color);
+
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: var(--main-bg-color);
+    padding-right: 2vh;
+    padding-left: 2vh;
+}
+
+.navbar-light:hover .navbar-nav:hover .nav-link:hover {
+    color: var(--classic-hover-color);
+    padding-right: 2vh;
+    padding-left: 2vh;
 }
