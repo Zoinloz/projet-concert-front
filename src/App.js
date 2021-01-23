@@ -10,6 +10,8 @@ import PresentationRestoration from './compnent/restoration/presentation';
 import PresentationPrivatisation from './compnent/privatisation/presentation';
 import ReservationPrivatisation from './compnent/privatisation/reservation';
 import ConcertPoster from './compnent/programmation/concertPoster';
+import Login from "./compnent/login/login";
+import Register from './compnent/register/register';
 
 
 function App() {
@@ -31,6 +33,10 @@ function App() {
           <Route exact path="/presentationPrivatisation" component={PresentationPrivatisation} />
           <Route exact path="/reservationPrivatisation" component={ReservationPrivatisation} />
           <Route exact path="/concertPoster" component={ConcertPoster} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/register" component={Register} />
+
+
 
 
           <Route path="/" component={() => <div>ERREUR 404</div>} />

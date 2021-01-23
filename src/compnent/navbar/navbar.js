@@ -76,7 +76,7 @@ function NavBar() {
                 <Nav.Link href="/contact" >Contact</Nav.Link>
               </div>
               <div className="ml-1">
-                <Nav.Link href="#" >Connexion / Inscription</Nav.Link>
+                <Nav.Link href="/login" >Connexion / Inscription</Nav.Link>
               </div>
             </div>
             {/* <div class="row"> */}
