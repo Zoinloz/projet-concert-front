@@ -1,0 +1,21 @@
+.carousel-control-next ,.carousel-control-prev{
+    width: 55%;
+    margin: auto;
+}
+
+/* .carouselContent{
+    background-color: #0501075d;
+} */
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  height: 40px;
+  width: 40px;
+
+}
+
+.test{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}

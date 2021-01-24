@@ -1,0 +1,25 @@
+.titleConcertPage{
+    background: rgba(211, 211, 211, 0.5);
+}
+
+.imageConcert{
+    width: 70%;
+}
+
+.concertInformations{
+    color: black;
+    text-align: justify;
+    /* background-color: rebeccapurple; */
+}
+
+.buttonReservationConcert{
+    background-color:  #b465da;
+    border: none;
+    color: white;
+}
+
+.cardOtherConcert{
+    width: 30%;
+    margin: 1%;
+    display: inline-block;
+}

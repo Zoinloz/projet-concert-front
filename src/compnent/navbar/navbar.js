@@ -53,30 +53,30 @@ function NavBar() {
               </div>
               <div className="col-sm">
                 <NavDropdown title="Parking" id="basic-nav-dropdown">
-                  <NavDropdown.Item href="#action/3.1">Présentation</NavDropdown.Item>
+                  <NavDropdown.Item href="/parking">Présentation</NavDropdown.Item>
                   <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action/3.2">Réserver</NavDropdown.Item>
+                  <NavDropdown.Item href="/parking/reservation">Réserver</NavDropdown.Item>
                 </NavDropdown>
               </div>
               <div className="col-sm">
                 <NavDropdown title="Privatisation" id="basic-nav-dropdown">
-                  <NavDropdown.Item href="#action/3.1">Présentation</NavDropdown.Item>
+                  <NavDropdown.Item href="/presentationPrivatisation">Présentation</NavDropdown.Item>
                   <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action/3.2">Réserver</NavDropdown.Item>
+                  <NavDropdown.Item href="/reservationPrivatisation">Réserver</NavDropdown.Item>
                 </NavDropdown>
               </div>
               <div className="col-sm">
                 <NavDropdown title="Infos pratiques" id="basic-nav-dropdown">
                   <NavDropdown.Item href="#action/3.1">Comment venir</NavDropdown.Item>
                   <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action/3.2">FAQ</NavDropdown.Item>
+                  <NavDropdown.Item href="/concertPoster">FAQ</NavDropdown.Item>
                 </NavDropdown>
               </div>
               <div className="col-sm">
-                <Nav.Link href="contact" >Contact</Nav.Link>
+                <Nav.Link href="/contact" >Contact</Nav.Link>
               </div>
               <div className="ml-1">
-                <Nav.Link href="#" >Connexion / Inscription</Nav.Link>
+                <Nav.Link href="/login" >Connexion / Inscription</Nav.Link>
               </div>
             </div>
             {/* <div class="row"> */}

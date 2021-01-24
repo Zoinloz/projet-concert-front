@@ -14,15 +14,18 @@ toast.configure();
 
 function Contact() {
 
-  const notify = () => toast.success('🦄 Votre message a été envoyé avec succès !', {
-    position: "top-right",
-    autoClose: 6000,
-    hideProgressBar: true,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-  });
+  const notify = (event) => {
+    event.preventDefault();
+    toast.success('🦄 Votre message a été envoyé avec succès !', {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  }
 
   return (
 
