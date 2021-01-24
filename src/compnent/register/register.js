@@ -4,25 +4,9 @@ import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button'
 
-
-// Pour l'inscription : 
-// Adresse mail
-// confirmation e-mail
-// mot de passe
-// Confirmation mdp
-// civilite
-// nom
-// prenom
-// n° et libelle de la voie
-// Immeuble batiment, residence
-// Lieu dit boite postale etc 
-// code postale
-// ville
-// pays 
-// telephone
-// date de naissance
-
-
+const registration = async (event) => {
+    event.preventDefault();
+}
 
 function Register() {
 
@@ -31,7 +15,7 @@ function Register() {
             <Card className="w-50 mx-auto my-4 shadow-lg bg-white rounded" inline>
                 <Card.Header as="h3" className="titleCard">Inscrivez-vous</Card.Header>
                 <Card.Body>
-                    <Form className="w-50 mx-auto">
+                    <Form className="w-50 mx-auto" onSubmit={registration}>
                         <Form.Group controlId="formRegisterEmail">
                             <Form.Label>Email*</Form.Label>
                             <Form.Control type="email" placeholder="Email" />
