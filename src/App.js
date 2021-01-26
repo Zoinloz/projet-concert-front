@@ -10,6 +10,7 @@ import PresentationRestoration from './compnent/restoration/presentation';
 import ConcertPage from './compnent/concertPage/concertPage'
 import ConcertCard from "./asset/ConcertCard";
 import ConcertCardDeck from "./asset/ConcertCardDeck";
+import programmationPage from './compnent/programmationPage/programmationPage';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
 
       <Router forceRefresh={true}>
         <NavBar />
+
         <Switch>
           
           <Route exact path="/contact" component={Contact} />
@@ -29,6 +31,7 @@ function App() {
           <Route exact path="/legalNotices" component={LegalNotices} />
           <Route exact path="/presentationRestoration" component={PresentationRestoration} />
           <Route exact path="/concertPage" component={ConcertPage} />
+          <Route exact path="/programmationPage" component={programmationPage} />
 
           <Route exact path="/" component={Home} />
 

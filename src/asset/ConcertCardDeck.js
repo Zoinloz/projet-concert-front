@@ -8,12 +8,33 @@ import CardDeck from 'react-bootstrap/CardDeck'
 
 function ConcertCardDeck(){
     return (
-        <CardDeck className="w-75 mx-auto">
+        <div>
+            <div className="container justify-content-center concert__cardDeck">
+                <div className="row  ">
+                   <div className="col-lg-3">
+                    <ConcertCard/>
+                    </div>
+                <div className="col-lg-3">
+                    <ConcertCard/>
+                </div>
+                <div className="col-lg-3">
+                    <ConcertCard/>
+                </div>
+                <div className="col-lg-3">
+                    <ConcertCard/>
+                </div> 
+                </div>
+                
+            </div>
+
+            {/* <CardDeck className="mx-auto mt-5">
                 <ConcertCard/>
                 <ConcertCard/>
                 <ConcertCard/>
                 <ConcertCard/>
-        </CardDeck>   
+            </CardDeck>    */}
+        </div>
+        
     );
 }
 

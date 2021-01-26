@@ -12,3 +12,11 @@
     color: white;
     border: white;
 }
+.concert__card{
+   transition: all 0.4s ease;
+}
+.concert__card:hover{
+ 
+  transform:scale(1.10);
+  box-shadow: 0px 5px 25px rgb(143,1,230, 0.15);
+}

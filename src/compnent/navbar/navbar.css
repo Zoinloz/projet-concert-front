@@ -60,7 +60,7 @@
     background-color: var(--main-bg-color) !important;
 } */
 
-.btn:hover, .btn:focus, .btn:active, .btn.active, .open>.dropdown-toggle.btn {
+.btn:hover, .btn:focus, .btn::selection, .btn:visited, .btn:link, .btn:active, .btn.active, .btn.selected, .open>.dropdown-toggle.btn, .open>.dropdown-item:hover, .open>.dropdown-item:active {
     color: #fff;
     background-color: var(--main-bg-color);
     border-color: var(--main-bg-color); /*set the color you want here*/
@@ -115,4 +115,7 @@
     color: var(--classic-hover-color);
     padding-right: 2vh;
     padding-left: 2vh;
+}
+.header__style{
+    text-transform: uppercase;
 }

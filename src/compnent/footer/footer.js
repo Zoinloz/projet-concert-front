@@ -40,7 +40,7 @@ function Footer() {
                 height="36"
                 className="d-inline-block align-top m-2"
                 alt="Facebook">
-                <FacebookIcon />
+                <FacebookIcon/>
               </div>
               <div 
                 width="36"
