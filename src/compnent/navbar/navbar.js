@@ -29,7 +29,7 @@ function NavBar() {
             <div className="row">
               <div className="col-sm">
                 <NavDropdown title="Programmation" id="basic-nav-dropdown">
-                  <NavDropdown.Item href="#action/3.1">Tous les évènements</NavDropdown.Item>
+                  <NavDropdown.Item href="/programmation">Tous les évènements</NavDropdown.Item>
                   <NavDropdown.Divider />
                   <NavDropdown.Item href="#action/3.2">Aix-en-Provence</NavDropdown.Item>
                   <NavDropdown.Divider />

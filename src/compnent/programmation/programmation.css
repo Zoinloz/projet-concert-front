@@ -1,0 +1,54 @@
+/* .cardOtherConcert {
+    width: 20%;
+    margin: 2%;
+    display: inline-block;
+    text-align: justify;
+  } */
+  
+  .cardListConcert{
+    width: 30%;
+    margin: 1%;
+    display: inline-block;
+}
+
+  .titleProgrammationListCard{
+      color: black;
+  }
+
+  .searchCard{
+    background: rgba(211, 211, 211, 0.3);
+    color: black;
+}
+  
+  .titleCard {
+    background: linear-gradient(
+      to right,
+      #b8cbb8 0%,
+      #b8cbb8 0%,
+      #b465da 0%,
+      #cf6cc9 33%,
+      #ee609c 66%,
+      #ee609c 100%
+    );
+    color: #ffffff;
+  }
+  
+
+  .btnRerservationConcertList{
+    background-color:  #b465da;
+    border: none;
+    color: white;
+    
+}
+
+.btnReserDate{
+    background-color:  #b465da;
+    border-color: #b465da;
+}
+
+.btnSearchConcert{
+    background-color: #64BAA9;
+    color: white;
+    border-color: #64BAA9;
+    font-weight: bold;
+}
