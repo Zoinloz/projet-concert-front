@@ -19,6 +19,9 @@ import PaymentStepFour from './compnent/reservation/payment';
 import ConfirmationStepFive from './compnent/reservation/confirmation';
 import UserLoggedReservationStepThree from './compnent/reservation/reservationUserLog';
 import Programmation from './compnent/programmation/programmation';
+import Parking from './compnent/parking/presentation';
+
+
 function App() {
   return (
 
@@ -31,6 +34,7 @@ function App() {
         <NavBar />
         <Switch>
           <Route exact path="/" component={Home} />
+          <Route exact path="/parking" component={Parking} />
           <Route exact path="/contact" component={Contact} />
           <Route exact path="/cgu" component={Cgu} />
           <Route exact path="/legalNotices" component={LegalNotices} />

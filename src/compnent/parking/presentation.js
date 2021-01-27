@@ -29,8 +29,8 @@ function ParkingPres() {
 
                     </div>
 
-                    <div className="row">
-                        <div className="col-sm test">
+                    <div className="row test">
+                        <div className="col-sm">
                         <div >Aix-en-Provence</div>
                             <div >N°, rue,</div>
                             <div >CP, ville</div>
@@ -39,7 +39,7 @@ function ParkingPres() {
                             </div>
                         </div>
 
-                        <div className="col-sm test">
+                        <div className="col-sm ">
                         <div >Bourges</div>
                             <div >N°, rue,</div>
                             <div >CP, ville</div>
@@ -48,7 +48,7 @@ function ParkingPres() {
                             </div>
                         </div>
 
-                        <div className="col-sm test">
+                        <div className="col-sm ">
                             <div >Cannes</div>
                             <div >N°, rue,</div>
                             <div >CP, ville</div>
@@ -57,7 +57,7 @@ function ParkingPres() {
                             </div>
                         </div>
 
-                        <div className="col-sm test">
+                        <div className="col-sm ">
                         <div >Dunkerque</div>
                             <div >N°, rue,</div>
                             <div >CP, ville</div>
@@ -66,7 +66,7 @@ function ParkingPres() {
                             </div>
                         </div>
 
-                        <div className="col-sm test">
+                        <div className="col-sm ">
                         <div >Echirolles</div>
                             <div >N°, rue,</div>
                             <div >CP, ville</div>

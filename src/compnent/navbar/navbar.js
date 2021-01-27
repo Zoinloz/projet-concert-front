@@ -13,7 +13,7 @@ function NavBar() {
   return (
 
     <Navbar bg="light" expand="lg" className="fondNavbar">
-      <Navbar.Brand href="#home">
+      <Navbar.Brand href="/">
         <img
           src={logo}
           width="70"
