@@ -20,6 +20,7 @@ import ConfirmationStepFive from './compnent/reservation/confirmation';
 import UserLoggedReservationStepThree from './compnent/reservation/reservationUserLog';
 import Programmation from './compnent/programmation/programmation';
 import Parking from './compnent/parking/presentation';
+import AdminConcertList from './compnent/administrator/listConcert';
 
 
 function App() {
@@ -51,6 +52,7 @@ function App() {
           <Route exact path="/informationsUserLogged" component={UserLoggedReservationStepThree} />
           <Route exact path="/concertPoster" component={ConcertPoster} />
           <Route exact path="/programmation" component={Programmation} />
+          <Route exact path="/admin/ListConcert" component={AdminConcertList} />
 
 
 

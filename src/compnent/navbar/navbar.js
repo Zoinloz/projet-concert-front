@@ -41,7 +41,7 @@ function NavBar() {
                   <NavDropdown.Divider />
                   <NavDropdown.Item href="#action/3.3">Echirolles</NavDropdown.Item>
                   <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action/3.3">Comment réserver ?</NavDropdown.Item>
+                  <NavDropdown.Item href="/admin/ListConcert">Comment réserver ?</NavDropdown.Item>
                 </NavDropdown>
               </div>
               <div className="col-sm">
