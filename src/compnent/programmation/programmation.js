@@ -37,7 +37,7 @@ export default function Programmation() {
                                 key="inline-checkbox"
                             >
                                 <Form.Label className="mr-2">Lieu : </Form.Label>
-                                <Form.Check inline label="Tous" type="checkbox" />
+                                <Form.Check inline label="Tous" type="checkbox" defaultChecked />
                                 <Form.Check inline label="Aix-en-Provence" type="checkbox" />
                                 <Form.Check inline label="Bourges" type="checkbox" />
                                 <Form.Check inline label="Cannes" type="checkbox" />
@@ -58,6 +58,7 @@ export default function Programmation() {
                                     label="Toutes"
                                     type="radio"
                                     name="formHorizontalRadios"
+                                    defaultChecked
                                 />
                                 <Form.Check
                                     inline
