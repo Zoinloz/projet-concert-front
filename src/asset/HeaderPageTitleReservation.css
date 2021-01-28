@@ -1,0 +1,8 @@
+.header__page__h1{
+    font-size: 1.3rem;
+    
+}
+
+.reservation__step{
+    color: var(--main-bg-color);
+}
