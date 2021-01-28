@@ -25,17 +25,18 @@ import AdminConcertList from './compnent/administrator/listConcert';
 
 function App() {
   return (
-
-
-
+    
     <div>
 
 
       <Router forceRefresh={true}>
         <NavBar />
+
         <Switch>
+
           <Route exact path="/" component={Home} />
           <Route exact path="/parking" component={Parking} />
+
           <Route exact path="/contact" component={Contact} />
           <Route exact path="/cgu" component={Cgu} />
           <Route exact path="/legalNotices" component={LegalNotices} />
@@ -59,7 +60,7 @@ function App() {
 
 
 
-          <Route path="/" component={() => <div>ERREUR 404</div>} />
+
         </Switch>
         <Footer />
       </Router>
