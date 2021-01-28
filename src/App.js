@@ -22,13 +22,13 @@ import Programmation from './compnent/programmation/programmation';
 import Parking from './compnent/parking/presentation';
 
 import AdminConcertList from './compnent/administrator/listConcert';
-
+import AdminConcertAdd from './compnent/administrator/addConcert';
 import Programation from './compnent/programmation/concertPoster';
 
 
 function App() {
   return (
-    
+
     <div>
 
 
@@ -38,6 +38,7 @@ function App() {
         <Switch>
 
           <Route exact path="/" component={Home} />
+
           <Route exact path="/parking" component={Parking} />
           <Route exact path="/programation" component={Programation} />
           <Route exact path="/contact" component={Contact} />
@@ -57,12 +58,7 @@ function App() {
           <Route exact path="/concertPoster" component={ConcertPoster} />
           <Route exact path="/programmation" component={Programmation} />
           <Route exact path="/admin/ListConcert" component={AdminConcertList} />
-
-
-
-
-
-
+          <Route exact path="/admin/addConcert" component={AdminConcertAdd} />
 
         </Switch>
         <Footer />
