@@ -33,29 +33,39 @@ function Footer() {
             <h5 className="centerNewsReseau">Réseaux sociaux</h5>
             <p className="text-xs centerNewsReseau w-50 mx-auto">Suivez-nous pour
             vous tenir informé des concerts à venir !
-              </p>
-            <div className="socialIcons text-center " >
+            </p>
+            <div className="socialIcons text-center">
               <div 
-                width="36"
-                height="36"
-                className="d-inline-block align-top m-2"
-                alt="Facebook">
-                <FacebookIcon/>
-              </div>
-              <div 
-                width="36"
-                height="36"
-                className="d-inline-block align-top m-2"
-                alt="Facebook">
-              <InstagramIcon/>
-                
-              </div>
-                
-              <TwitterIcon className="m-2" />
-              <YouTubeIcon className="m-2" />
-              
-              
+                  width="36"
+                  height="36"
+                  className="d-inline-block align-top m-2"
+                  alt="Facebook">
+                  <FacebookIcon />
+                </div>
 
+                <div 
+                  width="36"
+                  height="36"
+                  className="d-inline-block align-top m-2"
+                  alt="Facebook">
+                    <InstagramIcon/>
+                </div>
+
+                <div 
+                width="36"
+                height="36"
+                className="d-inline-block align-top m-2"
+                alt="Facebook">
+                  <TwitterIcon/>
+                </div>
+
+              <div 
+                width="36"
+                height="36"
+                className="d-inline-block align-top m-2"
+                alt="Facebook">
+                  <YouTubeIcon/>
+              </div>
             </div>
           </div>
           {/* NEWSLETTER */}

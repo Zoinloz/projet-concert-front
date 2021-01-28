@@ -73,6 +73,7 @@ function NavBar() {
   return (
     <div>
 
+
       <div className="header__style">
       
         <Navbar bg="light" expand="lg" className="fondNavbar">
@@ -218,6 +219,7 @@ function NavBar() {
             <div className="row align-self-star justify-content-md-center p-3">
 
               <div className="col-sm ">
+
                 <NavDropdown title="Programmation" id="basic-nav-dropdown">
                   <NavDropdown.Item href="#action/3.1">Tous les évènements</NavDropdown.Item>
                   <NavDropdown.Divider />
@@ -245,17 +247,17 @@ function NavBar() {
 
               <div className="col-sm">
                 <NavDropdown title="Parking" id="basic-nav-dropdown">
-                  <NavDropdown.Item href="#action/3.1">Présentation</NavDropdown.Item>
+                  <NavDropdown.Item href="/parking">Présentation</NavDropdown.Item>
                   <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action/3.2">Réserver</NavDropdown.Item>
+                  <NavDropdown.Item href="/parking/reservation">Réserver</NavDropdown.Item>
                 </NavDropdown>
               </div>
 
               <div className="col-sm">
                 <NavDropdown title="Privatisation" id="basic-nav-dropdown">
-                  <NavDropdown.Item href="#action/3.1">Présentation</NavDropdown.Item>
+                  <NavDropdown.Item href="/presentationPrivatisation">Présentation</NavDropdown.Item>
                   <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action/3.2">Réserver</NavDropdown.Item>
+                  <NavDropdown.Item href="/reservationPrivatisation">Réserver</NavDropdown.Item>
                 </NavDropdown>
               </div>
 
@@ -267,12 +269,12 @@ function NavBar() {
                 <NavDropdown title="Infos pratiques" id="basic-nav-dropdown">
                   <NavDropdown.Item href="#action/3.1">Comment venir</NavDropdown.Item>
                   <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action/3.2">FAQ</NavDropdown.Item>
+                  <NavDropdown.Item href="/concertPoster">FAQ</NavDropdown.Item>
                 </NavDropdown>
               </div>
 
               <div className="col-sm">
-                <Nav.Link href="contact" >Contact</Nav.Link>
+                <Nav.Link href="/contact" >Contact</Nav.Link>
               </div>
 
              </div>
@@ -299,6 +301,7 @@ function NavBar() {
             <div className="d-flex justify-content-end align-self-star">
               <div><Nav.Link href="#" >Connexion / Inscription</Nav.Link></div>
               <div><Nav.Link href="#" ><ShoppingBasketIcon /></Nav.Link></div>
+
             </div>
 
             
