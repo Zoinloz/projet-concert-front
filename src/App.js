@@ -23,7 +23,10 @@ import Parking from './compnent/parking/presentation';
 
 import AdminConcertList from './compnent/administrator/listConcert';
 
+import AuthApi from './services/authApi';
 
+
+AuthApi.init();
 function App() {
   return (
 

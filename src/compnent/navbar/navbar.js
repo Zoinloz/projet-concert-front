@@ -141,7 +141,7 @@ function NavBar() {
 
             <Nav>
 
-              <Nav.Link href="#" >Mon compte / Crée un compte</Nav.Link>
+              <Nav.Link href="/login" >Mon compte / Crée un compte</Nav.Link>
 
               <Nav.Link className="ml-3 mr-5" href="/reservationStepOne" ><ShoppingBasketIcon /></Nav.Link>
 
