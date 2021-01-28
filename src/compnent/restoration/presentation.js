@@ -8,7 +8,7 @@ function PresentationRestoration() {
 
     return (
         <Card className="w-75 mx-auto my-4 shadow-lg bg-white rounded">
-            <Card.Header as="h3">Restauration - Présentation</Card.Header>
+            <Card.Header as="h3" className="titleCard">Restauration - Présentation</Card.Header>
             <Card.Body>
                 <div class="container">
                     <div class="row">

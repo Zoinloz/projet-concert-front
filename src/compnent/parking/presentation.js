@@ -9,7 +9,7 @@ function ParkingPres() {
     return (
 
         <Card className="w-75 mx-auto my-4 shadow-lg bg-white rounded">
-            <Card.Header as="h3" className="titleParking">Parking - Présentation</Card.Header>
+            <Card.Header as="h3" className="titleCard">Parking - Présentation</Card.Header>
             <Card.Body>
                 <div class="container">
 
@@ -31,7 +31,7 @@ function ParkingPres() {
 
                     <div className="row test">
                         <div className="col-sm">
-                        <div >Aix-en-Provence</div>
+                            <div >Aix-en-Provence</div>
                             <div >N°, rue,</div>
                             <div >CP, ville</div>
                             <div className="google-map-code">
@@ -40,7 +40,7 @@ function ParkingPres() {
                         </div>
 
                         <div className="col-sm ">
-                        <div >Bourges</div>
+                            <div >Bourges</div>
                             <div >N°, rue,</div>
                             <div >CP, ville</div>
                             <div className="google-map-code">
@@ -58,7 +58,7 @@ function ParkingPres() {
                         </div>
 
                         <div className="col-sm ">
-                        <div >Dunkerque</div>
+                            <div >Dunkerque</div>
                             <div >N°, rue,</div>
                             <div >CP, ville</div>
                             <div className="google-map-code">
@@ -67,7 +67,7 @@ function ParkingPres() {
                         </div>
 
                         <div className="col-sm ">
-                        <div >Echirolles</div>
+                            <div >Echirolles</div>
                             <div >N°, rue,</div>
                             <div >CP, ville</div>
                             <div className="google-map-code">
