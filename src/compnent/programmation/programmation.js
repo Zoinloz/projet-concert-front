@@ -1,0 +1,255 @@
+import "./programmation.css";
+import axios from "axios";
+import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import React, { useState } from "react";
+import salleCannes from '../../logo/salle-cannes.jpg'
+
+export default function Programmation() {
+    const [endDate, setEndDate] = useState("");
+    const [startDate, setStartDate] = useState("");
+
+    function resetDate(e) {
+        e.preventDefault();
+        // Voir les dates qui ont été mise
+        console.log(endDate, startDate);
+        // clearing the values
+        setEndDate("");
+        setStartDate("");
+    }
+    return (
+        <Card className="w-75 mx-auto my-4 shadow-lg bg-white rounded ">
+            <Card.Header as="h3" className="titleCard text-center">
+                Programmation
+        </Card.Header>
+
+            <Card.Body>
+                <Card className="my-4 shadow rounded">
+                    {/* <Card.Header className="searchCard text-center">
+                        Trier
+                        </Card.Header> */}
+                    <Card.Body className="mx-auto">
+                        <Form name="test">
+                            <Form.Group
+                                className="form-inline"
+                                controlId="formProgrammationCheckboxPlace"
+                                key="inline-checkbox"
+                            >
+                                <Form.Label className="mr-2">Lieu : </Form.Label>
+                                <Form.Check inline label="Tous" type="checkbox" defaultChecked />
+                                <Form.Check inline label="Aix-en-Provence" type="checkbox" />
+                                <Form.Check inline label="Bourges" type="checkbox" />
+                                <Form.Check inline label="Cannes" type="checkbox" />
+                                <Form.Check inline label="Dunkerque" type="checkbox" />
+                                <Form.Check inline label="Echirolles" type="checkbox" />
+                            </Form.Group>
+
+                            <Form.Group
+                                className="form-inline"
+                                controlId="formProgrammationRadioMusicCategory"
+                                key="inline-radio"
+                            >
+                                <Form.Label className="mr-2">
+                                    Catégorie de musique :{" "}
+                                </Form.Label>
+                                <Form.Check
+                                    inline
+                                    label="Toutes"
+                                    type="radio"
+                                    name="formHorizontalRadios"
+                                    defaultChecked
+                                />
+                                <Form.Check
+                                    inline
+                                    label="Pop"
+                                    type="radio"
+                                    name="formHorizontalRadios"
+                                />
+                                <Form.Check
+                                    inline
+                                    label="Rock"
+                                    type="radio"
+                                    name="formHorizontalRadios"
+                                />
+                                <Form.Check
+                                    inline
+                                    label="Electro"
+                                    type="radio"
+                                    name="formHorizontalRadios"
+                                />
+                                <Form.Check
+                                    inline
+                                    label="Rap / Hip-hop"
+                                    type="radio"
+                                    name="formHorizontalRadios"
+                                />
+                                <Form.Check
+                                    inline
+                                    label="Soul / Funk"
+                                    type="radio"
+                                    name="formHorizontalRadios"
+                                />
+                                <Form.Check
+                                    inline
+                                    label="Classique"
+                                    type="radio"
+                                    name="formHorizontalRadios"
+                                />
+                                <Form.Check
+                                    inline
+                                    label="Dub / Reggae"
+                                    type="radio"
+                                    name="formHorizontalRadios"
+                                />
+                            </Form.Group>
+
+                            <Form.Group controlId="formBasicDate" className="form-inline">
+                                <Form.Label>Date : </Form.Label>
+                                <Form.Text className="mx-2">Du </Form.Text>
+                                <Form.Control
+                                    type="date"
+                                    name="startDate"
+                                    className="w-25"
+                                    value={startDate}
+                                    onChange={e => setStartDate(e.target.value)}
+                                />
+                                <Form.Text className="mx-2">au</Form.Text>
+                                <Form.Control
+                                    type="date"
+                                    className="w-25"
+                                    name="endDate"
+                                    value={endDate}
+                                    onChange={e => setEndDate(e.target.value)}
+                                />
+                                <Button
+                                    // variant="outline-info"
+                                    // type="submit"
+                                    className="mx-3 btnReserDate"
+                                    onClick={resetDate}
+                                >
+                                    Réinitialiser les dates
+                  </Button>
+                            </Form.Group>
+                            <Button className="btnSearchConcert" type="submit">
+                                Rechercher
+                </Button>
+                        </Form>
+                    </Card.Body>
+                </Card>
+                {/* Garder une Card seulement et la mettre dans le map (Voir exemple git prof) */}
+                <Card className="my-4 shadow bg-white rounded cardListConcert text-center">
+                    {/* <Card.Header className="titleProgrammationListCard"></Card.Header> */}
+                    <Card.Img variant="top" src={salleCannes} />                    <Card.Body>
+                        <Card.Text as="h5">Nom de l'artiste</Card.Text>
+                        <Card.Text>Nom de la tournée</Card.Text>
+                        <Card.Text>Date et heure</Card.Text>
+                        <Card.Text>Catégorie de musique</Card.Text>
+                        <Card.Text>Lieu</Card.Text>
+                        <Card.Text>Tarifs de ... à ...€</Card.Text>
+                        <Card.Link href="/concertPoster" className="btn btnRerservationConcertList">Réserver</Card.Link>
+                    </Card.Body>
+                </Card>
+                {/* Fin de la CARD a garder */}
+                <Card className="my-4 shadow bg-white rounded cardListConcert text-center">
+                    {/* <Card.Header className="titleProgrammationListCard"></Card.Header> */}
+                    <Card.Img variant="top" src={salleCannes} />                    <Card.Body>
+                        <Card.Text as="h5">Nom de l'artiste</Card.Text>
+                        <Card.Text>Nom de la tournée</Card.Text>
+                        <Card.Text>Date et heure</Card.Text>
+                        <Card.Text>Catégorie de musique</Card.Text>
+                        <Card.Text>Lieu</Card.Text>
+                        <Card.Text>Tarifs de ... à ...€</Card.Text>
+                        <Card.Link href="/concertPoster" className="btn btnRerservationConcertList">Réserver</Card.Link>
+                    </Card.Body>
+                </Card>
+                <Card className="my-4 shadow bg-white rounded cardListConcert text-center">
+                    {/* <Card.Header className="titleProgrammationListCard"></Card.Header> */}
+                    <Card.Img variant="top" src={salleCannes} />                    <Card.Body>
+                        <Card.Text as="h5">Nom de l'artiste</Card.Text>
+                        <Card.Text>Nom de la tournée</Card.Text>
+                        <Card.Text>Date et heure</Card.Text>
+                        <Card.Text>Catégorie de musique</Card.Text>
+                        <Card.Text>Lieu</Card.Text>
+                        <Card.Text>Tarifs de ... à ...€</Card.Text>
+                        <Card.Link href="/concertPoster" className="btn btnRerservationConcertList">Réserver</Card.Link>
+                    </Card.Body>
+                </Card>
+                <Card className="my-4 shadow bg-white rounded cardListConcert text-center">
+                    {/* <Card.Header className="titleProgrammationListCard"></Card.Header> */}
+                    <Card.Img variant="top" src={salleCannes} />                    <Card.Body>
+                        <Card.Text as="h5">Nom de l'artiste</Card.Text>
+                        <Card.Text>Nom de la tournée</Card.Text>
+                        <Card.Text>Date et heure</Card.Text>
+                        <Card.Text>Catégorie de musique</Card.Text>
+                        <Card.Text>Lieu</Card.Text>
+                        <Card.Text>Tarifs de ... à ...€</Card.Text>
+                        <Card.Link href="/concertPoster" className="btn btnRerservationConcertList">Réserver</Card.Link>
+                    </Card.Body>
+                </Card>
+                <Card className="my-4 shadow bg-white rounded cardListConcert text-center">
+                    {/* <Card.Header className="titleProgrammationListCard"></Card.Header> */}
+                    <Card.Img variant="top" src={salleCannes} />                    <Card.Body>
+                        <Card.Text as="h5">Nom de l'artiste</Card.Text>
+                        <Card.Text>Nom de la tournée</Card.Text>
+                        <Card.Text>Date et heure</Card.Text>
+                        <Card.Text>Catégorie de musique</Card.Text>
+                        <Card.Text>Lieu</Card.Text>
+                        <Card.Text>Tarifs de ... à ...€</Card.Text>
+                        <Card.Link href="/concertPoster" className="btn btnRerservationConcertList">Réserver</Card.Link>
+                    </Card.Body>
+                </Card>
+                <Card className="my-4 shadow bg-white rounded cardListConcert text-center">
+                    {/* <Card.Header className="titleProgrammationListCard"></Card.Header> */}
+                    <Card.Img variant="top" src={salleCannes} />                    <Card.Body>
+                        <Card.Text as="h5">Nom de l'artiste</Card.Text>
+                        <Card.Text>Nom de la tournée</Card.Text>
+                        <Card.Text>Date et heure</Card.Text>
+                        <Card.Text>Catégorie de musique</Card.Text>
+                        <Card.Text>Lieu</Card.Text>
+                        <Card.Text>Tarifs de ... à ...€</Card.Text>
+                        <Card.Link href="/concertPoster" className="btn btnRerservationConcertList">Réserver</Card.Link>
+                    </Card.Body>
+                </Card>
+                <Card className="my-4 shadow bg-white rounded cardListConcert text-center">
+                    {/* <Card.Header className="titleProgrammationListCard"></Card.Header> */}
+                    <Card.Img variant="top" src={salleCannes} />                    <Card.Body>
+                        <Card.Text as="h5">Nom de l'artiste</Card.Text>
+                        <Card.Text>Nom de la tournée</Card.Text>
+                        <Card.Text>Date et heure</Card.Text>
+                        <Card.Text>Catégorie de musique</Card.Text>
+                        <Card.Text>Lieu</Card.Text>
+                        <Card.Text>Tarifs de ... à ...€</Card.Text>
+                        <Card.Link href="/concertPoster" className="btn btnRerservationConcertList">Réserver</Card.Link>
+                    </Card.Body>
+                </Card>
+                <Card className="my-4 shadow bg-white rounded cardListConcert text-center">
+                    {/* <Card.Header className="titleProgrammationListCard"></Card.Header> */}
+                    <Card.Img variant="top" src={salleCannes} />                    <Card.Body>
+                        <Card.Text as="h5">Nom de l'artiste</Card.Text>
+                        <Card.Text>Nom de la tournée</Card.Text>
+                        <Card.Text>Date et heure</Card.Text>
+                        <Card.Text>Catégorie de musique</Card.Text>
+                        <Card.Text>Lieu</Card.Text>
+                        <Card.Text>Tarifs de ... à ...€</Card.Text>
+                        <Card.Link href="/concertPoster" className="btn btnRerservationConcertList">Réserver</Card.Link>
+                    </Card.Body>
+                </Card>
+                <Card className="my-4 shadow bg-white rounded cardListConcert text-center">
+                    {/* <Card.Header className="titleProgrammationListCard"></Card.Header> */}
+                    <Card.Img variant="top" src={salleCannes} />                    <Card.Body>
+                        <Card.Text as="h5">Nom de l'artiste</Card.Text>
+                        <Card.Text>Nom de la tournée</Card.Text>
+                        <Card.Text>Date et heure</Card.Text>
+                        <Card.Text>Catégorie de musique</Card.Text>
+                        <Card.Text>Lieu</Card.Text>
+                        <Card.Text>Tarifs de ... à ...€</Card.Text>
+                        <Card.Link href="/concertPoster" className="btn btnRerservationConcertList">Réserver</Card.Link>
+                    </Card.Body>
+                </Card>
+            </Card.Body>
+        </Card>
+    );
+    // }
+}
+
