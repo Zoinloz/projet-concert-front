@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './navbar.css';
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown'
 import InputGroup from 'react-bootstrap/InputGroup';
@@ -29,43 +29,43 @@ function NavBar() {
   const [showInfos, setShowInfos] = useState(false);
 
   // Affichage NavDropItem pour Programmation
-  const showDropdownProgram = (eProgrammation)=>{
-      setShowProgram(!showProgram);
+  const showDropdownProgram = (eProgrammation) => {
+    setShowProgram(!showProgram);
   }
   const hideDropdownProgram = eProgrammation => {
-      setShowProgram(false);
+    setShowProgram(false);
   }
 
- // Affichage NavDropItem pour Restauration
-  const showDropdownRestaurant = (eRestaurant) =>{
-      setShowRestaurant(!showRestaurant);
+  // Affichage NavDropItem pour Restauration
+  const showDropdownRestaurant = (eRestaurant) => {
+    setShowRestaurant(!showRestaurant);
   }
   const hideDropdownRestaurant = eRestaurant => {
-      setShowProgram(false);
-  } 
-  
+    setShowProgram(false);
+  }
+
   // Affichage NavDropItem pour Parking
-  const showDropdownParking = (eParking) =>{
-      setShowParking(!showParking);
+  const showDropdownParking = (eParking) => {
+    setShowParking(!showParking);
   }
   const hideDropdownParking = eParking => {
-      setShowParking(false);
+    setShowParking(false);
   }
 
   // Affichage NavDropItem pour Privatisation
-  const showDropdownPrivatisation = (ePrivatisation) =>{
-      setShowPrivatisation(!showPrivatisation);
+  const showDropdownPrivatisation = (ePrivatisation) => {
+    setShowPrivatisation(!showPrivatisation);
   }
   const hideDropdownPrivatisation = ePrivatisation => {
-      setShowPrivatisation(false);
+    setShowPrivatisation(false);
   }
 
   // Affichage NavDropItem pour Infos
-  const showDropdownInfos = (eInfos) =>{
-      setShowInfos(!showInfos);
+  const showDropdownInfos = (eInfos) => {
+    setShowInfos(!showInfos);
   }
   const hideDropdownInfos = eInfos => {
-      setShowInfos(false);
+    setShowInfos(false);
   }
 
 
@@ -75,14 +75,14 @@ function NavBar() {
 
 
       <div className="header__style">
-      
+
         <Navbar bg="light" expand="lg" className="fondNavbar">
 
           <Navbar.Brand href="/">
             <img
               src={logo}
               className="d-inline-flex align-top ml-5 mr-3 navbar__logo"
-              alt="SNRK" 
+              alt="SNRK"
             />
           </Navbar.Brand>
 
@@ -90,50 +90,50 @@ function NavBar() {
 
           <Navbar.Collapse id="responsive-navbar-nav">
 
-            <Nav className="m-auto"> 
+            <Nav className="m-auto">
 
             <Link className="footer__link" to="/tous-les-evenements"></Link>
               <NavDropdown href="/programation" show={showProgram} onMouseEnter={showDropdownProgram} onMouseLeave={hideDropdownProgram} title="Programmation" id="basic-nav-dropdown">
                 <NavDropdown.Item href="/programation">Tous les évènements</NavDropdown.Item>
-                
+
                 <NavDropdown.Item href="#action/3.2">Aix-en-Provence</NavDropdown.Item>
-                
+
                 <NavDropdown.Item href="#action/3.3">Bourges</NavDropdown.Item>
-                
+
                 <NavDropdown.Item href="#action/3.3">Cannes</NavDropdown.Item>
-                
+
                 <NavDropdown.Item href="#action/3.3">Dunkerque</NavDropdown.Item>
-                
+
                 <NavDropdown.Item href="#action/3.3">Echirolles</NavDropdown.Item>
-                
+
                 <NavDropdown.Item href="#action/3.3">Comment réserver ?</NavDropdown.Item>
               </NavDropdown>
 
               <NavDropdown show={showRestaurant} onMouseEnter={showDropdownRestaurant} onMouseLeave={hideDropdownRestaurant} title="Restauration" id="basic-nav-dropdown">
                 <NavDropdown.Item href="presentationRestoration">Présentation</NavDropdown.Item>
-                
+
                 <NavDropdown.Item href="#action/3.2">Réserver</NavDropdown.Item>
               </NavDropdown>
 
               <NavDropdown show={showParking} onMouseEnter={showDropdownParking} onMouseLeave={hideDropdownParking} title="Parking" id="basic-nav-dropdown">
                 <NavDropdown.Item href="#action/3.1">Présentation</NavDropdown.Item>
-                
+
                 <NavDropdown.Item href="#action/3.2">Réserver</NavDropdown.Item>
-              </NavDropdown> 
+              </NavDropdown>
 
               <NavDropdown show={showPrivatisation} onMouseEnter={showDropdownPrivatisation} onMouseLeave={hideDropdownPrivatisation} title="Privatisation" id="basic-nav-dropdown">
                 <NavDropdown.Item href="#action/3.1">Présentation</NavDropdown.Item>
-                
+
                 <NavDropdown.Item href="#action/3.2">Réserver</NavDropdown.Item>
-              </NavDropdown> 
+              </NavDropdown>
 
               <Nav.Link href="actuality" >Actualités</Nav.Link>
 
               <NavDropdown show={showInfos} onMouseEnter={showDropdownInfos} onMouseLeave={hideDropdownInfos} title="Infos pratiques" id="basic-nav-dropdown">
                 <NavDropdown.Item href="#action/3.1">Comment venir</NavDropdown.Item>
-                
+
                 <NavDropdown.Item href="#action/3.2">FAQ</NavDropdown.Item>
-              </NavDropdown> 
+              </NavDropdown>
 
               <Nav.Link href="contact" >Contact</Nav.Link>
 
@@ -152,23 +152,23 @@ function NavBar() {
         </Navbar>
 
         <Navbar bg="light" expand="lg" className="fondNavbar">
-          <div className="d-flex justify-content-center w-50 m-auto">            
+          <div className="d-flex justify-content-center w-50 m-auto">
             <InputGroup className="mb-5">
               <InputGroup.Prepend>
-                <Button variant="outline-secondary"><SearchIcon style={{ fontSize: 20 }}/></Button>
+                <Button variant="outline-secondary"><SearchIcon style={{ fontSize: 20 }} /></Button>
               </InputGroup.Prepend>
-                <FormControl aria-label="Small" aria-describedby="basic-addon1 inputGroup-sizing-sm-6" />
+              <FormControl aria-label="Small" aria-describedby="basic-addon1 inputGroup-sizing-sm-6" />
             </InputGroup>
           </div>
         </Navbar>
-              
+
       </div>
-      
 
 
-{/* La version officiel bootstrap */}
 
-{/* <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+      {/* La version officiel bootstrap */}
+
+      {/* <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
   <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
   <Navbar.Toggle aria-controls="responsive-navbar-nav" />
   <Navbar.Collapse id="responsive-navbar-nav">
@@ -195,9 +195,9 @@ function NavBar() {
 
 
 
-{/* La presque navbar non-responsive */}
+      {/* La presque navbar non-responsive */}
 
-{/* <Navbar bg="light" expand="lg" className="fondNavbar">
+      {/* <Navbar bg="light" expand="lg" className="fondNavbar">
   
     <div className="contain">
       <div className="row justify-content-md-center">
@@ -221,7 +221,7 @@ function NavBar() {
               <div className="col-sm ">
 
                 <NavDropdown title="Programmation" id="basic-nav-dropdown">
-                  <NavDropdown.Item href="#action/3.1">Tous les évènements</NavDropdown.Item>
+                  <NavDropdown.Item href="/programmation">Tous les évènements</NavDropdown.Item>
                   <NavDropdown.Divider />
                   <NavDropdown.Item href="#action/3.2">Aix-en-Provence</NavDropdown.Item>
                   <NavDropdown.Divider />
@@ -233,6 +233,12 @@ function NavBar() {
                   <NavDropdown.Divider />
                   <NavDropdown.Item href="#action/3.3">Echirolles</NavDropdown.Item>
                   <NavDropdown.Divider />
+
+                  <NavDropdown.Item href="/admin/ListConcert">Comment réserver ?</NavDropdown.Item>
+                </NavDropdown>
+              </div>
+              <div className="col-sm">
+
                   <NavDropdown.Item href="#action/3.3">Comment réserver ?</NavDropdown.Item>
                 </NavDropdown>       
             </div>
