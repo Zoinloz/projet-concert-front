@@ -1,0 +1,15 @@
+.buttonLogin{
+    background-color: #64BAA9;
+    color: white;
+    border: #64BAA9;
+}
+
+.buttonRegister{
+    background-color: #8C52FF;
+    color: white;
+    border-color: #8C52FF;
+}
+
+.titleCard{
+    background: linear-gradient(to right, #b8cbb8 0%, #b8cbb8 0%, #b465da 0%, #cf6cc9 33%, #ee609c 66%, #ee609c 100%);
+}

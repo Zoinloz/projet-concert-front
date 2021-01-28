@@ -7,18 +7,23 @@ import Cgu from './compnent/cgu/cgu.js'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import LegalNotices from './compnent/legalNotices/legalNotices';
 import PresentationRestoration from './compnent/restoration/presentation';
-import ConcertPage from './compnent/concertPage/concertPage'
-import ConcertCard from "./asset/ConcertCard";
-import ConcertCardDeck from "./asset/ConcertCardDeck";
-import programmationPage from './compnent/programmationPage/programmationPage';
-import reservationPage from './compnent/reservation/reservationPage';
+import PresentationPrivatisation from './compnent/privatisation/presentation';
+import ReservationPrivatisation from './compnent/privatisation/reservation';
+import ConcertPoster from './compnent/programmation/concertPoster';
+import Login from "./compnent/login/login";
+import Register from './compnent/register/register';
+import ReservationStepOne from "./compnent/reservation/reservation";
+import ShoppingCartStepTwo from "./compnent/reservation/shoppingCart";
+import ContactInformationStepThree from './compnent/reservation/contactInformations';
+import PaymentStepFour from './compnent/reservation/payment';
+import ConfirmationStepFive from './compnent/reservation/confirmation';
+import UserLoggedReservationStepThree from './compnent/reservation/reservationUserLog';
+import Parking from './compnent/parking/presentation';
 
 
 function App() {
   return (
-
-
-
+    
     <div>
 
 
@@ -26,16 +31,31 @@ function App() {
         <NavBar />
 
         <Switch>
-          
+
+          <Route exact path="/" component={Home} />
+          <Route exact path="/parking" component={Parking} />
+
           <Route exact path="/contact" component={Contact} />
           <Route exact path="/cgu" component={Cgu} />
           <Route exact path="/legalNotices" component={LegalNotices} />
           <Route exact path="/presentationRestoration" component={PresentationRestoration} />
-          <Route exact path="/concertPage" component={ConcertPage} />
-          <Route exact path="/programmationPage" component={programmationPage} />
-          <Route exact path="/reservationPage" component={reservationPage} />
+          <Route exact path="/presentationPrivatisation" component={PresentationPrivatisation} />
+          <Route exact path="/reservationPrivatisation" component={ReservationPrivatisation} />
+          <Route exact path="/concertPoster" component={ConcertPoster} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/register" component={Register} />
+          <Route exact path="/reservationStepOne" component={ReservationStepOne} />
+          <Route exact path="/shoppingCart" component={ShoppingCartStepTwo} />
+          <Route exact path="/contactInformation" component={ContactInformationStepThree} />
+          <Route exact path="/payment" component={PaymentStepFour} />
+          <Route exact path="/confirmation" component={ConfirmationStepFive} />
+          <Route exact path="/informationsUserLogged" component={UserLoggedReservationStepThree} />
 
-          <Route exact path="/" component={Home} />
+
+
+
+
+
 
         </Switch>
         <Footer />
