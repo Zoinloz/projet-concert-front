@@ -19,7 +19,7 @@ import PaymentStepFour from './compnent/reservation/payment';
 import ConfirmationStepFive from './compnent/reservation/confirmation';
 import UserLoggedReservationStepThree from './compnent/reservation/reservationUserLog';
 import Parking from './compnent/parking/presentation';
-
+import Programation from './compnent/programmation/concertPoster';
 
 function App() {
   return (
@@ -34,7 +34,7 @@ function App() {
 
           <Route exact path="/" component={Home} />
           <Route exact path="/parking" component={Parking} />
-
+          <Route exact path="/programation" component={Programation} />
           <Route exact path="/contact" component={Contact} />
           <Route exact path="/cgu" component={Cgu} />
           <Route exact path="/legalNotices" component={LegalNotices} />

@@ -78,7 +78,7 @@ function NavBar() {
       
         <Navbar bg="light" expand="lg" className="fondNavbar">
 
-          <Navbar.Brand href="#home">
+          <Navbar.Brand href="/">
             <img
               src={logo}
               className="d-inline-flex align-top ml-5 mr-3 navbar__logo"
@@ -93,8 +93,8 @@ function NavBar() {
             <Nav className="m-auto"> 
 
             <Link className="footer__link" to="/tous-les-evenements"></Link>
-              <NavDropdown href="programmationPage" show={showProgram} onMouseEnter={showDropdownProgram} onMouseLeave={hideDropdownProgram} title="Programmation" id="basic-nav-dropdown">
-                <NavDropdown.Item href="programmationPage">Tous les évènements</NavDropdown.Item>
+              <NavDropdown href="/programation" show={showProgram} onMouseEnter={showDropdownProgram} onMouseLeave={hideDropdownProgram} title="Programmation" id="basic-nav-dropdown">
+                <NavDropdown.Item href="/programation">Tous les évènements</NavDropdown.Item>
                 
                 <NavDropdown.Item href="#action/3.2">Aix-en-Provence</NavDropdown.Item>
                 
