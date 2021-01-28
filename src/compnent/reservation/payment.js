@@ -1,5 +1,6 @@
 import Card from 'react-bootstrap/Card'
 import Breadcrumb from 'react-bootstrap/Breadcrumb'
+import HeaderPageTitleReservation from './../../asset/HeaderPageTitleReservation.js';
 
 function PaymentStepFour() {
     return (
@@ -8,7 +9,7 @@ function PaymentStepFour() {
                 Paiement
             </Card.Header>
             <Card.Body>
-                <Breadcrumb>
+                {/* <Breadcrumb>
                     <Breadcrumb.Item href="/reservationStepOne">1. Réservation</Breadcrumb.Item>
                     <Breadcrumb.Item href="/shoppingCart">
                         2. Panier d'achat
@@ -17,7 +18,8 @@ function PaymentStepFour() {
                     <Breadcrumb.Item active>4. Paiement</Breadcrumb.Item>
                     <Breadcrumb.Item>5. Confirmation</Breadcrumb.Item>
 
-                </Breadcrumb>
+                </Breadcrumb> */}
+                <HeaderPageTitleReservation />
             </Card.Body>
         </Card>
     );

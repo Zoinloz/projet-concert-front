@@ -92,9 +92,9 @@ function NavBar() {
 
             <Nav className="m-auto">
 
-            <Link className="footer__link" to="/tous-les-evenements"></Link>
-              <NavDropdown href="/programation" show={showProgram} onMouseEnter={showDropdownProgram} onMouseLeave={hideDropdownProgram} title="Programmation" id="basic-nav-dropdown">
-                <NavDropdown.Item href="/programation">Tous les évènements</NavDropdown.Item>
+              <Link className="footer__link" to="/tous-les-evenements"></Link>
+              <NavDropdown href="/programmation" show={showProgram} onMouseEnter={showDropdownProgram} onMouseLeave={hideDropdownProgram} title="Programmation" id="basic-nav-dropdown">
+                <NavDropdown.Item href="/programmation">Tous les évènements</NavDropdown.Item>
 
                 <NavDropdown.Item href="#action/3.2">Aix-en-Provence</NavDropdown.Item>
 
@@ -116,13 +116,13 @@ function NavBar() {
               </NavDropdown>
 
               <NavDropdown show={showParking} onMouseEnter={showDropdownParking} onMouseLeave={hideDropdownParking} title="Parking" id="basic-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">Présentation</NavDropdown.Item>
+                <NavDropdown.Item href="/parking">Présentation</NavDropdown.Item>
 
                 <NavDropdown.Item href="#action/3.2">Réserver</NavDropdown.Item>
               </NavDropdown>
 
               <NavDropdown show={showPrivatisation} onMouseEnter={showDropdownPrivatisation} onMouseLeave={hideDropdownPrivatisation} title="Privatisation" id="basic-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">Présentation</NavDropdown.Item>
+                <NavDropdown.Item href="/presentationPrivatisation">Présentation</NavDropdown.Item>
 
                 <NavDropdown.Item href="#action/3.2">Réserver</NavDropdown.Item>
               </NavDropdown>
@@ -143,7 +143,7 @@ function NavBar() {
 
               <Nav.Link href="#" >Mon compte / Crée un compte</Nav.Link>
 
-              <Nav.Link className="ml-3 mr-5" href="#" ><ShoppingBasketIcon /></Nav.Link>
+              <Nav.Link className="ml-3 mr-5" href="/reservationStepOne" ><ShoppingBasketIcon /></Nav.Link>
 
             </Nav>
 

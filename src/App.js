@@ -23,12 +23,10 @@ import Parking from './compnent/parking/presentation';
 
 import AdminConcertList from './compnent/administrator/listConcert';
 
-import Programation from './compnent/programmation/concertPoster';
-
 
 function App() {
   return (
-    
+
     <div>
 
 
@@ -39,7 +37,6 @@ function App() {
 
           <Route exact path="/" component={Home} />
           <Route exact path="/parking" component={Parking} />
-          <Route exact path="/programation" component={Programation} />
           <Route exact path="/contact" component={Contact} />
           <Route exact path="/cgu" component={Cgu} />
           <Route exact path="/legalNotices" component={LegalNotices} />
