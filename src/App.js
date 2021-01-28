@@ -18,7 +18,12 @@ import ContactInformationStepThree from './compnent/reservation/contactInformati
 import PaymentStepFour from './compnent/reservation/payment';
 import ConfirmationStepFive from './compnent/reservation/confirmation';
 import UserLoggedReservationStepThree from './compnent/reservation/reservationUserLog';
+import Programmation from './compnent/programmation/programmation';
 import Parking from './compnent/parking/presentation';
+
+import AdminConcertList from './compnent/administrator/listConcert';
+
+import Programation from './compnent/programmation/concertPoster';
 
 
 function App() {
@@ -34,14 +39,13 @@ function App() {
 
           <Route exact path="/" component={Home} />
           <Route exact path="/parking" component={Parking} />
-
+          <Route exact path="/programation" component={Programation} />
           <Route exact path="/contact" component={Contact} />
           <Route exact path="/cgu" component={Cgu} />
           <Route exact path="/legalNotices" component={LegalNotices} />
           <Route exact path="/presentationRestoration" component={PresentationRestoration} />
           <Route exact path="/presentationPrivatisation" component={PresentationPrivatisation} />
           <Route exact path="/reservationPrivatisation" component={ReservationPrivatisation} />
-          <Route exact path="/concertPoster" component={ConcertPoster} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/reservationStepOne" component={ReservationStepOne} />
@@ -50,6 +54,9 @@ function App() {
           <Route exact path="/payment" component={PaymentStepFour} />
           <Route exact path="/confirmation" component={ConfirmationStepFive} />
           <Route exact path="/informationsUserLogged" component={UserLoggedReservationStepThree} />
+          <Route exact path="/concertPoster" component={ConcertPoster} />
+          <Route exact path="/programmation" component={Programmation} />
+          <Route exact path="/admin/ListConcert" component={AdminConcertList} />
 
 
 

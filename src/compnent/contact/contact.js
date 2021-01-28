@@ -30,7 +30,7 @@ function Contact() {
   return (
 
     <Card className="w-50 mx-auto my-4 shadow-lg bg-white rounded">
-      <Card.Header as="h3">Contactez-nous</Card.Header>
+      <Card.Header as="h3" className="titleCard">Contactez-nous</Card.Header>
       <Card.Body>
         <Form>
           <Form.Group controlId="formContactName">
