@@ -11,6 +11,7 @@ import ConcertPage from './compnent/concertPage/concertPage'
 import ConcertCard from "./asset/ConcertCard";
 import ConcertCardDeck from "./asset/ConcertCardDeck";
 import programmationPage from './compnent/programmationPage/programmationPage';
+import reservationPage from './compnent/reservation/reservationPage';
 
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
           <Route exact path="/presentationRestoration" component={PresentationRestoration} />
           <Route exact path="/concertPage" component={ConcertPage} />
           <Route exact path="/programmationPage" component={programmationPage} />
+          <Route exact path="/reservationPage" component={reservationPage} />
 
           <Route exact path="/" component={Home} />
 

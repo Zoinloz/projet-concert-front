@@ -37,7 +37,7 @@ const [endDate, setEndDate] = useState(new Date());
 
                     <div className="row m-3 row__1 align-items-center">
 
-                        <div className="col-2 col__cool text-right">
+                        <div className="col-3 col__cool text-right">
                     
                             <Form.Label className="mr-3">Lieu:</Form.Label>
     
@@ -64,7 +64,7 @@ const [endDate, setEndDate] = useState(new Date());
 
                     <div className="row m-3row__1 align-items-center">
 
-                        <div className="col-2 col__cool text-right">
+                        <div className="col-3 col__cool text-right">
                     
                             <Form.Label className="mr-3">Catégorie de musique : </Form.Label>
     
@@ -139,7 +139,7 @@ const [endDate, setEndDate] = useState(new Date());
 
                     <div className="row m-3 row__1 align-items-center">
 
-                        <div className="col-2 col__cool text-right">
+                        <div className="col-3 col__cool text-right">
                     
                             <Form.Label className="mr-3">Dates :</Form.Label>
     
@@ -159,7 +159,39 @@ const [endDate, setEndDate] = useState(new Date());
                         </div>
 
                     </div>
+
+                    <div className="row m-3 row__1 align-items-center">
+
+                        <div className="col-3 col__cool text-right">
                     
+                            <Form.Label className="mr-3">Trier par :</Form.Label>
+                        
+                        </div>
+
+                        <div className="col">
+                            
+                            <Form className="" onSubmit={handleSubmit}>
+
+                                <Form.Control
+                                    as="select"
+                                    className=""
+                                    id="inlineFormCustomSelect"
+                                    custom
+                                >
+                                    <option value="0">Envie de trier nos concert ?</option>
+                                    <option value="0">Dates croissantes</option>
+                                    <option value="1">Dates décroissantes</option>
+                                    <option value="2">A-Z</option>
+                                    <option value="3">Z-A</option>
+                                    
+                                </Form.Control>
+                               
+                            </Form>
+
+                        </div>
+                    
+                    </div>
+                
                 </div>
                 
                 <div className="container mt-5">
