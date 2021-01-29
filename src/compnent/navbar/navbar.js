@@ -11,6 +11,7 @@ import FormControl from 'react-bootstrap/FormControl'
 import logo from '../../logo/logo_projet_concert.png'
 import SearchIcon from '@material-ui/icons/Search'
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
+ 
 import {
   BrowserRouter as Router,
   Switch,
@@ -127,7 +128,7 @@ function NavBar() {
                 <NavDropdown.Item href="#action/3.2">Réserver</NavDropdown.Item>
               </NavDropdown>
 
-              <Nav.Link href="actuality" >Actualités</Nav.Link>
+              <Nav.Link href="/actuality" >Actualités</Nav.Link>
 
               <NavDropdown show={showInfos} onMouseEnter={showDropdownInfos} onMouseLeave={hideDropdownInfos} title="Infos pratiques" id="basic-nav-dropdown">
                 <NavDropdown.Item href="#action/3.1">Comment venir</NavDropdown.Item>
@@ -135,7 +136,8 @@ function NavBar() {
                 <NavDropdown.Item href="#action/3.2">FAQ</NavDropdown.Item>
               </NavDropdown>
 
-              <Nav.Link href="contact" >Contact</Nav.Link>
+              <Link to="/contact"><Nav.Link href="/contact" >Contact</Nav.Link></Link>
+              
 
             </Nav>
 

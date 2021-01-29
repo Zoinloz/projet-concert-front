@@ -43,9 +43,9 @@ function AdminConcertAdd() {
             <Card.Header as="h4" className="titleCard text-center">
                 Administration - Ajout d'un concert
       </Card.Header>
-
+      
             <div class="container">
-
+            <Form>
                 <div class="row">
                     <div class="col-sm presentationResto pt-4 pb-4">
                         <img
@@ -131,8 +131,8 @@ function AdminConcertAdd() {
                                 <label for="heureOConcert" className="col-form-label ">Catégorie :</label>
                             </div>
                             <div class="col-auto">
-                            <Form>
-                                
+                                <Form>
+
                                     {['checkbox'].map((type) => (
                                         <div key={`custom-inline-${type}`} className="mb-3">
                                             <Form.Check
@@ -163,13 +163,129 @@ function AdminConcertAdd() {
 
                         </div>
 
+                        <div class="row g-3 align-items-center pt-3 ">
+                            <div class="col-auto">
+                                <label for="trancheTConcert" className="col-form-label ">Tranches de tarifs :</label>
+                            </div>
 
+
+
+
+                        </div>
+
+                        <div class="row g-3 align-items-center pt-3 ">
+                            <div class="col-auto">
+                                <label for="trancheTConcert" className="col-form-label ">Catégorie 1 :</label>
+                            </div>
+                            <div class="col-4">
+                                <input type="text" id="trancheTConcert" className="form-control " aria-describedby="trancheTConcert" />
+                            </div>
+                            <div class="col-auto">
+                                <label for="trancheTConcert" className="col-form-label">à</label>
+                            </div>
+                            <div class="col-4">
+                                <input type="text" id="trancheTConcert" className="form-control" aria-describedby="trancheTConcert" />
+                            </div>
+                        </div>
+
+                        <div class="row g-3 align-items-center pt-3 ">
+                            <div class="col-auto">
+                                <label for="trancheTConcert" className="col-form-label ">Catégorie 2 :</label>
+                            </div>
+                            <div class="col-4">
+                                <input type="text" id="trancheTConcert" className="form-control " aria-describedby="trancheTConcert" />
+                            </div>
+                            <div class="col-auto">
+                                <label for="trancheTConcert" className="col-form-label">à</label>
+                            </div>
+                            <div class="col-4">
+                                <input type="text" id="trancheTConcert" className="form-control" aria-describedby="trancheTConcert" />
+                            </div>
+                        </div>
+
+                        <div class="row g-3 align-items-center pt-3 ">
+                            <div class="col-auto">
+                                <label for="trancheTConcert" className="col-form-label ">Catégorie 3 :</label>
+                            </div>
+                            <div class="col-4">
+                                <input type="text" id="trancheTConcert" className="form-control " aria-describedby="trancheTConcert" />
+                            </div>
+                            <div class="col-auto">
+                                <label for="trancheTConcert" className="col-form-label">à</label>
+                            </div>
+                            <div class="col-4">
+                                <input type="text" id="trancheTConcert" className="form-control" aria-describedby="trancheTConcert" />
+                            </div>
+                        </div>
+
+                        <div class="row g-3 align-items-center pt-3 ">
+                            <div class="col-auto">
+                                <label for="heureOConcert" className="col-form-label ">Parking :</label>
+                            </div>
+                            <div class="col-auto">
+                                <Form>
+
+                                    {['checkbox'].map((type) => (
+                                        <div key={`custom-inline-${type}`} className="mb-3">
+                                            <Form.Check
+                                                inline
+                                                type="radio"
+                                                label="OUI"
+                                                name="formHorizontalRadios"
+                                                id="ouiP"
+                                            />
+                                            <Form.Check
+                                                inline
+                                                type="radio"
+                                                label="NON"
+                                                name="formHorizontalRadios"
+                                                id="nonP"
+                                            />
+
+                                        </div>
+                                    ))}
+                                </Form>
+                            </div>
+
+                        </div>
+
+                        <div class="row g-3 align-items-center pt-3 ">
+                            <div class="col-auto">
+                                <label for="heureOConcert" className="col-form-label ">Restaurant :</label>
+                            </div>
+                            <div class="col-auto">
+                                <Form>
+
+                                    {['checkbox'].map((type) => (
+                                        <div key={`custom-inline-${type}`} className="mb-3">
+                                            <Form.Check
+                                                inline
+                                                type="radio"
+                                                label="OUI"
+                                                name="formHorizontalRadios"
+                                                id="ouiR"
+                                            />
+                                            <Form.Check
+                                                inline
+                                                type="radio"
+                                                label="NON"
+                                                name="formHorizontalRadios"
+                                                id="nonR"
+                                            />
+
+                                        </div>
+                                    ))}
+                                </Form>
+                            </div>
+
+                        </div>
 
                     </div>
 
                 </div>
-
+                </Form>
             </div>
+            
         </Card>
     );
 }
