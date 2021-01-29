@@ -11,6 +11,7 @@
     "@testing-library/user-event": "^12.6.0",
     "axios": "^0.21.1",
     "bootstrap": "^4.5.3",
+    "ckeditor4-react": "^1.4.0",
     "infinite-react-carousel": "^1.2.11",
     "medium-editor": "^5.23.3",
     "react": "^17.0.1",
