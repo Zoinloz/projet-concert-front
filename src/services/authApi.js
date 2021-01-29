@@ -30,6 +30,19 @@ function init() {
     }
 }
 
+// function isAuth() {
+//     const token = window.localStorage.getItem('authToken');
+//     if (token) {
+//         const jwtData = jwtDecode(token);
+
+//         if (jwtData.exp * 1000 > new Date().getTime()) {
+//             return true
+//         }
+//         return false
+//     }
+//     return false
+// }
+
 function isAuth() {
     const token = window.localStorage.getItem('authToken');
     if (token) {
@@ -37,11 +50,15 @@ function isAuth() {
 
         if (jwtData.exp * 1000 > new Date().getTime()) {
             return true
+        } else {
+            this.logout()
         }
         return false
     }
     return false
 }
+
+
 
 function _setAxiosToken(token) {
     axios.defaults.headers["Authorization"] = "Bearer " + token;

@@ -1,6 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './navbar.css';
 import React, { useState } from 'react';
+import { useContext } from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown'
 import InputGroup from 'react-bootstrap/InputGroup';
@@ -15,11 +16,26 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  Link,
+  NavLink
 } from "react-router-dom";
 
+import AuthContext from '../../context/AuthContext';
+import AuthApi from '../../services/authApi';
 
-function NavBar() {
+
+// function NavBar() {
+const NavBar = ({ history }) => {
+
+  // const { isAuth } = useContext(AuthContext);
+  const { isAuth, setIsAuth } = useContext(AuthContext);
+
+
+  const handleLogout = () => {
+    AuthApi.logout();
+    setIsAuth(false);
+    history.push('/login');
+  }
 
   //Déclaration de variables pour hover navbar
   const [showProgram, setShowProgram] = useState(false);
@@ -140,10 +156,18 @@ function NavBar() {
             </Nav>
 
             <Nav>
+              {!isAuth && (
+                <Nav.Link href="/login" >Mon compte / Crée un compte</Nav.Link>
+                // <NavLink className="nav-link" to="/login">Connexion</NavLink >
+              )
+                ||
+                (
+                  <Nav.Link onClick={handleLogout} href="#" >Déconnexion</Nav.Link>
+                  // <a onClick={handleLogout} className="nav-link text-danger" href="#">Déconnexion</a>
 
-              <Nav.Link href="/login" >Mon compte / Crée un compte</Nav.Link>
-
-              <Nav.Link className="ml-3 mr-5" href="/reservationStepOne" ><ShoppingBasketIcon /></Nav.Link>
+                )
+              }
+              < Nav.Link className="ml-3 mr-5" href="/reservationStepOne" ><ShoppingBasketIcon /></Nav.Link>
 
             </Nav>
 
@@ -322,7 +346,7 @@ function NavBar() {
 
     */}
 
-    </div>
+    </div >
 
   );
 }
