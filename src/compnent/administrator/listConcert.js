@@ -13,7 +13,7 @@ function AdminConcertList() {
     let [concerts, setConcerts] = useState([])
     //react Hook useEffect
     useEffect(() => {
-        axios.get('')
+        axios.get('http://127.0.0.1:8000/concert')
             .then(response => {
                 console.log(response.data);
                 setConcerts(response.data);
@@ -31,26 +31,29 @@ function AdminConcertList() {
                 <Button className="addConcert mx-2 p-3" href="#">+ Ajouter un concert</Button>
             </div>
 
-            <Table striped hover rounded className="w-75 mx-auto">                <thead>
-                <tr>
-                    <td>Id</td>
-                    <td>Nom</td>
-                    <td>Artiste</td>
-                    <td>Lieu</td>
-                    <td>Date</td>
-                    <td>etc</td>
-                </tr>
-            </thead>
+            <Table striped hover rounded className="w-75 mx-auto">
+                <thead>
+                    <tr>
+                        <td>Id</td>
+                        <td>Nom</td>
+                        {/* <td>Artiste</td> */}
+                        <td>Artiste</td>
+                        <td>Lieu</td>
+                        <td>Date</td>
+                        <td>etc</td>
+                    </tr>
+                </thead>
                 <tbody>
                     {concerts.map(concert => (
                         //L'attribut key est obligatoire pour le dataBinding
                         <tr key={concert.id}>
                             <td>{concert.id}</td>
-                            <td>{concert.id}</td>
-                            <td>{concert.id}</td>
-                            <td>{concert.name}</td>
-                            <td>{concert.number}</td>
-                            <td>{concert.price.toLocaleString()}</td>
+                            <td>{concert.event.name}</td>
+                            <td>{concert.priceMax}</td>
+                            <td>{concert.categoryNumber}</td>
+                            <td>{concert.date}</td>
+                            <td>{concert.event.name}</td>
+
                         </tr>
                     ))}
                 </tbody>
