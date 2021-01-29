@@ -4,7 +4,7 @@ import axios from "axios";
 import { useEffect, useState } from 'react';
 import React from 'react';
 import Card from 'react-bootstrap/Card';
-
+import CKEditor from 'ckeditor4-react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import './listConcert.css';
@@ -280,13 +280,26 @@ function AdminConcertAdd() {
 
                         </div>
 
+
                     </div>
 
                 </div>
+
+                
                 </Form>
+
+                
+            
             </div>
             
+            <div>
+                <CKEditor
+                    data="<p>Hello from CKEditor 4!</p>"
+                />
+            </div>
         </Card>
+
+        
     );
 }
 
