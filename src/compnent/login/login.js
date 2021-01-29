@@ -56,8 +56,8 @@ function Login() {
                             <Form.Control type="password" placeholder="Password" />
                         </Form.Group>
                         <div>
-                        <Button type="submit" className="buttonLogin mb-2">
-                            Se connecter
+                            <Button type="submit" className="buttonLogin mb-2">
+                                Se connecter
                         </Button>
                         </div>
                         <Button href="/register" className="buttonRegister">Pas de compte ? <strong>Inscrivez vous !</strong></Button>
