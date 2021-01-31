@@ -27,6 +27,7 @@ import AuthApi from './services/authApi';
 import AuthContext from './context/AuthContext';
 import { useState } from 'react';
 
+import PrivateRoute from './compnent/PrivateRoute/PrivateRoute';
 
 AuthApi.init();
 
@@ -37,8 +38,10 @@ function App() {
 
   const contextValue = {
     isAuth,
-    setIsAuth
+    setIsAuth,
+    isAdmin: AuthApi.isAdmin,
   }
+
   return (
 
     <div>
@@ -51,6 +54,10 @@ function App() {
           <Switch>
 
             <Route exact path="/" component={Home} />
+
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/register" component={Register} />
+
             <Route exact path="/parking" component={Parking} />
             <Route exact path="/contact" component={Contact} />
             <Route exact path="/cgu" component={Cgu} />
@@ -58,17 +65,27 @@ function App() {
             <Route exact path="/presentationRestoration" component={PresentationRestoration} />
             <Route exact path="/presentationPrivatisation" component={PresentationPrivatisation} />
             <Route exact path="/reservationPrivatisation" component={ReservationPrivatisation} />
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/register" component={Register} />
-            <Route exact path="/reservationStepOne" component={ReservationStepOne} />
-            <Route exact path="/shoppingCart" component={ShoppingCartStepTwo} />
-            <Route exact path="/contactInformation" component={ContactInformationStepThree} />
-            <Route exact path="/payment" component={PaymentStepFour} />
-            <Route exact path="/confirmation" component={ConfirmationStepFive} />
-            <Route exact path="/informationsUserLogged" component={UserLoggedReservationStepThree} />
+
             <Route exact path="/concertPoster" component={ConcertPoster} />
             <Route exact path="/programmation" component={Programmation} />
-            <Route exact path="/admin/ListConcert" component={AdminConcertList} />
+
+            {/* <Route exact path="/admin/ListConcert" component={AdminConcertList} /> */}
+            <PrivateRoute admin='true' path='/admin/ListConcert' component={AdminConcertList} />
+
+            <PrivateRoute path='/reservationStepOne' component={ReservationStepOne} />
+            <PrivateRoute path='/shoppingCart' component={ShoppingCartStepTwo} />
+            <PrivateRoute path='/contactInformation' component={ContactInformationStepThree} />
+            <PrivateRoute path='/informationsUserLogged' component={UserLoggedReservationStepThree} />
+            <PrivateRoute path='/payment' component={PaymentStepFour} />
+            <PrivateRoute path='/confirmation' component={ConfirmationStepFive} />
+
+            {/* <Route exact path="/reservationStepOne" component={ReservationStepOne} /> 
+                <Route exact path="/shoppingCart" component={ShoppingCartStepTwo} />
+                <Route exact path="/contactInformation" component={ContactInformationStepThree} />
+                <Route exact path="/informationsUserLogged" component={UserLoggedReservationStepThree} />
+                <Route exact path="/payment" component={PaymentStepFour} />
+                <Route exact path="/confirmation" component={ConfirmationStepFive} />
+            */}
 
 
 

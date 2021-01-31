@@ -32,7 +32,7 @@ const Login = ({ history }) => {
             await AuthApi.auth(credentials);
             setError("");
             setIsAuth(true);
-            history.replace('/admin/ListConcert')
+            history.replace('/')
         } catch (errorRequest) {
             setError('error de login')
         }

@@ -29,6 +29,8 @@ const NavBar = ({ history }) => {
 
   // const { isAuth } = useContext(AuthContext);
   const { isAuth, setIsAuth } = useContext(AuthContext);
+  const { isAdmin } = useContext(AuthContext);
+
 
 
   const handleLogout = () => {
@@ -152,7 +154,15 @@ const NavBar = ({ history }) => {
               </NavDropdown>
 
               <Nav.Link href="contact" >Contact</Nav.Link>
+              {
+                (isAuth && isAdmin()) && (
+                  <NavDropdown title="Admin" id="basic-nav-dropdown">
+                    <NavDropdown.Item href="/admin/ListConcert">Liste des concerts</NavDropdown.Item>
 
+                    <NavDropdown.Item href="#">Créer un concert</NavDropdown.Item>
+                  </NavDropdown>
+                )
+              }
             </Nav>
 
             <Nav>

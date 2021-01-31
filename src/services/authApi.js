@@ -58,6 +58,19 @@ function isAuth() {
     return false
 }
 
+function isAdmin() {
+    if (isAuth) {
+        const token = window.localStorage.getItem('authToken');
+        const jwtData = jwtDecode(token);
+        if (jwtData.roles.find((element) => element === 'ROLE_ADMIN')) {
+            return true;
+        }
+        return false;
+    }
+
+    return false;
+}
+
 
 
 function _setAxiosToken(token) {
@@ -68,5 +81,6 @@ export default {
     auth,
     logout,
     init,
-    isAuth
+    isAuth,
+    isAdmin
 }
