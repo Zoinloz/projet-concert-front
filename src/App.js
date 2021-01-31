@@ -55,7 +55,7 @@ function App() {
           <Route exact path="/payment" component={PaymentStepFour} />
           <Route exact path="/confirmation" component={ConfirmationStepFive} />
           <Route exact path="/informationsUserLogged" component={UserLoggedReservationStepThree} />
-          <Route exact path="/concertPoster" component={ConcertPoster} />
+          <Route exact path="/concertPoster/:id" component={ConcertPoster} />
           <Route exact path="/programmation" component={Programmation} />
           <Route exact path="/admin/ListConcert" component={AdminConcertList} />
           <Route exact path="/admin/addConcert" component={AdminConcertAdd} />
