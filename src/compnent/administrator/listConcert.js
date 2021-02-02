@@ -9,11 +9,10 @@ import './listConcert.css';
 
 function AdminConcertList() {
 
-    //react Hook useState
     let [concerts, setConcerts] = useState([])
     //react Hook useEffect
     useEffect(() => {
-        axios.get('')
+        axios.get('http://127.0.0.1:8000/test')
             .then(response => {
                 console.log(response.data);
                 setConcerts(response.data);
@@ -35,17 +34,17 @@ function AdminConcertList() {
                 <tr>
                     <td>Id</td>
                     <td>Nom</td>
-                    <td>Artiste</td>
+                    {/* <td>Artiste</td>
                     <td>Lieu</td>
                     <td>Date</td>
-                    <td>etc</td>
+                    <td>etc</td> */}
                 </tr>
             </thead>
-                <tbody>
+                {/* <tbody>
                     {concerts.map(concert => (
                         //L'attribut key est obligatoire pour le dataBinding
-                        <tr key={concert.id}>
-                            <td>{concert.id}</td>
+                        <tr key={concert.username}>
+                            <td>{concert.email}</td>
                             <td>{concert.id}</td>
                             <td>{concert.id}</td>
                             <td>{concert.name}</td>
@@ -53,7 +52,7 @@ function AdminConcertList() {
                             <td>{concert.price.toLocaleString()}</td>
                         </tr>
                     ))}
-                </tbody>
+                </tbody> */}
             </Table>
         </Card>
     );
