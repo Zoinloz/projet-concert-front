@@ -22,6 +22,8 @@ import Programmation from './compnent/programmation/programmation';
 import Parking from './compnent/parking/presentation';
 
 import AdminConcertList from './compnent/administrator/listConcert';
+import AdminConcertAdd from './compnent/administrator/addConcert';
+import Programation from './compnent/programmation/concertPoster';
 
 import AuthApi from './services/authApi';
 import AuthContext from './context/AuthContext';
