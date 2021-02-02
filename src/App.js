@@ -68,7 +68,7 @@ function App() {
             <Route exact path="/presentationPrivatisation" component={PresentationPrivatisation} />
             <Route exact path="/reservationPrivatisation" component={ReservationPrivatisation} />
 
-            <Route exact path="/concertPoster" component={ConcertPoster} />
+          <Route exact path="/concertPoster/:id" component={ConcertPoster} />
             <Route exact path="/programmation" component={Programmation} />
 
             {/* <Route exact path="/admin/ListConcert" component={AdminConcertList} /> */}
@@ -99,7 +99,6 @@ function App() {
           <Footer />
         </Router>
       </AuthContext.Provider>
-
 
     </div>
 
