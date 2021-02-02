@@ -4,16 +4,80 @@ import axios from "axios";
 import { useEffect, useState } from 'react';
 import React from 'react';
 import Card from 'react-bootstrap/Card';
-
+import CKEditor from 'ckeditor4-react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import concertApi from '../../services/concertApi';
+
 import './listConcert.css';
 
-function AdminConcertAdd() {
+// function AdminConcertAdd() {
+const AdminConcertAdd = ({ history }) => {
 
-    //react Hook useState
+    const [evenements, setEvenement] = useState({
+        salleId: '', name: '', imageT: '', imageP: '', nameArtiste: '', parking: '', restaurant: '', songLink: ''
+    })
+
+    const [genders, setGender] = useState({
+        gender: ''
+    });
+    const [parking, setParking] = useState({
+        parking: ''
+    });
+    const [restaurant, setRestaurant] = useState({
+        restaurant: ''
+    });
+
     let [localities, setLocality] = useState([])
-    //react Hook useEffect
+
+
+    const [birthDate, setBirthDate] = useState('');
+    // const [concerts, setConcert] = useState({
+
+    // })
+    const evenementsInput = {
+        salleId: '1', name: evenements.name, image_thumbnail: evenements.imageT, image_poster: evenements.imageP, artistName: evenements.nameArtiste, parking: false, restaurant: true
+    }
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        concertApi.createEvent(evenementsInput).then((result) => {
+            console.log(evenementsInput);
+            history.push('/admin/ListConcert');
+        });
+        // concertApi.createConcert(concerts).then((id) => {
+        //     history.push('/concert/' + id);
+        // });
+
+    }
+
+    const onChange = (e) => {
+        e.persist();
+        // debugger;
+        setEvenement({ ...evenements, [e.target.name]: e.target.value });
+    }
+
+    const parkingValue = undefined;
+    const restaurantValue = undefined;
+
+    const onChangeParking = (e) => {
+        console.log(e.target.value);
+        parkingValue = e.target.value === 'true' ? true : false;
+        setParking({ ...parking, parking: e.target.value });
+        console.log(e.target.value);
+    }
+
+    const onChangeRestaurant = (e) => {
+        console.log(e.target.value);
+        restaurantValue = e.target.value === 'true' ? true : false;
+        setRestaurant({ ...restaurant, restaurant: e.target.value });
+        console.log(e.target.value);
+    }
+
+
+
     useEffect(() => {
         axios.get('http://127.0.0.1:8000/salle')
             .then(response => {
@@ -24,14 +88,16 @@ function AdminConcertAdd() {
             .catch((error) => { console.log(error) })
     }, []);
 
+
+
     return (
-        <Card className="mx-auto my-4 shadow-lg bg-white rounded testCard" style={{ width: "90%" }}>
+        <Card className="mx-auto my-4 shadow-lg bg-white rounded " style={{ width: "90%" }}>
             <Card.Header as="h4" className="titleCard text-center">
                 Administration - Ajout d'un concert
       </Card.Header>
+            <Form onSubmit={handleSubmit}>
+                <div class="container">
 
-            <div class="container">
-                <Form>
                     <div class="row">
                         <div class="col-sm presentationResto pt-4 pb-4">
                             <img
@@ -46,7 +112,7 @@ function AdminConcertAdd() {
                                     <label for="nameArtise" class="col-form-label">Nom de l'artiste / groupe :</label>
                                 </div>
                                 <div class="col-auto">
-                                    <input type="text" id="nameArtise" class="form-control" aria-describedby="nameArtise" />
+                                    <input type="text" onChange={onChange} name="nameArtiste" value={evenements.nameArtiste} id="nameArtise" class="form-control" aria-describedby="nameArtise" />
                                 </div>
 
                             </div>
@@ -56,7 +122,7 @@ function AdminConcertAdd() {
                                     <label for="nameConcert" className="col-form-label ">Nom du concert :</label>
                                 </div>
                                 <div class="col-auto">
-                                    <input type="text" id="nameConcert" class="form-control" aria-describedby="nameConcert" />
+                                    <input type="text" onChange={onChange} name="name" value={evenements.name} id="name" class="form-control" aria-describedby="nameConcert" />
                                 </div>
 
                             </div>
@@ -97,17 +163,16 @@ function AdminConcertAdd() {
                                     <label for="lieuxConcert" className="col-form-label ">Lieu (ville) :</label>
                                 </div>
                                 <div class="col-auto">
-                                    <Form>
-                                        <Form.Group controlId="exampleForm.SelectCustom">
-                                            <Form.Control as="select" className="form-control">
-                                                {localities.map(locality => (
-                                                    //L'attribut key est obligatoire pour le dataBinding
-                                                    <option key={locality.id}>{locality.city}</option>
-                                                ))}
+                                    <Form.Group controlId="exampleForm.SelectCustom">
+                                        <Form.Control as="select" name="salleId" className="form-control">
+                                            {localities.map(locality => (
+                                                //L'attribut key est obligatoire pour le dataBinding
+                                                <option key={locality.id}>{locality.city}</option>
+                                            ))}
 
-                                            </Form.Control>
-                                        </Form.Group>
-                                    </Form>
+
+                                        </Form.Control>
+                                    </Form.Group>
                                 </div>
 
                             </div>
@@ -117,34 +182,32 @@ function AdminConcertAdd() {
                                     <label for="heureOConcert" className="col-form-label ">Catégorie :</label>
                                 </div>
                                 <div class="col-auto">
-                                    <Form>
 
-                                        {['checkbox'].map((type) => (
-                                            <div key={`custom-inline-${type}`} className="mb-3">
-                                                <Form.Check
-                                                    custom
-                                                    inline
-                                                    label="Catégorie 1"
-                                                    type={type}
-                                                    id={`custom-inline-${type}-1`}
-                                                />
-                                                <Form.Check
-                                                    custom
-                                                    inline
-                                                    label="Catégorie 2"
-                                                    type={type}
-                                                    id={`custom-inline-${type}-2`}
-                                                />
-                                                <Form.Check
-                                                    custom
-                                                    inline
-                                                    label="Catégorie 3"
-                                                    type={type}
-                                                    id={`custom-inline-${type}-3`}
-                                                />
-                                            </div>
-                                        ))}
-                                    </Form>
+                                    {['checkbox'].map((type) => (
+                                        <div key={`custom-inline-${type}`} className="mb-3">
+                                            <Form.Check
+                                                custom
+                                                inline
+                                                label="Catégorie 1"
+                                                type={type}
+                                                id={`custom-inline-${type}-1`}
+                                            />
+                                            <Form.Check
+                                                custom
+                                                inline
+                                                label="Catégorie 2"
+                                                type={type}
+                                                id={`custom-inline-${type}-2`}
+                                            />
+                                            <Form.Check
+                                                custom
+                                                inline
+                                                label="Catégorie 3"
+                                                type={type}
+                                                id={`custom-inline-${type}-3`}
+                                            />
+                                        </div>
+                                    ))}
                                 </div>
 
                             </div>
@@ -209,28 +272,33 @@ function AdminConcertAdd() {
                                     <label for="heureOConcert" className="col-form-label ">Parking :</label>
                                 </div>
                                 <div class="col-auto">
-                                    <Form>
 
-                                        {['checkbox'].map((type) => (
-                                            <div key={`custom-inline-${type}`} className="mb-3">
-                                                <Form.Check
-                                                    inline
-                                                    type="radio"
-                                                    label="OUI"
-                                                    name="formHorizontalRadios"
-                                                    id="ouiP"
-                                                />
-                                                <Form.Check
-                                                    inline
-                                                    type="radio"
-                                                    label="NON"
-                                                    name="formHorizontalRadios"
-                                                    id="nonP"
-                                                />
+                                    {['checkbox'].map((type) => (
+                                        <div key={`custom-inline-${type}`} className="mb-3" >
+                                            <Form.Check
+                                                name="parkingValue"
+                                                value="true"
+                                                onChange={onChangeParking}
+                                                checked={parkingValue === true}
+                                                inline
+                                                type="radio"
+                                                label="OUI"
+                                                id="ouiP"
+                                            />
 
-                                            </div>
-                                        ))}
-                                    </Form>
+                                            <Form.Check
+                                                name="parkingValue"
+                                                value="false"
+                                                checked={parkingValue === false}
+                                                onChange={onChangeRestaurant}
+                                                inline
+                                                type="radio"
+                                                label="NON"
+                                                id="nonP"
+                                            />
+
+                                        </div>
+                                    ))}
                                 </div>
 
                             </div>
@@ -240,39 +308,69 @@ function AdminConcertAdd() {
                                     <label for="heureOConcert" className="col-form-label ">Restaurant :</label>
                                 </div>
                                 <div class="col-auto">
-                                    <Form>
 
-                                        {['checkbox'].map((type) => (
-                                            <div key={`custom-inline-${type}`} className="mb-3">
-                                                <Form.Check
-                                                    inline
-                                                    type="radio"
-                                                    label="OUI"
-                                                    name="formHorizontalRadios"
-                                                    id="ouiR"
-                                                />
-                                                <Form.Check
-                                                    inline
-                                                    type="radio"
-                                                    label="NON"
-                                                    name="formHorizontalRadios"
-                                                    id="nonR"
-                                                />
+                                    {['checkbox'].map((type) => (
+                                        <div key={`custom-inline-${type}`} className="mb-3">
+                                            <Form.Check
+                                                name="restaurantValue"
+                                                value="true"
+                                                onChange={onChangeRestaurant}
+                                                inline
+                                                type="radio"
+                                                label="OUI"
+                                                id="ouiR"
+                                                checked={restaurantValue === true}
 
-                                            </div>
-                                        ))}
-                                    </Form>
+                                            />
+                                            <Form.Check
+                                                name="restaurantValue"
+                                                value="false"
+                                                onChange={onChangeRestaurant}
+                                                inline
+                                                type="radio"
+                                                label="NON"
+                                                id="nonR"
+                                                checked={restaurantValue === false}
+
+                                            />
+
+                                        </div>
+                                    ))}
                                 </div>
 
                             </div>
 
+
                         </div>
 
                     </div>
-                </Form>
-            </div>
 
-        </Card>
+
+
+
+
+                    <h3>Présentation de l'artiste / groupe</h3>
+
+                    <div className="w-75" >
+                        <CKEditor
+                            data="<p></p>"
+                        />
+                    </div>
+
+
+                </div>
+
+                <div className="d-flex justify-content-end pt-5 pb-5">
+
+                    <div class="p-2"><Button className="" href="#" >ANNULER</Button></div>
+                    <div class="p-2"><Button className="" href="#" >EFFACER</Button></div>
+                    <div class="p-2"><Button type="submit" >CRÉER LE CONCERT</Button></div>
+                    <div class="p-2"></div>
+                </div>
+            </Form>
+        </Card >
+
+
     );
 }
 
