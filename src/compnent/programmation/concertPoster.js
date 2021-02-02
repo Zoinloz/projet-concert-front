@@ -10,13 +10,16 @@ import concertApi from '../../services/concertApi';
 
 // function ConcertPoster() {
 const ConcertPoster = ({ match }) => {
-    const [eventInfo, setEventInfo] = useState({
-        artistDescription: "",
-        artistName: "",
-        name: "",
-        concerts: "",
-        salle: "",
-    });
+
+    let [listConcerts, setListConcert] = useState([])
+
+    // const [eventInfo, setEventInfo] = useState({
+    //     artistDescription: "",
+    //     artistName: "",
+    //     name: "",
+    //     concerts: "",
+    //     salle: "",
+    // });
 
     const [concertInfo, setConcertInfo] = useState({
         date: "",
@@ -24,11 +27,14 @@ const ConcertPoster = ({ match }) => {
         openingTime: "",
         priceMax: ""
     });
-    useEffect(() => {
-        concertApi.getEvent(match.params.id).then((eventInfo) => setEventInfo(eventInfo));
-    }, []);
+    // useEffect(() => {
+    //     concertApi.getEvent(match.params.id).then((eventInfo) => setEventInfo(eventInfo));
+    // }, []);
     useEffect(() => {
         concertApi.getConcert(match.params.id).then((concertInfo) => setConcertInfo(concertInfo));
+    }, []);
+    useEffect(() => {
+        concertApi.getConcert(match.params.id).then((listConcerts) => setListConcert(listConcerts));
     }, []);
 
     return (
@@ -45,11 +51,11 @@ const ConcertPoster = ({ match }) => {
                             />
                         </div>
                         <div className="col-sm concertInformations">
-                            <p>Nom de l'artiste / groupe : {eventInfo.artistName} </p>
-                            <p>Nom de la tournée : {eventInfo.name} </p>
+                            {/* <p>Nom de l'artiste / groupe : {concertInfo.event.artistName} </p>
+                            <p>Nom de la tournée : {concertInfo.event.name} </p>
                             <p>Date et heure : {concertInfo.date} à {concertInfo.time} </p>
-                            <p>Lieu : </p>
-                            <p>Catégorie de musique : </p>
+                            <p>Lieu : {concertInfo.event.salle.city} </p>
+                            <p>Catégorie de musique : {concertInfo.event.categories[0].name} </p> */}
 
                         </div>
                     </div>
@@ -73,6 +79,18 @@ const ConcertPoster = ({ match }) => {
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    {/* {listConcerts.map(concert => (
+                                        //L'attribut key est obligatoire pour le dataBinding
+                                        <tr key={concert.id}>
+                                            <td>{concert.id}</td>
+                                            <td>{concert.id}</td>
+                                            <td>{concert.id}</td>
+                                            <td>{concert.name}</td>
+                                            <td>{concert.number}</td>
+                                            <td></td>
+                                            <td><Button className="buttonReservationConcert" href="/concertPoster/:id">Réserver</Button></td>
+                                        </tr>
+                                    ))} */}
                                     <tr>
                                         <td>1</td>
                                         <td>Mark</td>
@@ -84,17 +102,7 @@ const ConcertPoster = ({ match }) => {
                                             <Button className="buttonReservationConcert">Réserver</Button>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>
-                                            <Button className="buttonReservationConcert">Réserver</Button>
-                                        </td>
-                                    </tr>
+
                                 </tbody>
                             </Table>
                         </div>
@@ -102,7 +110,7 @@ const ConcertPoster = ({ match }) => {
                     <div class="row mb-2">
                         <div class="col-sm">
                             <h4>Présentation de l'artiste / Groupe</h4>
-                            <p className="text-justify">{eventInfo.artistDescription}
+                            <p className="text-justify">{concertInfo.artistDescription}
                             </p>
                         </div>
                         <div class="col-sm">
