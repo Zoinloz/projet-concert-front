@@ -9,7 +9,6 @@ import './listConcert.css';
 
 function AdminConcertList() {
 
-    //react Hook useState
     let [concerts, setConcerts] = useState([])
     //react Hook useEffect
     useEffect(() => {
