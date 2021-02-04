@@ -18,63 +18,83 @@ import './listConcert.css';
 const AdminConcertAdd = ({ history }) => {
 
     const [evenements, setEvenement] = useState({
-        salleId: '', name: '', imageT: '', imageP: '', nameArtiste: '', parking: '', restaurant: '', songLink: ''
+        name: '', image_thumbnail: '', image_poster: '', artistName: '', parking: '', restaurant: '', songLink: ''
     })
-
-    const [genders, setGender] = useState({
-        gender: ''
-    });
     const [parking, setParking] = useState({
         parking: ''
     });
     const [restaurant, setRestaurant] = useState({
         restaurant: ''
     });
+    const [localitySalle, setLocalitySalle] = useState({
+        salleId: '',
+    });
+
 
     let [localities, setLocality] = useState([])
 
 
-    const [birthDate, setBirthDate] = useState('');
+    // const [dateConcert, setDateConcert] = useState('');
     // const [concerts, setConcert] = useState({
-
+    //     time: '', openingTime: '', categoryNumber: '', artistDescription: '', eventId: '',
     // })
     const evenementsInput = {
-        salleId: '1', name: evenements.name, image_thumbnail: evenements.imageT, image_poster: evenements.imageP, artistName: evenements.nameArtiste, parking: false, restaurant: true
+        salleId: localitySalle.salleId, name: evenements.name, image_thumbnail: evenements.imageT, image_poster: evenements.imageP, artistName: evenements.nameArtiste, parking: Boolean(parking.parking), restaurant: Boolean(restaurant.restaurant)
     }
+    // const concertInput = {
+    //     artistDescription: concerts.artistDescription, eventId: "1", time: "1970-01-01T16:25:12+00:00", date: Date('2021-03-03'), openingTime: "1970-01-01T15:25:12+00:00", priceMax: 150, percentage: 0.8, categoryNumber: "3"
+    // }
     const handleSubmit = (e) => {
         e.preventDefault();
         concertApi.createEvent(evenementsInput).then((result) => {
             console.log(evenementsInput);
+            // console.log(concertInput);
+
             history.push('/admin/ListConcert');
         });
-        // concertApi.createConcert(concerts).then((id) => {
-        //     history.push('/concert/' + id);
+        // concertApi.createConcert(concerts).then((result) => {
+        //     console.log(concertInput);
+        //     history.push('/admin/ListConcert');
         // });
 
     }
 
+    // EVENT
     const onChange = (e) => {
         e.persist();
         // debugger;
         setEvenement({ ...evenements, [e.target.name]: e.target.value });
     }
 
-    const parkingValue = undefined;
-    const restaurantValue = undefined;
+    const onChangeVille = (e) => {
+        e.persist();
+        // debugger;
+        setLocalitySalle({ ...localitySalle, salleId: e.target.value });
+        console.log(e.target.value);
+    }
 
     const onChangeParking = (e) => {
         console.log(e.target.value);
-        parkingValue = e.target.value === 'true' ? true : false;
         setParking({ ...parking, parking: e.target.value });
-        console.log(e.target.value);
     }
 
     const onChangeRestaurant = (e) => {
         console.log(e.target.value);
-        restaurantValue = e.target.value === 'true' ? true : false;
         setRestaurant({ ...restaurant, restaurant: e.target.value });
         console.log(e.target.value);
     }
+
+    // CONCERT
+    // const onChangeDate = (e) => {
+    //     console.log(e.target.value)
+    //     setDateConcert(e.target.value)
+    // }
+    // const onChangeConcert = (e) => {
+    //     // e.persist();
+    //     // debugger;
+    //     // setConcert({ ...concerts, [e.target.name]: e.target.value });
+    //     e.editor.getData()
+    // }
 
 
 
@@ -88,14 +108,17 @@ const AdminConcertAdd = ({ history }) => {
             .catch((error) => { console.log(error) })
     }, []);
 
-
+    // BTN RESET
+    const cancelCourse = (e) => {
+        e.preventDefault();
+    }
 
     return (
         <Card className="mx-auto my-4 shadow-lg bg-white rounded " style={{ width: "90%" }}>
             <Card.Header as="h4" className="titleCard text-center">
                 Administration - Ajout d'un concert
       </Card.Header>
-            <Form onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit} id="create-concert-form">
                 <div class="container">
 
                     <div class="row">
@@ -164,10 +187,10 @@ const AdminConcertAdd = ({ history }) => {
                                 </div>
                                 <div class="col-auto">
                                     <Form.Group controlId="exampleForm.SelectCustom">
-                                        <Form.Control as="select" name="salleId" className="form-control">
+                                        <Form.Control as="select" name="salleId" value={localitySalle.salleId} onChange={onChangeVille} className="form-control">
                                             {localities.map(locality => (
                                                 //L'attribut key est obligatoire pour le dataBinding
-                                                <option key={locality.id}>{locality.city}</option>
+                                                <option key={locality.id} value={locality.id}>{locality.city}</option>
                                             ))}
 
 
@@ -276,21 +299,20 @@ const AdminConcertAdd = ({ history }) => {
                                     {['checkbox'].map((type) => (
                                         <div key={`custom-inline-${type}`} className="mb-3" >
                                             <Form.Check
-                                                name="parkingValue"
-                                                value="true"
+                                                name="parking"
+                                                value={true}
                                                 onChange={onChangeParking}
-                                                checked={parkingValue === true}
                                                 inline
                                                 type="radio"
                                                 label="OUI"
                                                 id="ouiP"
                                             />
 
+
                                             <Form.Check
-                                                name="parkingValue"
-                                                value="false"
-                                                checked={parkingValue === false}
-                                                onChange={onChangeRestaurant}
+                                                name="parking"
+                                                value={false}
+                                                onChange={onChangeParking}
                                                 inline
                                                 type="radio"
                                                 label="NON"
@@ -312,25 +334,23 @@ const AdminConcertAdd = ({ history }) => {
                                     {['checkbox'].map((type) => (
                                         <div key={`custom-inline-${type}`} className="mb-3">
                                             <Form.Check
-                                                name="restaurantValue"
-                                                value="true"
+                                                name="restaurant"
+                                                value={true}
                                                 onChange={onChangeRestaurant}
                                                 inline
                                                 type="radio"
                                                 label="OUI"
                                                 id="ouiR"
-                                                checked={restaurantValue === true}
 
                                             />
                                             <Form.Check
-                                                name="restaurantValue"
-                                                value="false"
+                                                name="restaurant"
+                                                value={false}
                                                 onChange={onChangeRestaurant}
                                                 inline
                                                 type="radio"
                                                 label="NON"
                                                 id="nonR"
-                                                checked={restaurantValue === false}
 
                                             />
 
@@ -353,6 +373,10 @@ const AdminConcertAdd = ({ history }) => {
 
                     <div className="w-75" >
                         <CKEditor
+                            // onChange={onChangeConcert}
+                            // name='artistDescription'
+                            // value={concerts.artistDescription}
+
                             data="<p></p>"
                         />
                     </div>
@@ -363,7 +387,7 @@ const AdminConcertAdd = ({ history }) => {
                 <div className="d-flex justify-content-end pt-5 pb-5">
 
                     <div class="p-2"><Button className="" href="#" >ANNULER</Button></div>
-                    <div class="p-2"><Button className="" href="#" >EFFACER</Button></div>
+                    <div class="p-2"><Button onClick={cancelCourse} >EFFACER</Button></div>
                     <div class="p-2"><Button type="submit" >CRÉER LE CONCERT</Button></div>
                     <div class="p-2"></div>
                 </div>

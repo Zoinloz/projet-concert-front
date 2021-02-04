@@ -3,12 +3,28 @@ import axios from "axios";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import React, { useState } from "react";
+import React, { useEffect, useState } from 'react';
+import concertApi from '../../services/concertApi';
 import salleCannes from '../../logo/salle-cannes.jpg';
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
 
 
 export default function Programmation() {
+
+    // Pour lister les Cards
+    const [listConcerts, setListConcert] = useState([]);
+
+    useEffect(async () => {
+        try {
+            const concerts = await concertApi.findAll();
+            setListConcert(concerts);
+        } catch (error) {
+            console.log(error)
+        }
+    }, [])
+
+    // (Number(listConcerts.priceMax) - Number(listConcerts.percentage) * 100)
+
     const [endDate, setEndDate] = useState("");
     const [startDate, setStartDate] = useState("");
 
@@ -150,118 +166,28 @@ export default function Programmation() {
                         </Form>
                     </Card.Body>
                 </Card>
+
                 {/* Garder une Card seulement et la mettre dans le map (Voir exemple git prof) */}
-                <Card className="my-4 shadow bg-white rounded cardListConcert text-center">
-                    {/* <Card.Header className="titleProgrammationListCard"></Card.Header> */}
-                    <Card.Img variant="top" src={salleCannes} />                    <Card.Body>
-                        <Card.Text as="h5">Nom de l'artiste</Card.Text>
-                        <Card.Text>Nom de la tournée</Card.Text>
-                        <Card.Text>Date et heure</Card.Text>
-                        <Card.Text>Catégorie de musique</Card.Text>
-                        <Card.Text>Lieu</Card.Text>
-                        <Card.Text>Tarifs de ... à ...€</Card.Text>
-                        <Card.Link href="/concertPoster" className="btn btnRerservationConcertList">Réserver</Card.Link>
-                    </Card.Body>
-                </Card>
-                {/* Fin de la CARD a garder */}
-                <Card className="my-4 shadow bg-white rounded cardListConcert text-center">
-                    {/* <Card.Header className="titleProgrammationListCard"></Card.Header> */}
-                    <Card.Img variant="top" src={salleCannes} />                    <Card.Body>
-                        <Card.Text as="h5">Nom de l'artiste</Card.Text>
-                        <Card.Text>Nom de la tournée</Card.Text>
-                        <Card.Text>Date et heure</Card.Text>
-                        <Card.Text>Catégorie de musique</Card.Text>
-                        <Card.Text>Lieu</Card.Text>
-                        <Card.Text>Tarifs de ... à ...€</Card.Text>
-                        <Card.Link href="/concertPoster" className="btn btnRerservationConcertList">Réserver</Card.Link>
-                    </Card.Body>
-                </Card>
-                <Card className="my-4 shadow bg-white rounded cardListConcert text-center">
-                    {/* <Card.Header className="titleProgrammationListCard"></Card.Header> */}
-                    <Card.Img variant="top" src={salleCannes} />                    <Card.Body>
-                        <Card.Text as="h5">Nom de l'artiste</Card.Text>
-                        <Card.Text>Nom de la tournée</Card.Text>
-                        <Card.Text>Date et heure</Card.Text>
-                        <Card.Text>Catégorie de musique</Card.Text>
-                        <Card.Text>Lieu</Card.Text>
-                        <Card.Text>Tarifs de ... à ...€</Card.Text>
-                        <Card.Link href="/concertPoster" className="btn btnRerservationConcertList">Réserver</Card.Link>
-                    </Card.Body>
-                </Card>
-                <Card className="my-4 shadow bg-white rounded cardListConcert text-center">
-                    {/* <Card.Header className="titleProgrammationListCard"></Card.Header> */}
-                    <Card.Img variant="top" src={salleCannes} />                    <Card.Body>
-                        <Card.Text as="h5">Nom de l'artiste</Card.Text>
-                        <Card.Text>Nom de la tournée</Card.Text>
-                        <Card.Text>Date et heure</Card.Text>
-                        <Card.Text>Catégorie de musique</Card.Text>
-                        <Card.Text>Lieu</Card.Text>
-                        <Card.Text>Tarifs de ... à ...€</Card.Text>
-                        <Card.Link href="/concertPoster" className="btn btnRerservationConcertList">Réserver</Card.Link>
-                    </Card.Body>
-                </Card>
-                <Card className="my-4 shadow bg-white rounded cardListConcert text-center">
-                    {/* <Card.Header className="titleProgrammationListCard"></Card.Header> */}
-                    <Card.Img variant="top" src={salleCannes} />                    <Card.Body>
-                        <Card.Text as="h5">Nom de l'artiste</Card.Text>
-                        <Card.Text>Nom de la tournée</Card.Text>
-                        <Card.Text>Date et heure</Card.Text>
-                        <Card.Text>Catégorie de musique</Card.Text>
-                        <Card.Text>Lieu</Card.Text>
-                        <Card.Text>Tarifs de ... à ...€</Card.Text>
-                        <Card.Link href="/concertPoster" className="btn btnRerservationConcertList">Réserver</Card.Link>
-                    </Card.Body>
-                </Card>
-                <Card className="my-4 shadow bg-white rounded cardListConcert text-center">
-                    {/* <Card.Header className="titleProgrammationListCard"></Card.Header> */}
-                    <Card.Img variant="top" src={salleCannes} />                    <Card.Body>
-                        <Card.Text as="h5">Nom de l'artiste</Card.Text>
-                        <Card.Text>Nom de la tournée</Card.Text>
-                        <Card.Text>Date et heure</Card.Text>
-                        <Card.Text>Catégorie de musique</Card.Text>
-                        <Card.Text>Lieu</Card.Text>
-                        <Card.Text>Tarifs de ... à ...€</Card.Text>
-                        <Card.Link href="/concertPoster" className="btn btnRerservationConcertList">Réserver</Card.Link>
-                    </Card.Body>
-                </Card>
-                <Card className="my-4 shadow bg-white rounded cardListConcert text-center">
-                    {/* <Card.Header className="titleProgrammationListCard"></Card.Header> */}
-                    <Card.Img variant="top" src={salleCannes} />                    <Card.Body>
-                        <Card.Text as="h5">Nom de l'artiste</Card.Text>
-                        <Card.Text>Nom de la tournée</Card.Text>
-                        <Card.Text>Date et heure</Card.Text>
-                        <Card.Text>Catégorie de musique</Card.Text>
-                        <Card.Text>Lieu</Card.Text>
-                        <Card.Text>Tarifs de ... à ...€</Card.Text>
-                        <Card.Link href="/concertPoster" className="btn btnRerservationConcertList">Réserver</Card.Link>
-                    </Card.Body>
-                </Card>
-                <Card className="my-4 shadow bg-white rounded cardListConcert text-center">
-                    {/* <Card.Header className="titleProgrammationListCard"></Card.Header> */}
-                    <Card.Img variant="top" src={salleCannes} />                    <Card.Body>
-                        <Card.Text as="h5">Nom de l'artiste</Card.Text>
-                        <Card.Text>Nom de la tournée</Card.Text>
-                        <Card.Text>Date et heure</Card.Text>
-                        <Card.Text>Catégorie de musique</Card.Text>
-                        <Card.Text>Lieu</Card.Text>
-                        <Card.Text>Tarifs de ... à ...€</Card.Text>
-                        <Card.Link href="/concertPoster" className="btn btnRerservationConcertList">Réserver</Card.Link>
-                    </Card.Body>
-                </Card>
-                <Card className="my-4 shadow bg-white rounded cardListConcert text-center">
-                    {/* <Card.Header className="titleProgrammationListCard"></Card.Header> */}
-                    <Card.Img variant="top" src={salleCannes} />                    <Card.Body>
-                        <Card.Text as="h5">Nom de l'artiste</Card.Text>
-                        <Card.Text>Nom de la tournée</Card.Text>
-                        <Card.Text>Date et heure</Card.Text>
-                        <Card.Text>Catégorie de musique</Card.Text>
-                        <Card.Text>Lieu</Card.Text>
-                        <Card.Text>Tarifs de ... à ...€</Card.Text>
-                        <Card.Link href="/concertPoster" className="btn btnRerservationConcertList">Réserver</Card.Link>
-                    </Card.Body>
-                </Card>
+                {listConcerts.map(concert => (
+                    < Card className="my-4 shadow bg-white rounded cardListConcert text-center concert__card" >
+                        {/* <Card.Header className="titleProgrammationListCard"></Card.Header> */}
+                        < Card.Img variant="top" src={salleCannes} />
+                        <Card.Body>
+
+                            <Card.Text as="h5">{concert.event.artistName}</Card.Text>
+                            <Card.Text>{concert.event.name}</Card.Text>
+                            <Card.Text>{concert.date} à  {concert.time}</Card.Text>
+                            <Card.Text>{concert.event.categories[0].name}</Card.Text>
+                            <Card.Text>{concert.event.salle.city}</Card.Text>
+                            <Card.Text>Tarifs de {(Number(listConcerts.priceMax) - Number(listConcerts.percentage) * 100)} à {concert.priceMax}€</Card.Text>
+                            <Card.Link href="/concertPoster" className="btn btnRerservationConcertList">Réserver</Card.Link>
+                        </Card.Body>
+                    </Card>
+                ))}
+
+
             </Card.Body>
-        </Card>
+        </Card >
     );
     // }
 }

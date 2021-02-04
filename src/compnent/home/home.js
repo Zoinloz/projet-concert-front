@@ -233,7 +233,7 @@ const Home = () => {
             </div>
           </div>
 
-          
+
           <div class="container my-4">
             <div class="row">
               <div class="col text-center">

@@ -9,6 +9,10 @@ function findAll() {
     return axios.get(url + 'concert').then(response => response.data)
 }
 
+function findAllSearch() {
+    return axios.get(url + 'event/search').then(response => response.data)
+}
+
 function getConcert(id) {
     return axios.get(url + 'concert/' + id).then((response) => response.data)
 }
@@ -33,5 +37,6 @@ export default {
     getConcert,
     createConcert,
     getEvent,
-    createEvent
+    createEvent,
+    findAllSearch
 }
