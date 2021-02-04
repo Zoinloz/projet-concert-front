@@ -38,19 +38,25 @@ const AdminConcertAdd = ({ history }) => {
     // const [concerts, setConcert] = useState({
     //     time: '', openingTime: '', categoryNumber: '', artistDescription: '', eventId: '',
     // })
-    const evenementsInput = {
-        salleId: localitySalle.salleId, name: evenements.name, image_thumbnail: evenements.imageT, image_poster: evenements.imageP, artistName: evenements.nameArtiste, parking: Boolean(parking.parking), restaurant: Boolean(restaurant.restaurant)
+    const concertInput = {
+        artistDescription: "description de l'artiste", time: "1970-01-01T16:25:12+00:00", date: "2021-02-08T00:00:00+00:00", openingTime: "1970-01-01T15:25:12+00:00", priceMax: 150, percentage: 0.8, categoryNumber: 3
     }
-    // const concertInput = {
-    //     artistDescription: concerts.artistDescription, eventId: "1", time: "1970-01-01T16:25:12+00:00", date: Date('2021-03-03'), openingTime: "1970-01-01T15:25:12+00:00", priceMax: 150, percentage: 0.8, categoryNumber: "3"
-    // }
+
+    const evenementsInput = {
+        salleId: localitySalle.salleId, name: evenements.name, image_thumbnail: evenements.imageT, image_poster: evenements.imageP, artistName: evenements.nameArtiste, parking: Boolean(parking.parking), restaurant: Boolean(restaurant.restaurant),
+        concerts: [
+            concertInput,
+            concertInput
+        ]
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        concertApi.createEvent(evenementsInput).then((result) => {
-            console.log(evenementsInput);
+        axios.post('http://localhost:8000/test1', evenementsInput).then((result) => {
+            console.log(result);
             // console.log(concertInput);
 
-            history.push('/admin/ListConcert');
+            // history.push('/admin/ListConcert');
         });
         // concertApi.createConcert(concerts).then((result) => {
         //     console.log(concertInput);
@@ -372,13 +378,17 @@ const AdminConcertAdd = ({ history }) => {
                     <h3>Présentation de l'artiste / groupe</h3>
 
                     <div className="w-75" >
-                        <CKEditor
+                        {/* <CKEditor
                             // onChange={onChangeConcert}
                             // name='artistDescription'
                             // value={concerts.artistDescription}
 
                             data="<p></p>"
-                        />
+                        /> */}
+                        <Form.Group>
+                            <Form.Label>Example textarea</Form.Label>
+                            <Form.Control as="textarea" rows={3} name="artistDescription" value={concertInput.artistName} />
+                        </Form.Group>
                     </div>
 
 

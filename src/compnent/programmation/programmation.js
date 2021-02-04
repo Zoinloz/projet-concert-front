@@ -179,7 +179,7 @@ export default function Programmation() {
                             <Card.Text>{concert.date} à  {concert.time}</Card.Text>
                             <Card.Text>{concert.event.categories[0].name}</Card.Text>
                             <Card.Text>{concert.event.salle.city}</Card.Text>
-                            <Card.Text>Tarifs de {(Number(listConcerts.priceMax) - Number(listConcerts.percentage) * 100)} à {concert.priceMax}€</Card.Text>
+                            <Card.Text>Tarifs de {(Number(concert.priceMax) - Number(concert.percentage) / 100)}€ à {concert.priceMax}€</Card.Text>
                             <Card.Link href="/concertPoster" className="btn btnRerservationConcertList">Réserver</Card.Link>
                         </Card.Body>
                     </Card>
