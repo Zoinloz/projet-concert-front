@@ -17,6 +17,7 @@ import ShoppingCartStepTwo from "./compnent/reservation/shoppingCart";
 import ContactInformationStepThree from './compnent/reservation/contactInformations';
 import PaymentStepFour from './compnent/reservation/payment';
 import ConfirmationStepFive from './compnent/reservation/confirmation';
+import reservationpage from './compnent/reservation/reservationPage';
 import UserLoggedReservationStepThree from './compnent/reservation/reservationUserLog';
 import Programmation from './compnent/programmation/programmation';
 import Parking from './compnent/parking/presentation';
@@ -57,6 +58,7 @@ function App() {
           <Route exact path="/concertPoster" component={ConcertPoster} />
           <Route exact path="/programmation" component={Programmation} />
           <Route exact path="/admin/ListConcert" component={AdminConcertList} />
+          <Route exact path="/reservationpage" component={reservationpage} />
 
 
 

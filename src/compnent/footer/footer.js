@@ -29,7 +29,7 @@ function Footer() {
       <div className="container mb-4">
         <div className="row ml-5">
           {/* RESEAUX SOCIAUX */}
-          <div className="col mt-4">
+          <div className="col mt-4 col-xs-1">
             <h5 className="centerNewsReseau">Réseaux sociaux</h5>
             <p className="text-xs centerNewsReseau w-50 mx-auto">Suivez-nous pour
             vous tenir informé des concerts à venir !
@@ -69,7 +69,7 @@ function Footer() {
             </div>
           </div>
           {/* NEWSLETTER */}
-          <div className="col mt-4">
+          <div className="col mt-4 col-xs-1">
             <h5 className="centerNewsReseau">Newsletter</h5>
             <p className="text-xs centerNewsReseau w-50 mx-auto">Recevez notre newsletter pour ne
               manquer aucune information</p>
@@ -85,7 +85,7 @@ function Footer() {
       <div className="container">
         <div className="row ml-5">
           {/* COLUMN 1 */}
-          <div className="col-md-2 col-sm-4 mt-4 borderColumn">
+          <div className="col-md col-sm mt-4 borderColumn">
             {/* <div className="col-md-3 col-sm-6"> */}
             <h6>PROGRAMMATION</h6>
             <ul className="list-unstyled">            
@@ -99,7 +99,7 @@ function Footer() {
             </ul>
           </div>
           {/* COLUMN 2 */}
-          <div className="col-md-2 col-sm-4 mt-4 borderColumn">
+          <div className="col-md col-sm mt-4 borderColumn">
             <h6>RESTAURATION</h6>
             <ul className="list-unstyled">
               <li><Link className="footer__link" to="/restauration-presentation">Présentation</Link></li>
@@ -112,16 +112,16 @@ function Footer() {
             </ul>
           </div>
           {/* COLUMN 3 */}
-          <div className="col-md-2 col-sm-4 mt-4 borderColumn">
+          <div className="col-md col-sm mt-4 borderColumn">
             <h6>PRIVATISATION</h6>
             <ul className="list-unstyled">
               <li><Link className="footer__link" to="/privatisation-presentation">Présentation</Link></li>
-              <li><Link className="footer__link" to="/privatisation-reserver">Comment réserver ?</Link>Réserver</li>
+              <li><Link className="footer__link" to="/privatisation-reserver"> Réserver</Link></li>
             </ul>
             <h6>ACTUALITES</h6>
           </div>
           {/* COLUMN 4 */}
-          <div className="col-md-2 col-sm-4 mt-4 borderColumn">
+          <div className="col-md col-sm mt-4 borderColumn">
             <h6>INFOS PRATIQUES</h6>
             <ul className="list-unstyled">
               <li>Comment venir ?</li>
@@ -130,7 +130,7 @@ function Footer() {
             <h6>CONTACT</h6>
           </div>
           {/* COLUMN 5 */}
-          <div className="col-md-2 col-sm-4 mt-4">
+          <div className="col-md col-sm mt-4">
             <h6>POLITIQUES</h6>
             <h6><a href="cgu" className="noStyleLink">CGU</a></h6>
             <ul className="list-unstyled">

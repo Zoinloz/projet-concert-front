@@ -1,0 +1,6 @@
+.title__page{
+    text-align: left;
+    margin-left: 15%;
+    font-size : clamp(0.7rem, 13px,1.5rem) ; 
+    color:black;
+}
