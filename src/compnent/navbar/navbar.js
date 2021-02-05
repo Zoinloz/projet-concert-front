@@ -12,7 +12,7 @@ import FormControl from 'react-bootstrap/FormControl'
 import logo from '../../logo/logo_projet_concert.png'
 import SearchIcon from '@material-ui/icons/Search'
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
- 
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -154,13 +154,13 @@ const NavBar = ({ history }) => {
                 <NavDropdown.Item href="#action/3.2">FAQ</NavDropdown.Item>
               </NavDropdown>
 
-              <Nav.Link href="contact" >Contact</Nav.Link>
+              <Nav.Link href="/contact" >Contact</Nav.Link>
               {
                 (isAuth && isAdmin()) && (
                   <NavDropdown title="Admin" id="basic-nav-dropdown">
                     <NavDropdown.Item href="/admin/ListConcert">Liste des concerts</NavDropdown.Item>
 
-                    <NavDropdown.Item href="#">Créer un concert</NavDropdown.Item>
+                    <NavDropdown.Item href="/admin/addConcert">Créer un concert</NavDropdown.Item>
                   </NavDropdown>
                 )
               }

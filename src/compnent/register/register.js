@@ -64,11 +64,11 @@ const Register = ({ history }) => {
                     alert('Invalide User');
                 else
                     // props.history.replace('/login');
-                    AuthApi.auth({
-                        username: data.email,
-                        password: data.password,
-                    });
-                history.push('/')
+                    // AuthApi.auth({
+                    //     username: data.email,
+                    //     password: data.password,
+                    // });
+                    history.push('/login')
             })
 
     }

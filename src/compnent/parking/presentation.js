@@ -11,16 +11,16 @@ function ParkingPres() {
         <Card className="w-75 mx-auto my-4 shadow-lg bg-white rounded">
             <Card.Header as="h3" className="titleCard">Parking - Présentation</Card.Header>
             <Card.Body>
-                <div class="container">
+                <div className="container">
 
-                    <div class="row">
-                        <div class="col-sm">
+                    <div className="row">
+                        <div className="col-sm">
                             <img
                                 src={iconImage}
                                 className="parkingImage"
                                 alt="React Bootstrap logo" />
                         </div>
-                        <div class="col-sm presentationResto">
+                        <div className="col-sm presentationResto">
                             <Card.Text className="pt-5 text-justify">
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus tristique orci eget eros condimentum, vel pretium ante porttitor. Nullam sodales, lorem a vulputate imperdiet, dolor massa ullamcorper orci, a volutpat nisl turpis eu mi. Ut semper eros vitae turpis posuere malesuada. Fusce vitae enim massa. Suspendisse finibus ex et enim hendrerit, at ullamcorper massa egestas. Aliquam lacinia fringilla dolor, a viverra leo venenatis quis. Pellentesque feugiat diam lorem, nec hendrerit velit volutpat eu. Nulla venenatis vestibulum purus ut scelerisque. Proin arcu ante, dapibus a dolor non, efficitur elementum mauris. Praesent id diam luctus, condimentum nibh sit amet, euismod tortor. Suspendisse maximus pharetra massa ac volutpat. Nulla posuere tincidunt arcu, eget vulputate magna fermentum vel. Etiam cursus risus a lacus dapibus, vitae vestibulum ante tincidunt. Quisque pharetra elit sapien, consectetur euismod diam luctus quis. Duis rutrum erat at laoreet auctor.
 
@@ -85,9 +85,9 @@ function ParkingPres() {
                 <Button className="reservationRestorationButton mx-2">Réserver</Button>
             </div> */}
                 <div className="container my-4">
-                    <div class="row">
+                    <div className="row">
 
-                        <div class="col text-center">
+                        <div className="col text-center">
                             <Button className="reservationRestorationButton mx-2 p-3">Réserver</Button>
                         </div>
                     </div>

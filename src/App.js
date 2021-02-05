@@ -26,6 +26,7 @@ import AdminConcertList from './compnent/administrator/listConcert';
 import AdminConcertAdd from './compnent/administrator/addConcert';
 import Programation from './compnent/programmation/concertPoster';
 
+import Actuality from './compnent/actuality/actuality';
 import AuthApi from './services/authApi';
 import AuthContext from './context/AuthContext';
 import { useState } from 'react';
@@ -68,12 +69,15 @@ function App() {
             <Route exact path="/presentationRestoration" component={PresentationRestoration} />
             <Route exact path="/presentationPrivatisation" component={PresentationPrivatisation} />
             <Route exact path="/reservationPrivatisation" component={ReservationPrivatisation} />
-  
+            <Route exact path="/actuality" component={Actuality} />
+
+
             <Route exact path="/concertPoster/:id" component={ConcertPoster} />
             <Route exact path="/programmation" component={Programmation} />
 
-            {/* <Route exact path="/admin/ListConcert" component={AdminConcertList} /> */}
+            {/* <Route exact path="/admin/addConcert" component={AdminConcertList} /> */}
             <PrivateRoute admin='true' path='/admin/ListConcert' component={AdminConcertList} />
+            <PrivateRoute admin='true' path='/admin/addConcert' component={AdminConcertAdd} />
 
             <PrivateRoute path='/reservationStepOne' component={ReservationStepOne} />
             <PrivateRoute path='/shoppingCart' component={ShoppingCartStepTwo} />
