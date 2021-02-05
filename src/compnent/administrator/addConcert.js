@@ -29,39 +29,38 @@ const AdminConcertAdd = ({ history }) => {
     const [localitySalle, setLocalitySalle] = useState({
         salleId: '',
     });
-
+    const [categorie, setCategorie] = useState({
+        categoryNumber: 0
+    });
 
     let [localities, setLocality] = useState([])
 
 
-    // const [dateConcert, setDateConcert] = useState('');
-    // const [concerts, setConcert] = useState({
-    //     time: '', openingTime: '', categoryNumber: '', artistDescription: '', eventId: '',
-    // })
+    const [dateConcert, setDateConcert] = useState('');
+    const [timeConcert, setTimeConcert] = useState('');
+    const [openingTimeConcert, setOpeningTimeConcert] = useState('');
+
+    const [concerts, setConcert] = useState({
+        time: '', openingTime: '', categoryNumber: '', artistDescription: '', eventId: '', priceMax: '', percentage: ''
+    })
     const concertInput = {
-        artistDescription: "description de l'artiste", time: "1970-01-01T16:25:12+00:00", date: "2021-02-08T00:00:00+00:00", openingTime: "1970-01-01T15:25:12+00:00", priceMax: 150, percentage: 0.8, categoryNumber: 3
+        artistDescription: concerts.artistDescription, time: timeConcert, date: dateConcert, openingTime: openingTimeConcert, priceMax: Number(concerts.priceMax), percentage: Number(concerts.percentage), categoryNumber: Number(categorie.categoryNumber)
     }
 
     const evenementsInput = {
-        salleId: localitySalle.salleId, name: evenements.name, image_thumbnail: evenements.imageT, image_poster: evenements.imageP, artistName: evenements.nameArtiste, parking: Boolean(parking.parking), restaurant: Boolean(restaurant.restaurant),
+        salle: { id: Number(localitySalle.salleId) }, name: evenements.name, image_thumbnail: evenements.imageT, image_poster: evenements.imageP, artistName: evenements.nameArtiste, parking: Boolean(parking.parking), restaurant: Boolean(restaurant.restaurant),
         concerts: [
             concertInput,
-            concertInput
         ]
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:8000/test1', evenementsInput).then((result) => {
+        axios.post('http://localhost:8000/concert_event', evenementsInput).then((result) => {
             console.log(result);
-            // console.log(concertInput);
-
             // history.push('/admin/ListConcert');
         });
-        // concertApi.createConcert(concerts).then((result) => {
-        //     console.log(concertInput);
-        //     history.push('/admin/ListConcert');
-        // });
+
 
     }
 
@@ -71,14 +70,14 @@ const AdminConcertAdd = ({ history }) => {
         // debugger;
         setEvenement({ ...evenements, [e.target.name]: e.target.value });
     }
-
+    // VILLE
     const onChangeVille = (e) => {
         e.persist();
         // debugger;
         setLocalitySalle({ ...localitySalle, salleId: e.target.value });
         console.log(e.target.value);
     }
-
+    // RADIO BUTTON 
     const onChangeParking = (e) => {
         console.log(e.target.value);
         setParking({ ...parking, parking: e.target.value });
@@ -90,17 +89,35 @@ const AdminConcertAdd = ({ history }) => {
         console.log(e.target.value);
     }
 
-    // CONCERT
-    // const onChangeDate = (e) => {
-    //     console.log(e.target.value)
-    //     setDateConcert(e.target.value)
-    // }
-    // const onChangeConcert = (e) => {
-    //     // e.persist();
-    //     // debugger;
-    //     // setConcert({ ...concerts, [e.target.name]: e.target.value });
-    //     e.editor.getData()
-    // }
+    // CONCERT 
+    const onChangeConcert = (e) => {
+        // e.persist();
+        // debugger;
+        setConcert({ ...concerts, [e.target.name]: e.target.value });
+    }
+    // DATE
+    const onChangeDate = (e) => {
+        console.log(e.target.value)
+        setDateConcert(e.target.value)
+    }
+    // TIME
+    const onChangeTime = (e) => {
+        console.log(e.target.value)
+        setTimeConcert(e.target.value)
+    }
+    // OPENING TIME
+    const onChangeOpeningTime = (e) => {
+        console.log(e.target.value)
+        setOpeningTimeConcert(e.target.value)
+    }
+    // OPENING TIME
+    const onChangeCategorie = (e) => {
+        console.log(e.target.value);
+        setCategorie({ ...categorie, categoryNumber: e.target.value });
+    }
+
+
+
 
 
 
@@ -114,10 +131,6 @@ const AdminConcertAdd = ({ history }) => {
             .catch((error) => { console.log(error) })
     }, []);
 
-    // BTN RESET
-    const cancelCourse = (e) => {
-        e.preventDefault();
-    }
 
     return (
         <Card className="mx-auto my-4 shadow-lg bg-white rounded " style={{ width: "90%" }}>
@@ -125,73 +138,74 @@ const AdminConcertAdd = ({ history }) => {
                 Administration - Ajout d'un concert
       </Card.Header>
             <Form onSubmit={handleSubmit} id="create-concert-form">
-                <div class="container">
+                <div className="container">
 
-                    <div class="row">
-                        <div class="col-sm presentationResto pt-4 pb-4">
+                    <div className="row">
+                        <div className="col-sm presentationResto pt-4 pb-4">
                             <img
                                 src={"https://png.pngtree.com/thumb_back/fw800/back_our/20190620/ourmid/pngtree-large-concert-poster-background-material-image_161960.jpg"}
                                 className="restoImage"
                                 alt="React Bootstrap logo" />
                         </div>
-                        <div class="col-sm presentationResto pt-4 text-justify">
+                        <div className="col-sm presentationResto pt-4 text-justify">
 
-                            <div class="row g-3 align-items-center">
-                                <div class="col-auto">
-                                    <label for="nameArtise" class="col-form-label">Nom de l'artiste / groupe :</label>
+                            <div className="row g-3 align-items-center">
+                                <div className="col-auto">
+                                    <label htmlFor="nameArtise" className="col-form-label">Nom de l'artiste / groupe :</label>
                                 </div>
-                                <div class="col-auto">
-                                    <input type="text" onChange={onChange} name="nameArtiste" value={evenements.nameArtiste} id="nameArtise" class="form-control" aria-describedby="nameArtise" />
-                                </div>
-
-                            </div>
-
-                            <div class="row g-3 align-items-center pt-3 ">
-                                <div class="col-auto">
-                                    <label for="nameConcert" className="col-form-label ">Nom du concert :</label>
-                                </div>
-                                <div class="col-auto">
-                                    <input type="text" onChange={onChange} name="name" value={evenements.name} id="name" class="form-control" aria-describedby="nameConcert" />
+                                <div className="col-auto">
+                                    <input type="text" onChange={onChange} name="nameArtiste" value={evenements.nameArtiste} id="nameArtise" className="form-control" aria-describedby="nameArtise" />
                                 </div>
 
                             </div>
 
-                            <div class="row g-3 align-items-center pt-3 ">
-                                <div class="col-auto">
-                                    <label for="dateConcert" className="col-form-label ">Date :</label>
+                            <div className="row g-3 align-items-center pt-3 ">
+                                <div className="col-auto">
+                                    <label htmlFor="nameConcert" className="col-form-label ">Nom du concert :</label>
                                 </div>
-                                <div class="col-auto">
-                                    <input type="date" id="dateConcert" class="form-control" aria-describedby="dateConcert" />
+                                <div className="col-auto">
+                                    <input type="text" onChange={onChange} name="name" value={evenements.name} id="name" className="form-control" aria-describedby="nameConcert" />
                                 </div>
 
                             </div>
 
-                            <div class="row g-3 align-items-center pt-3 ">
-                                <div class="col-auto">
-                                    <label for="heureConcert" className="col-form-label ">Heure :</label>
+                            <div className="row g-3 align-items-center pt-3 ">
+                                <div className="col-auto">
+                                    <label htmlFor="dateConcert" className="col-form-label ">Date :</label>
                                 </div>
-                                <div class="col-auto">
-                                    <input type="time" id="heureConcert" class="form-control" aria-describedby="heureConcert" />
+                                <div className="col-auto">
+                                    <input name="dateConcert" onChange={onChangeDate} value={dateConcert} type="date" id="dateConcert" className="form-control" aria-describedby="dateConcert" />
                                 </div>
 
                             </div>
 
 
-                            <div class="row g-3 align-items-center pt-3 ">
-                                <div class="col-auto">
-                                    <label for="heureOConcert" className="col-form-label ">Heure d'ouverture :</label>
+                            <div className="row g-3 align-items-center pt-3 ">
+                                <div className="col-auto">
+                                    <label htmlFor="heureConcert" className="col-form-label ">Heure :</label>
                                 </div>
-                                <div class="col-auto">
-                                    <input type="time" id="heureOConcert" class="form-control" aria-describedby="heureOConcert" />
+                                <div className="col-auto">
+                                    <input name="timeConcert" onChange={onChangeTime} value={timeConcert} type="time" id="heureConcert" className="form-control" aria-describedby="heureConcert" />
                                 </div>
 
                             </div>
 
-                            <div class="row g-3 align-items-center pt-3 ">
-                                <div class="col-auto">
-                                    <label for="lieuxConcert" className="col-form-label ">Lieu (ville) :</label>
+
+                            <div className="row g-3 align-items-center pt-3 ">
+                                <div className="col-auto">
+                                    <label htmlFor="heureOConcert" className="col-form-label ">Heure d'ouverture :</label>
                                 </div>
-                                <div class="col-auto">
+                                <div className="col-auto">
+                                    <input name="openingTimeConcert" onChange={onChangeOpeningTime} value={openingTimeConcert} type="time" id="heureOConcert" className="form-control" aria-describedby="heureOConcert" />
+                                </div>
+
+                            </div>
+
+                            <div className="row g-3 align-items-center pt-3 ">
+                                <div className="col-auto">
+                                    <label htmlFor="lieuxConcert" className="col-form-label ">Lieu (ville) :</label>
+                                </div>
+                                <div className="col-auto">
                                     <Form.Group controlId="exampleForm.SelectCustom">
                                         <Form.Control as="select" name="salleId" value={localitySalle.salleId} onChange={onChangeVille} className="form-control">
                                             {localities.map(locality => (
@@ -206,24 +220,30 @@ const AdminConcertAdd = ({ history }) => {
 
                             </div>
 
-                            <div class="row g-3 align-items-center pt-3 ">
-                                <div class="col-auto">
-                                    <label for="heureOConcert" className="col-form-label ">Catégorie :</label>
+                            <div className="row g-3 align-items-center pt-3 ">
+                                <div className="col-auto">
+                                    <label htmlFor="heureOConcert" className="col-form-label ">Catégorie :</label>
                                 </div>
-                                <div class="col-auto">
+                                <div className="col-auto">
 
-                                    {['checkbox'].map((type) => (
+                                    {['radio'].map((type) => (
                                         <div key={`custom-inline-${type}`} className="mb-3">
                                             <Form.Check
                                                 custom
                                                 inline
+                                                value={1}
+                                                onChange={onChangeCategorie}
                                                 label="Catégorie 1"
                                                 type={type}
+                                                name="categoryNumber"
                                                 id={`custom-inline-${type}-1`}
                                             />
                                             <Form.Check
                                                 custom
                                                 inline
+                                                value={2}
+                                                onChange={onChangeCategorie}
+                                                name="categoryNumber"
                                                 label="Catégorie 2"
                                                 type={type}
                                                 id={`custom-inline-${type}-2`}
@@ -231,6 +251,9 @@ const AdminConcertAdd = ({ history }) => {
                                             <Form.Check
                                                 custom
                                                 inline
+                                                value={3}
+                                                onChange={onChangeCategorie}
+                                                name="categoryNumber"
                                                 label="Catégorie 3"
                                                 type={type}
                                                 id={`custom-inline-${type}-3`}
@@ -241,66 +264,82 @@ const AdminConcertAdd = ({ history }) => {
 
                             </div>
 
-                            <div class="row g-3 align-items-center pt-3 ">
-                                <div class="col-auto">
-                                    <label for="trancheTConcert" className="col-form-label ">Tranches de tarifs :</label>
+                            <div className="row g-3 align-items-center pt-3 ">
+                                <div className="col-auto">
+                                    <label htmlFor="trancheTConcert" className="col-form-label ">Tranches de tarifs :</label>
                                 </div>
 
+                            </div>
+                            <div className="row g-3 align-items-center pt-3 ">
+                                <div className="col-auto">
+                                    <label htmlFor="nameArtise" className="col-form-label">Tarif Max : </label>
+                                </div>
+                                <div className="col-auto">
+                                    <input type="number" onChange={onChangeConcert} name="priceMax" value={concerts.priceMax} id="priceMax" className="form-control" aria-describedby="priceMax" />
+                                </div>
 
-
+                            </div>
+                            <div className="row g-3 align-items-center pt-3 ">
+                                <div className="col-auto">
+                                    <label htmlFor="nameArtise" className="col-form-label">Pourcentage : </label>
+                                </div>
+                                <div className="col-auto">
+                                    <input type="number" onChange={onChangeConcert} name="percentage" value={concerts.percentage} id="percentage" className="form-control" aria-describedby="percentage" />
+                                </div>
 
                             </div>
 
-                            <div class="row g-3 align-items-center pt-3 ">
-                                <div class="col-auto">
-                                    <label for="trancheTConcert" className="col-form-label ">Catégorie 1 :</label>
+
+                            <div className="row g-3 align-items-center pt-3 ">
+                                <div className="col-auto">
+                                    <label htmlFor="trancheTConcert" className="col-form-label ">Catégorie 1 :</label>
                                 </div>
-                                <div class="col-4">
-                                    <input type="text" id="trancheTConcert" className="form-control " aria-describedby="trancheTConcert" />
+                                <div className="col-4">
+                                    <input type="text" id="trancheTConcert" className="form-control " aria-describedby="trancheTConcert" value={(Number(concerts.priceMax) * (1 - Number(concerts.percentage) / 100))} />
                                 </div>
-                                <div class="col-auto">
-                                    <label for="trancheTConcert" className="col-form-label">à</label>
+                                <div className="col-auto">
+                                    <label htmlFor="trancheTConcert" className="col-form-label">à</label>
                                 </div>
-                                <div class="col-4">
-                                    <input type="text" id="trancheTConcert" className="form-control" aria-describedby="trancheTConcert" />
+                                <div className="col-4">
+                                    <input type="text" id="trancheTConcert" className="form-control" aria-describedby="trancheTConcert" value={Number(concerts.priceMax)} />
                                 </div>
                             </div>
 
-                            <div class="row g-3 align-items-center pt-3 ">
-                                <div class="col-auto">
-                                    <label for="trancheTConcert" className="col-form-label ">Catégorie 2 :</label>
+                            <div className="row g-3 align-items-center pt-3 ">
+                                <div className="col-auto">
+                                    <label htmlFor="trancheTConcert" className="col-form-label ">Catégorie 2 :</label>
                                 </div>
-                                <div class="col-4">
-                                    <input type="text" id="trancheTConcert" className="form-control " aria-describedby="trancheTConcert" />
+                                <div className="col-4">
+                                    <input type="text" id="trancheTConcert" className="form-control " aria-describedby="trancheTConcert" value={((Number(concerts.priceMax) - 10) * (1 - Number(concerts.percentage) / 100))} />
                                 </div>
-                                <div class="col-auto">
-                                    <label for="trancheTConcert" className="col-form-label">à</label>
+                                <div className="col-auto">
+                                    <label htmlFor="trancheTConcert" className="col-form-label">à</label>
                                 </div>
-                                <div class="col-4">
-                                    <input type="text" id="trancheTConcert" className="form-control" aria-describedby="trancheTConcert" />
-                                </div>
-                            </div>
-
-                            <div class="row g-3 align-items-center pt-3 ">
-                                <div class="col-auto">
-                                    <label for="trancheTConcert" className="col-form-label ">Catégorie 3 :</label>
-                                </div>
-                                <div class="col-4">
-                                    <input type="text" id="trancheTConcert" className="form-control " aria-describedby="trancheTConcert" />
-                                </div>
-                                <div class="col-auto">
-                                    <label for="trancheTConcert" className="col-form-label">à</label>
-                                </div>
-                                <div class="col-4">
-                                    <input type="text" id="trancheTConcert" className="form-control" aria-describedby="trancheTConcert" />
+                                <div className="col-4">
+                                    <input type="text" id="trancheTConcert" className="form-control" aria-describedby="trancheTConcert" value={(Number(concerts.priceMax) - 10)} />
                                 </div>
                             </div>
 
-                            <div class="row g-3 align-items-center pt-3 ">
-                                <div class="col-auto">
-                                    <label for="heureOConcert" className="col-form-label ">Parking :</label>
+                            <div className="row g-3 align-items-center pt-3 ">
+                                <div className="col-auto">
+                                    <label htmlFor="trancheTConcert" className="col-form-label ">Catégorie 3 :</label>
                                 </div>
-                                <div class="col-auto">
+                                <div className="col-4">
+                                    <input type="text" id="trancheTConcert" className="form-control " aria-describedby="trancheTConcert" value={((Number(concerts.priceMax) - 20) * (1 - Number(concerts.percentage) / 100))} />
+                                </div>
+                                <div className="col-auto">
+                                    <label htmlFor="trancheTConcert" className="col-form-label">à</label>
+                                </div>
+                                <div className="col-4">
+                                    <input type="text" id="trancheTConcert" className="form-control" aria-describedby="trancheTConcert" value={(Number(concerts.priceMax) - 20)} />
+                                </div>
+                            </div>
+
+                            <div className="row g-3 align-items-center pt-3 ">
+                                <div className="col-auto">
+                                    <label htmlFor="heureOConcert" className="col-form-label ">Parking :</label>
+                                </div>
+                                <div className="col-auto">
 
                                     {['checkbox'].map((type) => (
                                         <div key={`custom-inline-${type}`} className="mb-3" >
@@ -331,11 +370,11 @@ const AdminConcertAdd = ({ history }) => {
 
                             </div>
 
-                            <div class="row g-3 align-items-center pt-3 ">
-                                <div class="col-auto">
-                                    <label for="heureOConcert" className="col-form-label ">Restaurant :</label>
+                            <div className="row g-3 align-items-center pt-3 ">
+                                <div className="col-auto">
+                                    <label htmlFor="heureOConcert" className="col-form-label ">Restaurant :</label>
                                 </div>
-                                <div class="col-auto">
+                                <div className="col-auto">
 
                                     {['checkbox'].map((type) => (
                                         <div key={`custom-inline-${type}`} className="mb-3">
@@ -386,8 +425,8 @@ const AdminConcertAdd = ({ history }) => {
                             data="<p></p>"
                         /> */}
                         <Form.Group>
-                            <Form.Label>Example textarea</Form.Label>
-                            <Form.Control as="textarea" rows={3} name="artistDescription" value={concertInput.artistName} />
+                            <Form.Label>Présentation de l'artiste</Form.Label>
+                            <Form.Control as="textarea" rows={3} name="artistDescription" onChange={onChangeConcert} value={concerts.artistDescription} />
                         </Form.Group>
                     </div>
 
@@ -396,10 +435,10 @@ const AdminConcertAdd = ({ history }) => {
 
                 <div className="d-flex justify-content-end pt-5 pb-5">
 
-                    <div class="p-2"><Button className="" href="#" >ANNULER</Button></div>
-                    <div class="p-2"><Button onClick={cancelCourse} >EFFACER</Button></div>
-                    <div class="p-2"><Button type="submit" >CRÉER LE CONCERT</Button></div>
-                    <div class="p-2"></div>
+                    <div className="p-2"><Button className="" href="/admin/ListConcert" >ANNULER</Button></div>
+                    <div className="p-2"><Button >EFFACER</Button></div>
+                    <div className="p-2"><Button type="submit" >CRÉER LE CONCERT</Button></div>
+                    <div className="p-2"></div>
                 </div>
             </Form>
         </Card >

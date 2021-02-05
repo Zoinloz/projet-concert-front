@@ -12,9 +12,11 @@
     color: white;
     border: white;
 }
+
 .concert__card{
    transition: all 0.4s ease;
 }
+
 .concert__card:hover{
  
   transform:scale(1.10);

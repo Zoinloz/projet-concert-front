@@ -4,15 +4,15 @@ function LegalNotices() {
 
     return (
 
-        <div class="content py-5  bg-light">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-8 offset-md-2">
-                        <div class="card card-outline-secondary shadow-lg bg-white rounded">
-                            <div class="card-header">
-                                <h3 class="mb-0">Politiques - Mentions légales</h3>
+        <div className="content py-5  bg-light">
+            <div className="container">
+                <div className="row">
+                    <div className="col-md-8 offset-md-2">
+                        <div className="card card-outline-secondary shadow-lg bg-white rounded">
+                            <div className="card-header">
+                                <h3 className="mb-0">Politiques - Mentions légales</h3>
                             </div>
-                            <div class="card-body">
+                            <div className="card-body">
                                 <div>
                                     <h4>Idendité</h4>
                                     <p className="text-justify"><strong>Nom du site web :</strong> SNRK symfony concert </p>

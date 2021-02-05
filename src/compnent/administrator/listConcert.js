@@ -21,6 +21,19 @@ function AdminConcertList() {
         }
     }, [])
 
+    const formatDate = (dateString) => {
+        const date = new Date(dateString);
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        console.log(date);
+        return date.toLocaleDateString('fr-FR', options)
+    }
+
+    const formatTime = (timeString) => {
+        const date = new Date(timeString);
+        return date.toLocaleTimeString('fr-FR')
+    }
+
+
     return (
         allConcerts ? (
             <Card className="w-75 mx-auto my-4 shadow-lg bg-white rounded ">
@@ -31,7 +44,7 @@ function AdminConcertList() {
                     <Button className="addConcert mx-2 p-3" href="#">+ Ajouter un concert</Button>
                 </div>
 
-                <Table striped hover rounded className="w-75 mx-auto">
+                <Table striped hover rounded className="px-5">
                     <thead>
                         <tr>
                             <td>Id</td>
@@ -54,11 +67,11 @@ function AdminConcertList() {
                                 <td>{concert.id}</td>
                                 <td>{concert.event.artistName}</td>
                                 <td>{concert.event.name}</td>
-                                <td>{concert.date} à {concert.time}</td>
+                                <td>{formatDate(concert.date)} à {formatTime(concert.time)} heures</td>
                                 <td>{concert.event.salle.city}</td>
                                 <td>{concert.event.categories[0].name}</td>
                                 <td>{concert.categoryNumber}</td>
-                                <td>{concert.openingTime}</td>
+                                <td>{formatTime(concert.openingTime)}</td>
                                 <td>Présentation de l'article</td>
                                 <td>Player audio</td>
                             </tr>

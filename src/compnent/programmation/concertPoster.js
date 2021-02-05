@@ -29,6 +29,17 @@ const ConcertPoster = ({ match }) => {
         concertApi.getConcert(match.params.id).then((concertInfo) => setConcertInfo(concertInfo));
     }, []);
 
+    const formatDate = (dateString) => {
+        const date = new Date(dateString);
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        console.log(date);
+        return date.toLocaleDateString('fr-FR', options)
+    }
+
+    const formatTime = (timeString) => {
+        const date = new Date(timeString);
+        return date.toLocaleTimeString('fr-FR')
+    }
 
     return (
 
@@ -48,7 +59,7 @@ const ConcertPoster = ({ match }) => {
                             <div className="col-sm concertInformations">
                                 <p>Nom de l'artiste / groupe : {concertInfo.event.artistName} </p>
                                 <p>Nom de la tournée : {concertInfo.event.name} </p>
-                                <p>Date et heure : {concertInfo.date} à {concertInfo.time} </p>
+                                <p>Date et heure : {formatDate(concertInfo.date)} à {formatTime(concertInfo.time)} heures </p>
                                 <p>Lieu : {concertInfo.event.salle.city} </p>
                                 <p>Catégorie de musique : {concertInfo.event.categories[0].name} </p>
 
@@ -58,9 +69,9 @@ const ConcertPoster = ({ match }) => {
 
                 </Card.Header>
                 <Card.Body>
-                    <div class="container">
-                        <div class="row mb-4">
-                            <div class="col-sm">
+                    <div className="container">
+                        <div className="row mb-4">
+                            <div className="col-sm">
                                 <Table striped hover rounded>
                                     <thead>
                                         <tr>
@@ -77,12 +88,12 @@ const ConcertPoster = ({ match }) => {
                                         {listConcerts.map(concert => (
                                             //L'attribut key est obligatoire pour le dataBinding
                                             <tr key={concert.id}>
-                                                <td>{concert.date}</td>
-                                                <td>{concert.id}</td>
-                                                <td>{concert.time}</td>
-                                                <td>{concert.dateTime}</td>
-                                                <td>{concert.openingTime}</td>
-                                                <td>{concert.openingTime}</td>
+                                                <td>{formatDate(concert.date)}</td>
+                                                <td>{concert.event.salle.city}</td>
+                                                <td>{formatTime(concert.time)} heures</td>
+                                                <td>{formatDate(concert.openingTime)}</td>
+                                                <td>{concert.categoryNumber}</td>
+                                                <td>{concert.priceMax}</td> {/* voir calcul de tarif */}
                                                 <td><Button className="buttonReservationConcert" href="/concertPoster/:id">Réserver</Button></td>
                                             </tr>
                                         ))}
@@ -90,18 +101,18 @@ const ConcertPoster = ({ match }) => {
                                 </Table>
                             </div>
                         </div>
-                        <div class="row mb-2">
-                            <div class="col-sm">
+                        <div className="row mb-2">
+                            <div className="col-sm">
                                 <h4>Présentation de l'artiste / Groupe</h4>
                                 <p className="text-justify">{concertInfo.artistDescription}
                                 </p>
                             </div>
-                            <div class="col-sm">
+                            <div className="col-sm">
                             </div>
                         </div>
 
-                        <div class="row">
-                            <div class="col-sm">
+                        <div className="row">
+                            <div className="col-sm">
                                 <h3>À NE PAS MANQUER</h3>
                                 {/* <Button variant="primary">Prev</Button> */}
                                 <Card className="cardOtherConcert">
