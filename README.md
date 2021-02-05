@@ -1,6 +1,10 @@
-# Getting Started with Create React App
+# Go to Symfony Concert
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## `npm i`
+
+First, install all packages inside the project. Do this commande to install 
 
 ## Available Scripts
 
