@@ -7,7 +7,6 @@ import React, { useState } from "react";
 import salleCannes from '../../logo/salle-cannes.jpg';
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
 
-
 export default function Programmation() {
     const [endDate, setEndDate] = useState("");
     const [startDate, setStartDate] = useState("");
@@ -20,6 +19,7 @@ export default function Programmation() {
         setEndDate("");
         setStartDate("");
     }
+
     return (
         <Card className="w-75 mx-auto my-4 shadow-lg bg-white rounded ">
             <Card.Header as="h3" className="titleCard text-center">

@@ -12,7 +12,9 @@ function AdminConcertList() {
     let [concerts, setConcerts] = useState([])
     //react Hook useEffect
     useEffect(() => {
+
         axios.get('http://127.0.0.1:8000/test')
+
             .then(response => {
                 console.log(response.data);
                 setConcerts(response.data);
@@ -49,7 +51,7 @@ function AdminConcertList() {
                             <td>{concert.id}</td>
                             <td>{concert.name}</td>
                             <td>{concert.number}</td>
-                            <td>{concert.price.toLocaleString()}</td>
+                            {/* <td>{concert.price.toLocaleString()}</td> */}
                         </tr>
                     ))}
                 </tbody> */}
