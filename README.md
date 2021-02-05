@@ -3,6 +3,10 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## `npm i`
+## `npm i @material-ui/core`
+## `npm i @material-ui/utils`
+## `npm i @material-ui/icons`
+
 
 First, install all packages inside the project. Do this commande to install 
 
