@@ -1,4 +1,3 @@
-// import './cgu.css';
 
 function LegalNotices() {
 

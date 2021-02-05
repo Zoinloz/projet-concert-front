@@ -7,7 +7,6 @@ import AuthContext from '../../context/AuthContext';
 import AuthApi from '../../services/authApi';
 
 
-// function Login() {
 const Login = ({ history }) => {
     const { setIsAuth } = useContext(AuthContext);
 
@@ -40,7 +39,6 @@ const Login = ({ history }) => {
 
         console.log(credentials);
     }
-    // function Login() {
 
     return (
         <div>

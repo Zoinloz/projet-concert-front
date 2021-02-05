@@ -36,7 +36,6 @@ const Actuality = () => {
                         <Card className="my-4 shadow bg-white rounded text-justify" inline>
                             <Card.Title className="shadow rounded text-center titleActualy">{article.title}</Card.Title>
 
-                            {/* <Card.Header className="titleCard text-center">{article.title}</Card.Header> */}
                             <Card.Body>
                                 <Card.Text >
                                     {article.text}

@@ -9,12 +9,9 @@ import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import iconImage from '../../logo/iconImage.png'
 import axios from "axios";
-// import dunkerqueSalle from '../../logo/salle-dunkerque.jpg'
-// import cannesSalle from '../../logo/salle-cannes.jpg'
 import React, { useEffect, useState } from 'react';
 
 import './home.css';
-// http://127.0.0.1:8000/event/latest
 
 
 
@@ -82,7 +79,6 @@ const Home = () => {
           <div className="container justify-content-center">
             <div className="row">
 
-              {/* <div className="col-lg-3 pt-3"> */}
               {latestEvents.map(latest => (
                 <div className="col-lg-3 pt-3">
                   <a href={`/concertPoster/${latest.id}`} className="text-decoration-none">
@@ -195,8 +191,7 @@ const Home = () => {
                 </Card>
 
               </div>
-              {/* <Button variant="primary">Next</Button> */}
-              {/* Fin des fausses données à remplacer par une boucle */}
+
             </div >
           </div >
           <div className="container my-4">

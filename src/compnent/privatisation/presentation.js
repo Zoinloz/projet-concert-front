@@ -9,8 +9,6 @@ import cannesSalle from '../../logo/salle-cannes.jpg'
 
 import Carousel from 'react-bootstrap/Carousel'
 
-// import Slider from 'infinite-react-carousel';
-
 import './presentation.css';
 
 function PresentationPrivatisation() {
@@ -30,7 +28,6 @@ function PresentationPrivatisation() {
                                         alt="Salle Aix-en-Provence"
                                     />
                                     <Carousel.Caption >
-                                        {/* <h3>First slide label</h3> */}
                                         <h3 className="textCardCarousel">Aix en provence</h3>
                                     </Carousel.Caption>
                                 </Carousel.Item>
@@ -52,8 +49,7 @@ function PresentationPrivatisation() {
                                         alt="Salle Cannes"
                                     />
                                     <Carousel.Caption>
-                                        {/* <h3>Third slide label</h3>
-                                        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p> */}
+
                                         <h3 className="textCardCarousel">Cannes</h3>
 
                                     </Carousel.Caption>

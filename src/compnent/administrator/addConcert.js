@@ -14,7 +14,6 @@ import concertApi from '../../services/concertApi';
 
 import './listConcert.css';
 
-// function AdminConcertAdd() {
 const AdminConcertAdd = ({ history }) => {
 
     const [evenements, setEvenement] = useState({
@@ -110,7 +109,7 @@ const AdminConcertAdd = ({ history }) => {
         console.log(e.target.value)
         setOpeningTimeConcert(e.target.value)
     }
-    // OPENING TIME
+    // CATEGORY
     const onChangeCategorie = (e) => {
         console.log(e.target.value);
         setCategorie({ ...categorie, categoryNumber: e.target.value });
@@ -417,13 +416,6 @@ const AdminConcertAdd = ({ history }) => {
                     <h3>Présentation de l'artiste / groupe</h3>
 
                     <div className="w-75" >
-                        {/* <CKEditor
-                            // onChange={onChangeConcert}
-                            // name='artistDescription'
-                            // value={concerts.artistDescription}
-
-                            data="<p></p>"
-                        /> */}
                         <Form.Group>
                             <Form.Label>Présentation de l'artiste</Form.Label>
                             <Form.Control as="textarea" rows={3} name="artistDescription" onChange={onChangeConcert} value={concerts.artistDescription} />

@@ -42,11 +42,6 @@ function PresentationRestoration() {
 
                     </div>
                 </div>
-
-                {/* <div className="mt-4">
-                    <Button className="cardRestoration mx-2">La carte</Button>
-                    <Button className="reservationRestorationButton mx-2">Réserver</Button>
-                </div> */}
                 <div className="container my-4">
                     <div className="row">
                         <div className="col text-center">

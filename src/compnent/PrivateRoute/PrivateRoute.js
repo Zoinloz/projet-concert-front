@@ -14,14 +14,3 @@ const PrivateRoute = ({ path, component, admin = false }) => {
 
 export default PrivateRoute;
 
-// const PrivateRoute = ({ path, component }) => {
-
-//     const { isAuth } = useContext(AuthContext);
-
-//     return isAuth ?
-//         <Route path={path} component={component} />
-//         :
-//         <Redirect to="/login" />
-// }
-
-// export default PrivateRoute;

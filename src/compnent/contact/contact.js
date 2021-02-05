@@ -60,68 +60,6 @@ function Contact() {
     </Card>
 
 
-
-
-    // si on met que cette div dans le return ca s'affiche
-    // <div className="content py-5  bg-light">
-    //   <div className="container">
-    //     <button className="btn btn-secondary btn-lg float-right" onClick={notify}>Send Message</button>
-    //     <ToastContainer />
-    //   </div>
-
-    // </div>
-
-
-
-
-
-    // CODE KEVIN
-    // <div className="content py-5  bg-light">
-    //   <div className="container">
-    //     <div className="row">
-    //       <div className="col-md-6 offset-md-3">
-    //         <span className="anchor" id="formContact"></span>
-    //         <div className="card card-outline-secondary shadow-lg bg-white rounded">
-    //           <div className="card-header">
-    //             <h3 className="mb-0">Contactez-nous</h3>
-    //           </div>
-    //           <div className="card-body">
-    //             <form className="form" autoComplete="off">
-    //               <fieldset>
-    //                 <label htmlFor="name2" className="mb-0">Name</label>
-    //                 <div className="row mb-1">
-    //                   <div className="col-lg-12">
-    //                     <input type="text" name="name2" id="name2" className="form-control" required="" />
-    //                   </div>
-    //                 </div>
-    //                 <label htmlFor="email2" className="mb-0">Email</label>
-    //                 <div className="row mb-1">
-    //                   <div className="col-lg-12">
-    //                     <input type="text" name="email2" id="email2" className="form-control" required="" />
-    //                   </div>
-    //                 </div>
-    //                 <label htmlFor="message2" className="mb-0">Message</label>
-    //                 <div className="row mb-1">
-    //                   <div className="col-lg-12">
-    //                     <textarea rows="6" name="message2" id="message2" className="form-control" required=""></textarea>
-    //                   </div>
-    //                 </div>
-    //                 <button className="btn btn-secondary btn-lg float-right" onClick={notify}>Send Message</button>
-    //                 <button onClick={notify}>Notify !</button>
-    //                 <ToastContainer />
-
-    //               </fieldset>
-    //             </form>
-    //           </div>
-    //         </div>
-
-    //       </div>
-    //     </div>
-    //   </div>
-
-    // </div >
-
-
   );
 }
 

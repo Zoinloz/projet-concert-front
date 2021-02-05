@@ -15,8 +15,11 @@ export default function Programmation() {
     const [listConcerts, setListConcert] = useState(null);
 
 
-    // Pour la checkBox des localities
+    // Pour la radio button des localities
     let [localities, setLocality] = useState([])
+    const [localitySalle, setLocalitySalle] = useState({
+        salleId: '',
+    });
 
     useEffect(() => {
         axios.get('http://127.0.0.1:8000/salle')
@@ -28,73 +31,164 @@ export default function Programmation() {
             .catch((error) => { console.log(error) })
     }, []);
 
+    let [categoryMusic, setcategoryMusic] = useState([])
 
-    // Pour la checkBox des catégories de musique
-    let [musiqueC, setMusiqueC] = useState([])
+    const [musiqueC, setMusiqueC] = useState({
+        categorieId: '',
+    });
 
     useEffect(() => {
-        axios.get('http://127.0.0.1:8000/musiqueCategories')
+        axios.get('http://127.0.0.1:8000/musicCategories')
             .then(response => {
                 console.log(response.data);
-                setMusiqueC(response.data);
+                setcategoryMusic(response.data);
             }
             )
             .catch((error) => { console.log(error) })
     }, []);
 
+    const onChangeCategorie = (e) => {
+        e.persist();
+        setMusiqueC({ ...musiqueC, categorieId: e.target.value });
+        console.log(e.target.value);
+        console.log(musiqueC);
+    }
+
+
     useEffect(async () => {
         try {
             const concerts = await concertApi.findAll();
             setListConcert(concerts);
+            setFilterProgrammation(concerts);
         } catch (error) {
             console.log(error)
         }
     }, [])
 
-    // (Number(listConcerts.priceMax) - Number(listConcerts.percentage) * 100)
+
+
+
+
+
+    const [filterProgrammation, setFilterProgrammation] = useState([]);
+
 
     const [endDate, setEndDate] = useState("");
     const [startDate, setStartDate] = useState("");
 
     function resetDate(e) {
         e.preventDefault();
-        // Voir les dates qui ont été mise
         console.log(endDate, startDate);
-        // clearing the values
         setEndDate("");
         setStartDate("");
     }
 
-    // const res = await axios.get('https://httpbin.org/get', { params: { answer: 42 } });
-    // res.data.args; // { answer: 42 }
-    const [localitySalle, setLocalitySalle] = useState({
-        salleId: '',
-    });
+
+
+
+
+
+
     const onChangeVille = (e) => {
         e.persist();
-        // debugger;
         setLocalitySalle({ ...localitySalle, salleId: e.target.value });
         console.log(e.target.value);
+        console.log(localitySalle);
     }
-    const salleSearch = {
-        salleId: localitySalle.salleId
-    }
+
+
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // recup les objet et mettre dans un objet search
-        axios.get('http://localhost:8000/event/search', /*{ params: { salles: [{ salleSearch } ]} }*/).then((result) => {
-            console.log(result);
+        const filterTemp = listConcerts.filter((item) => {
 
-            // history.push('/admin/ListConcert');
-        });
+
+            if (startDate == "" || endDate == "") {
+                if (localitySalle.salleId == 0) {
+
+                    if (item.event.categories.length > 0) {
+
+                        if (musiqueC.categorieId == 0) {
+                            console.log(musiqueC.categorieId);
+                            return item;
+                        }
+
+                        if (item.event.categories[0].id == musiqueC.categorieId) {
+                            console.log(musiqueC.categorieId);
+                            return item;
+                        }
+                    }
+
+                }
+
+                if (localitySalle.salleId != null && localitySalle.salleId != 0) {
+                    if (item.event.salle.id == localitySalle.salleId) {
+                        if (item.event.categories.length > 0) {
+
+                            if (musiqueC.categorieId == 0) {
+                                console.log(musiqueC.categorieId);
+                                return item;
+                            }
+
+                            if (item.event.categories[0].id == musiqueC.categorieId) {
+                                console.log(musiqueC.categorieId);
+                                return item;
+                            }
+                        }
+                    }
+                }
+            }
+
+            else if ((item.date) > startDate && (item.date) < endDate) {
+
+                if (localitySalle.salleId == 0) {
+
+                    if (item.event.categories.length > 0) {
+
+                        if (musiqueC.categorieId == 0) {
+                            console.log(musiqueC.categorieId);
+                            return item;
+                        }
+
+                        if (item.event.categories[0].id == musiqueC.categorieId) {
+                            console.log(musiqueC.categorieId);
+                            return item;
+                        }
+                    }
+
+                }
+
+                if (localitySalle.salleId != null && localitySalle.salleId != 0) {
+                    if (item.event.salle.id == localitySalle.salleId) {
+                        console.log(localitySalle);
+                        if (item.event.categories.length > 0) {
+
+                            if (musiqueC.categorieId == 0) {
+                                console.log(musiqueC.categorieId);
+                                return item;
+                            }
+                            if (item.event.categories[0].id == musiqueC.categorieId) {
+                                console.log(musiqueC.categorieId);
+                                return item;
+                            }
+                        }
+                    }
+                }
+            }
+
+
+        }
+        )
+        setFilterProgrammation(filterTemp);
+        console.log(filterTemp);
+
 
     }
 
     const formatDate = (dateString) => {
         const date = new Date(dateString);
         const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-        console.log(date);
         return date.toLocaleDateString('fr-FR', options)
     }
 
@@ -113,28 +207,19 @@ export default function Programmation() {
 
                 <Card.Body>
                     <Card className="my-4 shadow rounded">
-                        {/* <Card.Header className="searchCard text-center">
-                        Trier
-                        </Card.Header> */}
                         <Card.Body className="mx-auto">
                             <Form name="test" onSubmit={handleSubmit}>
                                 <Form.Group
                                     className="form-inline"
                                     controlId="formProgrammationCheckboxPlace"
-                                    key="inline-checkbox"
+                                    key="inline-radio"
                                 >
                                     <Form.Label className="mr-2">Lieu : </Form.Label>
-                                    <Form.Check inline label="Tous" type="checkbox" defaultChecked />
+                                    <Form.Check inline label="Tous" type="radio" defaultChecked value={0} onChange={onChangeVille} name="locality" />
                                     {localities.map(locality => (
                                         //L'attribut key est obligatoire pour le dataBinding
-                                        <Form.Check value={localitySalle.salleId} onChange={onChangeVille} key={locality.id} inline label={locality.city} name={locality.id} type="checkbox" />
+                                        <Form.Check value={locality.id} onChange={onChangeVille} key={locality.id} inline label={locality.city} name="locality" type="radio" />
                                     ))}
-                                    {/* <Form.Check inline label="Tous" type="checkbox" defaultChecked />
-                                 <Form.Check inline label="Aix-en-Provence" type="checkbox" />
-                                 <Form.Check inline label="Bourges" type="checkbox" />
-                                 <Form.Check inline label="Cannes" type="checkbox" />
-                                 <Form.Check inline label="Dunkerque" type="checkbox" />
-                                 <Form.Check inline label="Echirolles" type="checkbox" /> */}
                                 </Form.Group>
 
 
@@ -146,55 +231,19 @@ export default function Programmation() {
                                     <Form.Label className="mr-2">
                                         Catégorie de musique :{" "}
                                     </Form.Label>
-                                    <Form.Check
-                                        inline
-                                        label="Toutes"
-                                        type="radio"
-                                        name="formHorizontalRadios"
-                                        defaultChecked
-                                    />
-                                    <Form.Check
-                                        inline
-                                        label="Pop"
-                                        type="radio"
-                                        name="formHorizontalRadios"
-                                    />
-                                    <Form.Check
-                                        inline
-                                        label="Rock"
-                                        type="radio"
-                                        name="formHorizontalRadios"
-                                    />
-                                    <Form.Check
-                                        inline
-                                        label="Electro"
-                                        type="radio"
-                                        name="formHorizontalRadios"
-                                    />
-                                    <Form.Check
-                                        inline
-                                        label="Rap / Hip-hop"
-                                        type="radio"
-                                        name="formHorizontalRadios"
-                                    />
-                                    <Form.Check
-                                        inline
-                                        label="Soul / Funk"
-                                        type="radio"
-                                        name="formHorizontalRadios"
-                                    />
-                                    <Form.Check
-                                        inline
-                                        label="Classique"
-                                        type="radio"
-                                        name="formHorizontalRadios"
-                                    />
-                                    <Form.Check
-                                        inline
-                                        label="Dub / Reggae"
-                                        type="radio"
-                                        name="formHorizontalRadios"
-                                    />
+
+                                    <Form.Check inline label="Toutes" type="radio" onChange={onChangeCategorie} defaultChecked value={0} name="categoryMusic" />
+                                    {categoryMusic.map(music => (
+                                        <Form.Check
+                                            value={music.id} onChange={onChangeCategorie} key={music.id} inline label={music.name}
+                                            inline
+                                            type="radio"
+                                            name="categoryMusic"
+                                        />
+
+                                    ))}
+
+
                                 </Form.Group>
 
                                 <Form.Group controlId="formBasicDate" className="form-inline">
@@ -216,8 +265,6 @@ export default function Programmation() {
                                         onChange={e => setEndDate(e.target.value)}
                                     />
                                     <Button
-                                        // variant="outline-info"
-                                        // type="submit"
                                         className="mx-3 btnReserDate"
                                         onClick={resetDate}
                                     >
@@ -230,17 +277,15 @@ export default function Programmation() {
                             </Form>
                         </Card.Body>
                     </Card>
-                    {/* Garder une Card seulement et la mettre dans le map (Voir exemple git prof) */}
-                    {listConcerts.map(concert => (
+                    {filterProgrammation.map(concert => (
                         < Card className="my-4 shadow bg-white rounded cardListConcert text-center concert__card" >
-                            {/* <Card.Header className="titleProgrammationListCard"></Card.Header> */}
                             < Card.Img variant="top" src={salleCannes} />
                             <Card.Body>
 
                                 <Card.Text as="h5">{concert.event.artistName}</Card.Text>
                                 <Card.Text>{concert.event.name}</Card.Text>
                                 <Card.Text>{formatDate(concert.date)} à  {formatTime(concert.time)} heures</Card.Text>
-                                {/* <Card.Text>{concert.event.categories[0].name}</Card.Text> */}
+                                <Card.Text>{(concert.event.categories.length > 0) ? concert.event.categories[0].name : 'Aucune catégorie'}</Card.Text>
                                 <Card.Text>{concert.event.salle.city}</Card.Text>
                                 <Card.Text>Tarifs de {(Number(concert.priceMax) * (1 - Number(concert.percentage) / 100))}€ à {concert.priceMax}€</Card.Text>
                                 <Card.Link href={`/concertPoster/${concert.id}`} className="btn btnRerservationConcertList">Réserver</Card.Link>
@@ -256,6 +301,5 @@ export default function Programmation() {
                 <p>La page charge</p>
             )
     );
-    // }
 }
 

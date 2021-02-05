@@ -7,41 +7,31 @@ import axios from 'axios';
 import AuthApi from '../../services/authApi';
 
 
-// DECOMMENTER LES LIGNES QUAND LE BACK EST OK
-
-
-// function Register(props) {
 const Register = ({ history }) => {
 
-    // const [data, setData] = useState(
-    //     { email: '', password: ''}) //FONCTIONNE
-
+    // STATE DES DONNEES USER TYPE TEXT
     const [data, setData] = useState({
         email: '', password: '', firstName: '', lastName: '', address: '', residence: '', locality: '', zipCode: '', city: '', country: '', phoneNumber: ''
     })
+    // STATE RADIO BUTTON GENDER
     const [genders, setGender] = useState({
         gender: ''
     });
-
-    // const [birthDate, setBirthDate] = useState({
-    //     birthDate: ''
-    // })
+    // STATE DE LA DATE DE NAISSANCE TYPE DATE
     const [birthDate, setBirthDate] = useState('');
 
-    // ONCHANGE
+    // ONCHANGE DES DONNEES TYPE TEXT
     const onChange = (e) => {
         e.persist();
-        // debugger;
         setData({ ...data, [e.target.name]: e.target.value });
     }
-
+    // ON CHANGE RADIO BUTTON GENDER 
     const onChangeCivility = (e) => {
         console.log(e.target.value);
         setGender({ ...genders, gender: e.target.value });
         console.log(e.target.value);
-        // console.log(genders);
     }
-
+    // ON CHANGE DATE
     const onChangeDate = (e) => {
         console.log(e.target.value)
         setBirthDate(e.target.value)
@@ -51,7 +41,6 @@ const Register = ({ history }) => {
     // ONSUBMIT
     const registration = async (event) => {
         event.preventDefault();
-        // const dataInput = { email: data.email, password: data.password };
         const dataInput = {
             email: data.email, password: data.password, firstName: data.firstName, lastName: data.lastName, address: data.address, residence: data.residence, locality: data.locality, zipCode: data.zipCode, city: data.city, country: data.country, phoneNumber: data.phoneNumber, birthDate: birthDate, gender: genders.gender
         }
@@ -59,7 +48,6 @@ const Register = ({ history }) => {
             .then((result) => {
                 console.log(result.data);
                 console.log(result.gender);
-                // console.log(civilityRadio.selectedOption)
                 if (result.data.Status === 'Invalid')
                     alert('Invalide User');
                 else
@@ -110,9 +98,7 @@ const Register = ({ history }) => {
                                 label="Madame"
                                 value="F"
                                 name="gender"
-                                // checked={genders === "F"}
                                 onChange={onChangeCivility}
-                            // onClick={() => setGender('F')}
                             />
                             <Form.Check
                                 inline
@@ -120,8 +106,6 @@ const Register = ({ history }) => {
                                 label="Monsieur"
                                 name="gender"
                                 value="M"
-                                // checked={genders === "M"}
-                                // onClick={() => setGender('M')}
                                 onChange={onChangeCivility}
                             />
                         </Form.Group>

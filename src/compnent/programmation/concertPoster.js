@@ -8,11 +8,11 @@ import './concertPoster.css';
 import React, { useEffect, useState } from 'react';
 import concertApi from '../../services/concertApi';
 
-// function ConcertPoster() {
 const ConcertPoster = ({ match }) => {
 
+    // Liste des concerts
     const [listConcerts, setListConcert] = useState([]);
-
+    // Axios pour récupérer la liste de tous les concerts
     useEffect(async () => {
         try {
             const concerts = await concertApi.findAll();
@@ -29,13 +29,14 @@ const ConcertPoster = ({ match }) => {
         concertApi.getConcert(match.params.id).then((concertInfo) => setConcertInfo(concertInfo));
     }, []);
 
+    // FORMATAGE DE DATE
     const formatDate = (dateString) => {
         const date = new Date(dateString);
         const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
         console.log(date);
         return date.toLocaleDateString('fr-FR', options)
     }
-
+    // FORMATAGE DE L'HEURE 
     const formatTime = (timeString) => {
         const date = new Date(timeString);
         return date.toLocaleTimeString('fr-FR')
@@ -93,7 +94,7 @@ const ConcertPoster = ({ match }) => {
                                                 <td>{formatTime(concert.time)} heures</td>
                                                 <td>{formatDate(concert.openingTime)}</td>
                                                 <td>{concert.categoryNumber}</td>
-                                                <td>{concert.priceMax}</td> {/* voir calcul de tarif */}
+                                                <td>{concert.priceMax}</td>
                                                 <td><Button className="buttonReservationConcert" href="/concertPoster/:id">Réserver</Button></td>
                                             </tr>
                                         ))}
@@ -163,7 +164,6 @@ const ConcertPoster = ({ match }) => {
                                     </Card.Body>
                                 </Card>
                                 {/* <Button variant="primary">Next</Button> */}
-                                {/* Fin des fausses données à remplacer par une boucle */}
 
                             </div>
 

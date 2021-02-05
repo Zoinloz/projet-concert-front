@@ -170,16 +170,14 @@ const NavBar = ({ history }) => {
             <Nav>
               {!isAuth && (
                 <Nav.Link href="/login" >Mon compte / Crée un compte</Nav.Link>
-                // <NavLink className="nav-link" to="/login">Connexion</NavLink >
               )
                 ||
                 (
                   <Nav.Link onClick={handleLogout} href="#" >Déconnexion</Nav.Link>
-                  // <a onClick={handleLogout} className="nav-link text-danger" href="#">Déconnexion</a>
 
                 )
               }
-              < Nav.Link className="ml-3 mr-5" href="/reservationStepOne" ><ShoppingBasketIcon /></Nav.Link>
+              < Nav.Link className="ml-3 mr-5" href="/reservationpage" ><ShoppingBasketIcon /></Nav.Link>
 
             </Nav>
 
@@ -199,164 +197,6 @@ const NavBar = ({ history }) => {
         </Navbar>
 
       </div>
-
-
-
-      {/* La version officiel bootstrap */}
-
-      {/* <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-  <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
-  <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-  <Navbar.Collapse id="responsive-navbar-nav">
-    <Nav className="mr-auto">
-      <Nav.Link href="#features">Features</Nav.Link>
-      <Nav.Link href="#pricing">Pricing</Nav.Link>
-      <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
-        <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-        <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-        <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-        <NavDropdown.Divider />
-        <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-      </NavDropdown>
-    </Nav>
-    <Nav>
-      <Nav.Link href="#deets">More deets</Nav.Link>
-      <Nav.Link eventKey={2} href="#memes">
-        Dank memes
-      </Nav.Link>
-    </Nav>
-  </Navbar.Collapse>
-</Navbar> */}
-
-
-
-
-      {/* La presque navbar non-responsive */}
-
-      {/* <Navbar bg="light" expand="lg" className="fondNavbar">
-  
-    <div className="contain">
-      <div className="row justify-content-md-center">
-
-        <div className="col-sm-2">
-          <Navbar.Brand href="#home">
-            <img
-              src={logo} 
-              className="d-inline-flex align-top ml-5 mr-3 navbar__logo"
-              alt="SNRK" />
-          </Navbar.Brand>
-        </div>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-
-        <div className="col-sm-6">
-
-          <div className="contain">
-
-            <div className="row align-self-star justify-content-md-center p-3">
-
-              <div className="col-sm ">
-
-                <NavDropdown title="Programmation" id="basic-nav-dropdown">
-                  <NavDropdown.Item href="/programmation">Tous les évènements</NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action/3.2">Aix-en-Provence</NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action/3.3">Bourges</NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action/3.3">Cannes</NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action/3.3">Dunkerque</NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action/3.3">Echirolles</NavDropdown.Item>
-                  <NavDropdown.Divider />
-
-                  <NavDropdown.Item href="/admin/ListConcert">Comment réserver ?</NavDropdown.Item>
-                </NavDropdown>
-              </div>
-              <div className="col-sm">
-
-                  <NavDropdown.Item href="#action/3.3">Comment réserver ?</NavDropdown.Item>
-                </NavDropdown>       
-            </div>
-
-            <div className="col-sm">
-                <NavDropdown title="Restauration" id="basic-nav-dropdown">
-                  <NavDropdown.Item href="presentationRestoration">Présentation</NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action/3.2">Réserver</NavDropdown.Item>
-                </NavDropdown>
-              </div>
-
-              <div className="col-sm">
-                <NavDropdown title="Parking" id="basic-nav-dropdown">
-                  <NavDropdown.Item href="/parking">Présentation</NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item href="/parking/reservation">Réserver</NavDropdown.Item>
-                </NavDropdown>
-              </div>
-
-              <div className="col-sm">
-                <NavDropdown title="Privatisation" id="basic-nav-dropdown">
-                  <NavDropdown.Item href="/presentationPrivatisation">Présentation</NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item href="/reservationPrivatisation">Réserver</NavDropdown.Item>
-                </NavDropdown>
-              </div>
-
-              <div className="col-sm">
-                <Nav.Link href="actuality" >Actualités</Nav.Link>
-              </div>
-
-              <div className="col-sm">
-                <NavDropdown title="Infos pratiques" id="basic-nav-dropdown">
-                  <NavDropdown.Item href="#action/3.1">Comment venir</NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item href="/concertPoster">FAQ</NavDropdown.Item>
-                </NavDropdown>
-              </div>
-
-              <div className="col-sm">
-                <Nav.Link href="/contact" >Contact</Nav.Link>
-              </div>
-
-             </div>
-
-             <div className="row">
-               
-              <InputGroup className=" p-2">
-                <InputGroup.Prepend >
-                  <Button variant="outline-secondary"><SearchIcon className="sidebarRow__icon"/></Button>
-                </InputGroup.Prepend>
-                <FormControl
-                  placeholder="Rechercher"
-                  aria-label="Search"
-                  aria-describedby="basic-addon1"
-                />
-                </InputGroup>
-              
-             </div>
-          </div>
-
-          </div>
-        
-          <div className="col-sm-3">
-            <div className="d-flex justify-content-end align-self-star">
-              <div><Nav.Link href="#" >Connexion / Inscription</Nav.Link></div>
-              <div><Nav.Link href="#" ><ShoppingBasketIcon /></Nav.Link></div>
-
-            </div>
-
-            
-          </div>
-
-        </div>
-
-
-
-      </div>
-      </Navbar>
-
-    */}
 
     </div >
 

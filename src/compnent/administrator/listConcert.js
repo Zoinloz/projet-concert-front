@@ -9,7 +9,7 @@ import concertApi from '../../services/concertApi';
 function AdminConcertList() {
 
     //react Hook useState map : pour les array pas JSON
-    const [allConcerts, setAllConcert] = useState([]);
+    const [allConcerts, setAllConcert] = useState(null);
 
     //react Hook useEffect
     useEffect(async () => {
@@ -21,6 +21,7 @@ function AdminConcertList() {
         }
     }, [])
 
+    // FORMATAGE DATE
     const formatDate = (dateString) => {
         const date = new Date(dateString);
         const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
@@ -28,6 +29,7 @@ function AdminConcertList() {
         return date.toLocaleDateString('fr-FR', options)
     }
 
+    // FORMATAGE HEURE
     const formatTime = (timeString) => {
         const date = new Date(timeString);
         return date.toLocaleTimeString('fr-FR')
@@ -42,7 +44,7 @@ function AdminConcertList() {
                     Administration - Liste des concerts
       </Card.Header>
                 <div className="mx-auto my-4">
-                    <Button className="addConcert mx-2 p-3" href="#">+ Ajouter un concert</Button>
+                    <Button className="addConcert mx-2 p-3" href="/admin/addConcert">+ Ajouter un concert</Button>
                 </div>
 
                 <Table striped hover rounded className="px-5">
@@ -71,11 +73,12 @@ function AdminConcertList() {
                                 <td>{concert.event.name}</td>
                                 <td>{formatDate(concert.date)} à {formatTime(concert.time)} heures</td>
                                 <td>{concert.event.salle.city}</td>
-                                <td>{concert.event.categories[0].name}</td>
+                                <td>{(concert.event.categories.length > 0) ? concert.event.categories[0].name : 'Aucune catégorie'}</td> {/* A voir pour change */}
                                 <td>{concert.categoryNumber}</td>
                                 <td>{formatTime(concert.openingTime)}</td>
                                 <td>Présentation de l'article</td>
                                 <td>Player audio</td>
+
                             </tr>
                         ))}
                     </tbody>
