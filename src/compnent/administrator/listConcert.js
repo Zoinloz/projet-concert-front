@@ -34,6 +34,7 @@ function AdminConcertList() {
     }
 
 
+
     return (
         allConcerts ? (
             <Card className="w-75 mx-auto my-4 shadow-lg bg-white rounded ">
@@ -57,6 +58,7 @@ function AdminConcertList() {
                             <td>Heure d'ouverture</td>
                             <td>Présentation de l'article</td>
                             <td>Player audio</td>
+
 
                         </tr>
                     </thead>

@@ -46,3 +46,6 @@
 .footer__link:hover{
     color: white;
 }
+li{
+    white-space: nowrap;
+}

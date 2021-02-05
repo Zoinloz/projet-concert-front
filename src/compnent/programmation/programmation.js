@@ -8,7 +8,6 @@ import concertApi from '../../services/concertApi';
 import salleCannes from '../../logo/salle-cannes.jpg';
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
 
-
 export default function Programmation() {
 
     // Pour lister les Cards
@@ -103,6 +102,7 @@ export default function Programmation() {
         const date = new Date(timeString);
         return date.toLocaleTimeString('fr-FR')
     }
+
 
     return (
         listConcerts ? (

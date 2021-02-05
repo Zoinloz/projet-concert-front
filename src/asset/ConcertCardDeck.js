@@ -10,7 +10,7 @@ function ConcertCardDeck(){
     return (
         <div>
             <div className="container justify-content-center concert__cardDeck">
-                <div className="row  ">
+                <div className="row">
                    <div className="col-lg-3">
                     <ConcertCard/>
                     </div>

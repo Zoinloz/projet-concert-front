@@ -10,13 +10,11 @@ function ReservationStepOne() {
             </Card.Header>
             <Card.Body>
                 <Breadcrumb>
-                    <Breadcrumb.Item active>1. Réservation</Breadcrumb.Item>
-                    <Breadcrumb.Item>
-                        2. Panier d'achat
-                    </Breadcrumb.Item>
-                    <Breadcrumb.Item>3. Coordonnées</Breadcrumb.Item>
-                    <Breadcrumb.Item>4. Paiement</Breadcrumb.Item>
-                    <Breadcrumb.Item>5. Confirmation</Breadcrumb.Item>
+                    <Breadcrumb.Item href="/reservationStepOne">1. Réservation</Breadcrumb.Item>
+                    <Breadcrumb.Item active >2. Panier d'achat</Breadcrumb.Item>
+                    <Breadcrumb.Item active href="#" >3. Coordonnées</Breadcrumb.Item>
+                    <Breadcrumb.Item active href="#">4. Paiement</Breadcrumb.Item>
+                    <Breadcrumb.Item active href="#">5. Confirmation</Breadcrumb.Item>
 
                 </Breadcrumb>
             </Card.Body>
