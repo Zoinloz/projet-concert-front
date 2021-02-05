@@ -5,8 +5,37 @@ import Button from 'react-bootstrap/Button'
 import bourgesSalle from '../../logo/salle-de-concert.jpg'
 
 import './concertPoster.css';
+import React, { useEffect, useState } from 'react';
+import concertApi from '../../services/concertApi';
 
-function ConcertPoster() {
+// function ConcertPoster() {
+const ConcertPoster = ({ match }) => {
+
+    let [listConcerts, setListConcert] = useState([])
+
+    // const [eventInfo, setEventInfo] = useState({
+    //     artistDescription: "",
+    //     artistName: "",
+    //     name: "",
+    //     concerts: "",
+    //     salle: "",
+    // });
+
+    const [concertInfo, setConcertInfo] = useState({
+        date: "",
+        time: "",
+        openingTime: "",
+        priceMax: ""
+    });
+    // useEffect(() => {
+    //     concertApi.getEvent(match.params.id).then((eventInfo) => setEventInfo(eventInfo));
+    // }, []);
+    useEffect(() => {
+        concertApi.getConcert(match.params.id).then((concertInfo) => setConcertInfo(concertInfo));
+    }, []);
+    useEffect(() => {
+        concertApi.getConcert(match.params.id).then((listConcerts) => setListConcert(listConcerts));
+    }, []);
 
     return (
         <Card className="w-75 mx-auto my-4 shadow-lg bg-white rounded">
@@ -22,11 +51,11 @@ function ConcertPoster() {
                             />
                         </div>
                         <div className="col-sm concertInformations">
-                            <p>Nom de l'artiste / groupe : </p>
-                            <p>Nom de la tournée : </p>
-                            <p>Date et heure : </p>
-                            <p>Lieu : </p>
-                            <p>Catégorie de musique : </p>
+                            {/* <p>Nom de l'artiste / groupe : {concertInfo.event.artistName} </p>
+                            <p>Nom de la tournée : {concertInfo.event.name} </p>
+                            <p>Date et heure : {concertInfo.date} à {concertInfo.time} </p>
+                            <p>Lieu : {concertInfo.event.salle.city} </p>
+                            <p>Catégorie de musique : {concertInfo.event.categories[0].name} </p> */}
 
                         </div>
                     </div>
@@ -50,28 +79,30 @@ function ConcertPoster() {
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    {/* {listConcerts.map(concert => (
+                                        //L'attribut key est obligatoire pour le dataBinding
+                                        <tr key={concert.id}>
+                                            <td>{concert.id}</td>
+                                            <td>{concert.id}</td>
+                                            <td>{concert.id}</td>
+                                            <td>{concert.name}</td>
+                                            <td>{concert.number}</td>
+                                            <td></td>
+                                            <td><Button className="buttonReservationConcert" href="/concertPoster/:id">Réserver</Button></td>
+                                        </tr>
+                                    ))} */}
                                     <tr>
                                         <td>1</td>
                                         <td>Mark</td>
                                         <td>Otto</td>
-                                        <td>@mdo</td>
+                                        <td>dd</td>
                                         <td>Mark</td>
                                         <td>Otto</td>
                                         <td>
                                             <Button className="buttonReservationConcert">Réserver</Button>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>
-                                            <Button className="buttonReservationConcert">Réserver</Button>
-                                        </td>
-                                    </tr>
+
                                 </tbody>
                             </Table>
                         </div>
@@ -79,12 +110,7 @@ function ConcertPoster() {
                     <div class="row mb-2">
                         <div class="col-sm">
                             <h4>Présentation de l'artiste / Groupe</h4>
-                            <p className="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer bibendum leo nec lobortis ultrices. Suspendisse tempus erat quis
-                            enim aliquet efficitur. Curabitur condimentum ultricies libero ac rhoncus. Sed eros turpis, porta sed nisi ut, finibus iaculis
-                            enim. Sed vestibulum lorem in ex interdum, ultricies varius mauris sodales. Suspendisse suscipit ac orci eget mattis.
-                            Proin quis nunc purus. In pulvinar sem sit amet elit hendrerit tempus. Proin eu varius augue, in vulputate lorem. Nam at
-                            aliquet tellus. Etiam facilisis nisi odio, in commodo diam ultricies vitae. Praesent sit amet vulputate nunc. Fusce
-                            scelerisque ipsum quis velit rutrum aliquam.
+                            <p className="text-justify">{concertInfo.artistDescription}
                             </p>
                         </div>
                         <div class="col-sm">

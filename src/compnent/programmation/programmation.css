@@ -1,9 +1,4 @@
-/* .cardOtherConcert {
-    width: 20%;
-    margin: 2%;
-    display: inline-block;
-    text-align: justify;
-  } */
+
   
   .cardListConcert{
     width: 30%;
@@ -51,4 +46,18 @@
     color: white;
     border-color: #64BAA9;
     font-weight: bold;
+}
+
+.form__button{
+  background-color: white;
+  border-color: var(--main-bg-color);
+  color: var(--main-bg-color);
+}
+
+.form-check-inline {
+  display: inline-flex;
+  align-items: center;
+  padding-left: 0.4rem;
+  padding-right: 0.4rem;
+  margin-right: 0;
 }

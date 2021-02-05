@@ -3,8 +3,9 @@ import axios from "axios";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import React, { useState, useEffect } from "react";
-import salleCannes from '../../logo/salle-cannes.jpg'
+import React, { useState } from "react";
+import salleCannes from '../../logo/salle-cannes.jpg';
+import ButtonGroup from 'react-bootstrap/ButtonGroup'
 
 export default function Programmation() {
     const [endDate, setEndDate] = useState("");
@@ -45,6 +46,17 @@ export default function Programmation() {
                                 <Form.Check inline label="Dunkerque" type="checkbox" />
                                 <Form.Check inline label="Echirolles" type="checkbox" />
                             </Form.Group>
+
+                            {/* <Form.Group controlId="formRegisterPlace">
+                                <ButtonGroup aria-label="Lieu">
+                                    <Button className="form__button" variant="secondary">Tous</Button>
+                                    <Button className="form__button" variant="secondary">Aix-En-Provence</Button>
+                                    <Button className="form__button" variant="secondary">Bourges</Button>
+                                    <Button className="form__button" variant="secondary">Cannes</Button>
+                                    <Button className="form__button" variant="secondary">Dunkerque</Button>
+                                    <Button className="form__button" variant="secondary">Echirolles</Button>
+                                </ButtonGroup>
+                            </Form.Group> */}
 
                             <Form.Group
                                 className="form-inline"

@@ -1,6 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './navbar.css';
 import React, { useState } from 'react';
+import { useContext } from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown'
 import InputGroup from 'react-bootstrap/InputGroup';
@@ -11,15 +12,33 @@ import FormControl from 'react-bootstrap/FormControl'
 import logo from '../../logo/logo_projet_concert.png'
 import SearchIcon from '@material-ui/icons/Search'
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
+ 
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  Link,
+  NavLink
 } from "react-router-dom";
 
+import AuthContext from '../../context/AuthContext';
+import AuthApi from '../../services/authApi';
 
-function NavBar() {
+
+// function NavBar() {
+const NavBar = ({ history }) => {
+
+  // const { isAuth } = useContext(AuthContext);
+  const { isAuth, setIsAuth } = useContext(AuthContext);
+  const { isAdmin } = useContext(AuthContext);
+
+
+
+  const handleLogout = () => {
+    AuthApi.logout();
+    setIsAuth(false);
+    history.push('/login');
+  }
 
   //Déclaration de variables pour hover navbar
   const [showProgram, setShowProgram] = useState(false);
@@ -92,9 +111,9 @@ function NavBar() {
 
             <Nav className="m-auto">
 
-            <Link className="footer__link" to="/tous-les-evenements"></Link>
-              <NavDropdown href="/programation" show={showProgram} onMouseEnter={showDropdownProgram} onMouseLeave={hideDropdownProgram} title="Programmation" id="basic-nav-dropdown">
-                <NavDropdown.Item href="/programation">Tous les évènements</NavDropdown.Item>
+              <Link className="footer__link" to="/tous-les-evenements"></Link>
+              <NavDropdown href="/programmation" show={showProgram} onMouseEnter={showDropdownProgram} onMouseLeave={hideDropdownProgram} title="Programmation" id="basic-nav-dropdown">
+                <NavDropdown.Item href="/programmation">Tous les évènements</NavDropdown.Item>
 
                 <NavDropdown.Item href="#action/3.2">Aix-en-Provence</NavDropdown.Item>
 
@@ -116,18 +135,18 @@ function NavBar() {
               </NavDropdown>
 
               <NavDropdown show={showParking} onMouseEnter={showDropdownParking} onMouseLeave={hideDropdownParking} title="Parking" id="basic-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">Présentation</NavDropdown.Item>
+                <NavDropdown.Item href="/parking">Présentation</NavDropdown.Item>
 
                 <NavDropdown.Item href="#action/3.2">Réserver</NavDropdown.Item>
               </NavDropdown>
 
               <NavDropdown show={showPrivatisation} onMouseEnter={showDropdownPrivatisation} onMouseLeave={hideDropdownPrivatisation} title="Privatisation" id="basic-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">Présentation</NavDropdown.Item>
+                <NavDropdown.Item href="/presentationPrivatisation">Présentation</NavDropdown.Item>
 
                 <NavDropdown.Item href="#action/3.2">Réserver</NavDropdown.Item>
               </NavDropdown>
 
-              <Nav.Link href="actuality" >Actualités</Nav.Link>
+              <Nav.Link href="/actuality" >Actualités</Nav.Link>
 
               <NavDropdown show={showInfos} onMouseEnter={showDropdownInfos} onMouseLeave={hideDropdownInfos} title="Infos pratiques" id="basic-nav-dropdown">
                 <NavDropdown.Item href="#action/3.1">Comment venir</NavDropdown.Item>
@@ -136,14 +155,31 @@ function NavBar() {
               </NavDropdown>
 
               <Nav.Link href="contact" >Contact</Nav.Link>
+              {
+                (isAuth && isAdmin()) && (
+                  <NavDropdown title="Admin" id="basic-nav-dropdown">
+                    <NavDropdown.Item href="/admin/ListConcert">Liste des concerts</NavDropdown.Item>
+
+                    <NavDropdown.Item href="#">Créer un concert</NavDropdown.Item>
+                  </NavDropdown>
+                )
+              }
 
             </Nav>
 
             <Nav>
+              {!isAuth && (
+                <Nav.Link href="/login" >Mon compte / Crée un compte</Nav.Link>
+                // <NavLink className="nav-link" to="/login">Connexion</NavLink >
+              )
+                ||
+                (
+                  <Nav.Link onClick={handleLogout} href="#" >Déconnexion</Nav.Link>
+                  // <a onClick={handleLogout} className="nav-link text-danger" href="#">Déconnexion</a>
 
-              <Nav.Link href="#" >Mon compte / Crée un compte</Nav.Link>
-
-              <Nav.Link className="ml-3 mr-5" href="#" ><ShoppingBasketIcon /></Nav.Link>
+                )
+              }
+              < Nav.Link className="ml-3 mr-5" href="/reservationStepOne" ><ShoppingBasketIcon /></Nav.Link>
 
             </Nav>
 
@@ -322,7 +358,7 @@ function NavBar() {
 
     */}
 
-    </div>
+    </div >
 
   );
 }
