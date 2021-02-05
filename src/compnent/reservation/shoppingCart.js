@@ -10,9 +10,7 @@ function ShoppingCartStepTwo() {
             <Card.Body>
                 <Breadcrumb>
                     <Breadcrumb.Item href="/reservationStepOne">1. Réservation</Breadcrumb.Item>
-                    <Breadcrumb.Item active>
-                        2. Panier d'achat
-                    </Breadcrumb.Item>
+                    <Breadcrumb.Item active>2. Panier d'achat</Breadcrumb.Item>
                     <Breadcrumb.Item href="#" >3. Coordonnées</Breadcrumb.Item>
                     <Breadcrumb.Item href="#">4. Paiement</Breadcrumb.Item>
                     <Breadcrumb.Item href="#">5. Confirmation</Breadcrumb.Item>

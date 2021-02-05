@@ -12,6 +12,8 @@ import EventIcon from '@material-ui/icons/Event';
 import InfiniteScroll from 'react-infinite-scroller';
 import ConcertCardDeck from './../../asset/ConcertCardDeck'
 import Card from 'react-bootstrap/Card'
+import Table from 'react-bootstrap/Table'
+import Breadcrumb from 'react-bootstrap/Breadcrumb'
 
 import SeatPicker from 'react-seat-picker'
 
@@ -69,45 +71,69 @@ export default class reservationPage extends Component {
 
       return (
         <div>
-            <Card className="w-75 mx-auto my-5 shadow-lg bg-white rounded">
-            <SeatPicker
-              addSeatCallback={this.addSeatCallbackContinousCase}
-              removeSeatCallback={this.removeSeatCallback}
-              rows={rows}
-              maxReservableSeats={10}
-              alpha
-              visible
-              selectedByDefault
-              loading={loading}
-              tooltipProps={{ multiline: true }}
-              continuous
-                        />
-                
+            <Card className="w-75 mx-auto my-5 shadow-lg rounded">
+                <Card.Header as="h3" className="titleCard">Réservation</Card.Header>
+            
+                <Card.Body> 
+                <Breadcrumb>
+                    <Breadcrumb.Item href="/reservationStepOne">1. Réservation</Breadcrumb.Item>
+                    <Breadcrumb.Item active >2. Panier d'achat</Breadcrumb.Item>
+                    <Breadcrumb.Item active href="#" >3. Coordonnées</Breadcrumb.Item>
+                    <Breadcrumb.Item active href="#">4. Paiement</Breadcrumb.Item>
+                    <Breadcrumb.Item active href="#">5. Confirmation</Breadcrumb.Item>
 
+                </Breadcrumb>
+
+                    <h2>1. Choissisez vos places sur le plan</h2>
+                        <div className="container my-5 d-flex justify-content-center">
+                            <SeatPicker
+                                addSeatCallback={this.addSeatCallbackContinousCase}
+                                removeSeatCallback={this.removeSeatCallback}
+                                rows={rows}
+                                maxReservableSeats={10}
+                                alpha
+                                visible
+                                selectedByDefault
+                                loading={loading}
+                                tooltipProps={{ multiline: true }}
+                                continuous
+                            />
+                        </div> 
+                        <p>Nombre de places choisies</p>
+                        <p>1. Place 9, Rang A 89,00 €
+                             2. Place 10, Rang A 89,00 €
+                                    Total 178,00 €</p>
+                        <p>Vous avez choisi 2 places pour un montant total de 178 €.</p> 
+
+                        <h2>2. Choisissez le mode d'obtention des billets : </h2>
+                        <Form name="test">
+                            <Table bordered >
+                            <tbody>
+                                <tr>
+                                    <th>E-Ticket gratuit</th>
+                                    <th>Imprimez vos billets chez vous dès la fin de votre commande et recevez-les également par e-mail en format pdf.</th>
+                                </tr>
+                                <tr>
+                                    <th>Retrait au guichet 1,80 €</th>
+                                    <th>Retirez vos billets auprès de nos guichets (comprend des frais de transaction).</th>
+                                </tr>
+                                <tr>
+                                    <th>Envoi postal 8,00 €</th>
+                                    <th>Recevez vos billets à votre domicile ou sur votre lieu de travail. Envoi suivi avec remise contre signature. Livraison sous 24 à 48h.</th>
+                                </tr>
+                            </tbody>
+                        </Table >      
+                        </Form>
+
+                        <div className="d-flex justify-content-end">
+                            <Button className="m-3" variant="outline-secondary" >Annuler</Button>
+                            <Button className="m-3" variant="outline-secondary" >Valider</Button>  
+                        </div>
+                                         
+                </Card.Body>
             </Card>
-          <h1>1. Choissisez vos places sur le plan</h1>
-                           
-                  <div className="col-8">
-                    <SeatPicker
-              addSeatCallback={this.addSeatCallbackContinousCase}
-              removeSeatCallback={this.removeSeatCallback}
-              rows={rows}
-              maxReservableSeats={10}
-              alpha
-              visible
-              selectedByDefault
-              loading={loading}
-              tooltipProps={{ multiline: true }}
-              continuous
-                        />
-
-            </div>
-
         </div>
 
-
-          
-        
       )
     }
 }

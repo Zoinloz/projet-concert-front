@@ -3,7 +3,7 @@ import axios from "axios";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import salleCannes from '../../logo/salle-cannes.jpg'
 
 export default function Programmation() {
@@ -18,6 +18,7 @@ export default function Programmation() {
         setEndDate("");
         setStartDate("");
     }
+
     return (
         <Card className="w-75 mx-auto my-4 shadow-lg bg-white rounded ">
             <Card.Header as="h3" className="titleCard text-center">
