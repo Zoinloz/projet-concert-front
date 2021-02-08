@@ -31,6 +31,11 @@ function createEvent(evenement) {
         .then((response) => response.data.id);
 }
 
+function listObtainingMethod() {
+    return axios.get(url + 'ticketObtainingMethod')
+        .then(response => response.data)
+}
+
 
 export default {
     findAll,
@@ -38,5 +43,6 @@ export default {
     createConcert,
     getEvent,
     createEvent,
-    findAllSearch
+    findAllSearch,
+    listObtainingMethod
 }

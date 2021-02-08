@@ -24,16 +24,76 @@ const ConcertPoster = ({ match }) => {
 
     const [concertInfo, setConcertInfo] = useState(null);
 
+    let [listChosenSeats] = useState([]);
+
+    const addSeat = (seat) =>
+    {
+        listChosenSeats.push(seat)
+        document.getElementById('seatChosen').innerHTML += "<span>" + seat.letter + '-' + seat.number + "</span>, "
+    }
+
+    const validateSeats = () =>
+    {
+        let listChosenSeatsStr = JSON.stringify(listChosenSeats)
+        document.cookie = "listChosenSeats="+listChosenSeatsStr+";path=/;";
+        document.cookie = "concertId="+concertInfo.id+";path=/;";
+    }
 
     useEffect(() => {
-        concertApi.getConcert(match.params.id).then((concertInfo) => setConcertInfo(concertInfo));
+        concertApi.getConcert(match.params.id).then((concertInfo) => {
+            setConcertInfo(concertInfo)
+                let table = document.getElementById("seatArray");
+                let activeRow = table.insertRow()
+                activeRow.className = 'trSeat'
+                concertInfo.seats.map((seat, i, array) => {
+                    let next = array[i + 1];
+                    if(next) {
+                        if (seat.letter === next.letter) {
+                            let cell = activeRow.insertCell()
+                            cell.className = 'seatTd'
+                            cell.innerHTML = "<td>" + seat.letter + " - " + seat.number + "</td>"
+                            cell.addEventListener('click', function(){
+                                addSeat(seat);
+                                cell.className += ' seatChosen'
+                            })
+                            return true
+                        } else {
+                            let cell = activeRow.insertCell()
+                            cell.className = 'seatTd'
+                            cell.innerHTML = "<td>" + seat.letter + " - " + seat.number + "</td>"
+                            cell.addEventListener('click', function(){
+                                addSeat(seat);
+                                cell.className += ' seatChosen'
+                            })
+                            if(seat.letter === "C"){
+                                activeRow = table.insertRow()
+                                activeRow.className = 'trSeat'
+                                activeRow = table.insertRow()
+                                activeRow.className = 'trSeat'
+                            }
+                            activeRow = table.insertRow()
+                            activeRow.className = 'trSeat'
+                            return true;
+                        }
+                    }
+                    else{
+                        let cell = activeRow.insertCell()
+                        cell.className = 'seatTd'
+                        cell.innerHTML = "<td>" + seat.letter +  " - " + seat.number + "</td>"
+                        cell.addEventListener('click', function(){
+                            addSeat(seat);
+                            cell.className += ' seatChosen'
+                        })
+                        return true;
+                    }
+                })
+        });
     }, []);
 
     // FORMATAGE DE DATE
     const formatDate = (dateString) => {
         const date = new Date(dateString);
         const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-        console.log(date);
         return date.toLocaleDateString('fr-FR', options)
     }
     // FORMATAGE DE L'HEURE 
@@ -48,6 +108,7 @@ const ConcertPoster = ({ match }) => {
             <Card className="w-75 mx-auto my-4 shadow-lg bg-white rounded">
                 <Card.Header className="titleConcertPage">
                     <div className="container">
+                        <h2 class="reservationTitle">Réserver</h2>
                         <div className="row">
                             <div className="col-sm mx-auto">
                                 <img
@@ -65,6 +126,15 @@ const ConcertPoster = ({ match }) => {
                                 <p>Catégorie de musique : {concertInfo.event.categories[0].name} </p>
 
                             </div>
+                            <div className="container my-5 d-flex justify-content-center">
+                                <table id="seatArray">
+                                </table>
+
+                            </div>
+                            <div id="seatChosen">
+                                Place choisies :
+                            </div>
+                            <button onClick={validateSeats}>Validate</button>
                         </div>
                     </div>
 
@@ -95,7 +165,7 @@ const ConcertPoster = ({ match }) => {
                                                 <td>{formatDate(concert.openingTime)}</td>
                                                 <td>{concert.categoryNumber}</td>
                                                 <td>{concert.priceMax}</td>
-                                                <td><Button className="buttonReservationConcert" href="/concertPoster/:id">Réserver</Button></td>
+                                                <td><Button className="buttonReservationConcert" href={'/concertPoster/' + concert.id}>Réserver</Button></td>
                                             </tr>
                                         ))}
                                     </tbody>

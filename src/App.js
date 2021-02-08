@@ -17,7 +17,7 @@ import ShoppingCartStepTwo from "./compnent/reservation/shoppingCart";
 import ContactInformationStepThree from './compnent/reservation/contactInformations';
 import PaymentStepFour from './compnent/reservation/payment';
 import ConfirmationStepFive from './compnent/reservation/confirmation';
-import reservationpage from './compnent/reservation/reservationPage';
+import ReservationPage from './compnent/reservation/ReservationPage';
 import UserLoggedReservationStepThree from './compnent/reservation/reservationUserLog';
 import Programmation from './compnent/programmation/programmation';
 import Parking from './compnent/parking/presentation';
@@ -86,7 +86,7 @@ function App() {
             <PrivateRoute path='/payment' component={PaymentStepFour} />
             <PrivateRoute path='/confirmation' component={ConfirmationStepFive} />
           
-            <Route exact path="/reservationpage" component={reservationpage} />
+            <Route exact path="/reservationpage" component={ReservationPage} />
     
             {/* <Route exact path="/reservationStepOne" component={ReservationStepOne} /> 
                 <Route exact path="/shoppingCart" component={ShoppingCartStepTwo} />
