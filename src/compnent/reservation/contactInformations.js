@@ -3,6 +3,7 @@ import Breadcrumb from 'react-bootstrap/Breadcrumb'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import './contactInformations.css'
+import React from "react";
 
 
 function ContactInformationStepThree() {
@@ -13,13 +14,13 @@ function ContactInformationStepThree() {
             </Card.Header>
             <Card.Body>
                 <Breadcrumb>
-                    <Breadcrumb.Item href="/reservationStepOne">1. Réservation</Breadcrumb.Item>
+                    <Breadcrumb.Item href="/reservationpage">1. Réservation</Breadcrumb.Item>
                     <Breadcrumb.Item href="/shoppingCart">
                         2. Panier d'achat
                     </Breadcrumb.Item>
                     <Breadcrumb.Item active >3. Coordonnées</Breadcrumb.Item>
-                    <Breadcrumb.Item>4. Paiement</Breadcrumb.Item>
-                    <Breadcrumb.Item>5. Confirmation</Breadcrumb.Item>
+                    <Breadcrumb.Item href="/payment">4. Paiement</Breadcrumb.Item>
+                    <Breadcrumb.Item href="/confirmation">5. Confirmation</Breadcrumb.Item>
                 </Breadcrumb>
 
                 <div className="container">

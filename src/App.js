@@ -12,7 +12,6 @@ import ReservationPrivatisation from './compnent/privatisation/reservation';
 import ConcertPoster from './compnent/programmation/concertPoster';
 import Login from "./compnent/login/login";
 import Register from './compnent/register/register';
-import ReservationStepOne from "./compnent/reservation/reservation";
 import ShoppingCartStepTwo from "./compnent/reservation/shoppingCart";
 import ContactInformationStepThree from './compnent/reservation/contactInformations';
 import PaymentStepFour from './compnent/reservation/payment';
@@ -78,14 +77,13 @@ function App() {
             {/* <Route exact path="/admin/addConcert" component={AdminConcertList} /> */}
             <PrivateRoute admin='true' path='/admin/ListConcert' component={AdminConcertList} />
             <PrivateRoute admin='true' path='/admin/addConcert' component={AdminConcertAdd} />
-
-            <PrivateRoute path='/reservationStepOne' component={ReservationStepOne} />
+            
             <PrivateRoute path='/shoppingCart' component={ShoppingCartStepTwo} />
             <PrivateRoute path='/contactInformation' component={ContactInformationStepThree} />
             <PrivateRoute path='/informationsUserLogged' component={UserLoggedReservationStepThree} />
             <PrivateRoute path='/payment' component={PaymentStepFour} />
             <PrivateRoute path='/confirmation' component={ConfirmationStepFive} />
-          
+
             <Route exact path="/reservationpage" component={ReservationPage} />
     
             {/* <Route exact path="/reservationStepOne" component={ReservationStepOne} /> 

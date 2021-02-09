@@ -1,80 +1,88 @@
-import React, {useState, Component, useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 
-import HeaderPageTitleReservation from './../../asset/HeaderPageTitleReservation.js';
-import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
-import './reservationPage.css'; 
-import TitleOnePageClassic from './../../asset/TitleOnePageClassic';
-
-import TodayIcon from '@material-ui/icons/Today';
-import EventIcon from '@material-ui/icons/Event';
-import InfiniteScroll from 'react-infinite-scroller';
-import ConcertCardDeck from './../../asset/ConcertCardDeck'
+import './reservationPage.css';
 import Card from 'react-bootstrap/Card'
 import Table from 'react-bootstrap/Table'
 import Breadcrumb from 'react-bootstrap/Breadcrumb'
 import concertApi from "../../services/concertApi";
 import Cookies from 'js-cookie';
-import {forEach} from "react-bootstrap/ElementChildren";
 
 const ReservationPage = () => {
 
     const [concertInfo, setConcertInfo] = useState(null);
 
-    const [chosenSeats] = useState(JSON.parse(Cookies.get('listChosenSeats')))
+    let chosenSeats = [];
+    if(Cookies.get('listChosenSeats')) {
+        chosenSeats = JSON.parse(Cookies.get('listChosenSeats'))
+    }
+
+    const [obtainingMethodChosen, setObtainingMethod] = useState(null);
+
 
     const [listObtainingMethod, setlistObtainingMethod] = useState([])
 
+    const saveObtainingMethod = () => {
+        let chosenObtainingMethod = JSON.stringify(obtainingMethodChosen)
+        document.cookie = "chosenObtainingMethod="+chosenObtainingMethod+";path=/;";
+    }
+
+    // RADIO BUTTON
+    const onChangeObtainingMethod = (e) => {
+        setObtainingMethod({ ...obtainingMethodChosen, obtainingMethod: e.target.value });
+    }
+
     useEffect(() => {
         concertApi.listObtainingMethod().then(response => {
-            console.log(response)
             setlistObtainingMethod(response)
         })
-        concertApi.getConcert(Cookies.get('concertId')).then((concertInfo) => {
-            setConcertInfo(concertInfo)
-            let table = document.getElementById("seatArray");
-            let activeRow = table.insertRow()
-            activeRow.className = 'trSeat'
-            concertInfo.seats.map((seat, i, array) => {
-                let next = array[i + 1];
-                if(next) {
-                    if (seat.letter === next.letter) {
-                        let cell = activeRow.insertCell()
-                        cell.className = 'seatTd'
-                        cell.id = seat.id
-                        cell.innerHTML = "<td>" + seat.letter + " - " + seat.number + "</td>"
-                        chosenSeats.forEach(chosenSeat => {
-                            if(chosenSeat.id === seat.id){
-                                cell.className += ' seatPicked';
+        if(Cookies.get('concertId')) {
+            let concertId = Cookies.get('concertId')
+            concertApi.getConcert(concertId).then((concertInfo) => {
+                setConcertInfo(concertInfo)
+                let table = document.getElementById("seatArray");
+                let activeRow = table.insertRow()
+                activeRow.className = 'trSeat'
+                concertInfo.seats.map((seat, i, array) => {
+                    let next = array[i + 1];
+                    if (next) {
+                        if (seat.letter === next.letter) {
+                            let cell = activeRow.insertCell()
+                            cell.className = 'seatTd'
+                            cell.id = seat.id
+                            cell.innerHTML = "<td>" + seat.letter + " - " + seat.number + "</td>"
+                            chosenSeats.forEach(chosenSeat => {
+                                if (chosenSeat.id === seat.id) {
+                                    cell.className += ' seatPicked';
+                                }
+                            })
+                            return true
+                        } else {
+                            let cell = activeRow.insertCell()
+                            cell.className = 'seatTd'
+                            cell.id = seat.id
+                            cell.innerHTML = "<td>" + seat.letter + " - " + seat.number + "</td>"
+                            if (seat.letter === "C") {
+                                activeRow = table.insertRow()
+                                activeRow.className = 'trSeat'
+                                activeRow = table.insertRow()
+                                activeRow.className = 'trSeat'
                             }
-                        })
-                        return true
+                            activeRow = table.insertRow()
+                            activeRow.className = 'trSeat'
+                            return true;
+                        }
                     } else {
                         let cell = activeRow.insertCell()
                         cell.className = 'seatTd'
                         cell.id = seat.id
                         cell.innerHTML = "<td>" + seat.letter + " - " + seat.number + "</td>"
-                        if(seat.letter === "C"){
-                            activeRow = table.insertRow()
-                            activeRow.className = 'trSeat'
-                            activeRow = table.insertRow()
-                            activeRow.className = 'trSeat'
-                        }
-                        activeRow = table.insertRow()
-                        activeRow.className = 'trSeat'
                         return true;
                     }
-                }
-                else{
-                    let cell = activeRow.insertCell()
-                    cell.className = 'seatTd'
-                    cell.id = seat.id
-                    cell.innerHTML = "<td>" + seat.letter +  " - " + seat.number + "</td>"
-                    return true;
-                }
+                })
             })
-        });
+        }
     }, []);
     return (
         <div>
@@ -83,11 +91,11 @@ const ReservationPage = () => {
             
                 <Card.Body> 
                 <Breadcrumb>
-                    <Breadcrumb.Item href="/reservationStepOne">1. Réservation</Breadcrumb.Item>
-                    <Breadcrumb.Item active >2. Panier d'achat</Breadcrumb.Item>
-                    <Breadcrumb.Item active href="#" >3. Coordonnées</Breadcrumb.Item>
-                    <Breadcrumb.Item active href="#">4. Paiement</Breadcrumb.Item>
-                    <Breadcrumb.Item active href="#">5. Confirmation</Breadcrumb.Item>
+                    <Breadcrumb.Item active href="/reservationpage">1. Réservation</Breadcrumb.Item>
+                    <Breadcrumb.Item  href="/shoppingCart" >2. Panier d'achat</Breadcrumb.Item>
+                    <Breadcrumb.Item  href="/contactInformation" >3. Coordonnées</Breadcrumb.Item>
+                    <Breadcrumb.Item  href="/payment">4. Paiement</Breadcrumb.Item>
+                    <Breadcrumb.Item  href="/confirmation">5. Confirmation</Breadcrumb.Item>
 
                 </Breadcrumb>
 
@@ -110,7 +118,7 @@ const ReservationPage = () => {
                    {listObtainingMethod.map(obtainingMethod => {
                        return(
                        <tr>
-                           <td><input name="obtainingMethod" value={obtainingMethod.id} type="radio"/> {obtainingMethod.name} - {obtainingMethod.price} €</td>
+                           <td><input key={obtainingMethod.id} name="obtainingMethod" onChange={onChangeObtainingMethod} value={JSON.stringify(obtainingMethod)} type="radio"/> {obtainingMethod.name} - {obtainingMethod.price} €</td>
                        </tr>
                        )
                    })}
@@ -120,7 +128,7 @@ const ReservationPage = () => {
 
                <div className="d-flex justify-content-end">
                    <Button className="m-3" variant="outline-secondary" >Annuler</Button>
-                   <Button className="m-3" variant="outline-secondary" >Valider</Button>
+                   <Button className="m-3" onClick={saveObtainingMethod} variant="outline-secondary" >Valider</Button>
                </div>
 
                 </Card.Body>

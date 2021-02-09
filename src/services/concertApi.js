@@ -36,6 +36,11 @@ function listObtainingMethod() {
         .then(response => response.data)
 }
 
+function paiement(ticketInfos) {
+    return axios.post(url + 'ticket', ticketInfos)
+        .then((response) => response.data)
+}
+
 
 export default {
     findAll,
@@ -44,5 +49,6 @@ export default {
     getEvent,
     createEvent,
     findAllSearch,
-    listObtainingMethod
+    listObtainingMethod,
+    paiement
 }

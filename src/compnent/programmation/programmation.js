@@ -236,7 +236,6 @@ export default function Programmation() {
                                     {categoryMusic.map(music => (
                                         <Form.Check
                                             value={music.id} onChange={onChangeCategorie} key={music.id} inline label={music.name}
-                                            inline
                                             type="radio"
                                             name="categoryMusic"
                                         />
