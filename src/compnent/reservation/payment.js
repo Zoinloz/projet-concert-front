@@ -14,9 +14,29 @@ function PaymentStepFour() {
 
 
     let chosenObtainingMethod = []
+    let resaParking = false;
+    let resaRestaurant = false;
+    let nbPlaceParking = 0;
+    let nbPlaceRestaurant = 0;
+    let restaurantTime = null;
     if(Cookies.get('chosenObtainingMethod')){
         chosenObtainingMethod = JSON.parse(Cookies.get('chosenObtainingMethod'))
         chosenObtainingMethod = JSON.parse(chosenObtainingMethod.obtainingMethod)
+    }
+
+    if(Cookies.get('resaParking')){
+        resaParking = Cookies.get('resaParking')
+        if(resaParking){
+            nbPlaceParking = Cookies.get('nbPlaceParking')
+        }
+    }
+
+    if(Cookies.get('resaRestaurant')){
+        resaRestaurant = Cookies.get('resaRestaurant')
+        if(resaRestaurant){
+            nbPlaceRestaurant = Cookies.get('nbPlaceRestaurant')
+            restaurantTime = Cookies.get('restaurantTime')
+        }
     }
 
     let chosenSeats = [];
@@ -39,8 +59,9 @@ function PaymentStepFour() {
             price: totalPrice,
             cancellationInsurance: false,
             qrCodeUrl: "",
-            parking: false,
-            restaurantPlaces: 0,
+            parking: resaParking,
+            parkingPlaces: nbPlaceParking,
+            restaurantPlaces: nbPlaceRestaurant,
             restaurantTime: "1985-04-12T23:20:50.52Z"
         }
         concertApi.paiement(data).then((response) => {
@@ -90,13 +111,23 @@ function PaymentStepFour() {
                                     })}
                                 </tbody>
                             </Table >
-                            <div>Obtention des billets :
-                                {chosenObtainingMethod.name} - {chosenObtainingMethod.price} €
-                            </div>
-                            <div>
-                                Prix total : {totalPrice} €
-                            </div>
                         </div>
+                    </div>
+                    <div className="row">Obtention des billets :
+                        {chosenObtainingMethod.name} - {chosenObtainingMethod.price} €
+                    </div>
+                    {resaParking &&
+                    <div className="row">
+                        Réservation place parking : {nbPlaceParking} place(s)
+                    </div>
+                    }
+                    {resaRestaurant &&
+                    <div className="row">
+                        Réservation restaurant : Réservation à {restaurantTime} pour {nbPlaceRestaurant} personnes
+                    </div>
+                    }
+                    <div className="row">
+                        Prix total : {totalPrice} €
                     </div>
                     <div className="row">
                         <div className="d-flex justify-content-end">

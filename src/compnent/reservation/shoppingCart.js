@@ -5,6 +5,7 @@ import Cookies from "js-cookie";
 import concertApi from "../../services/concertApi";
 import Table from "react-bootstrap/Table";
 import './shoppingCart.css';
+import Button from "react-bootstrap/Button";
 
 function ShoppingCartStepTwo() {
     const [concertInfo, setConcertInfo] = useState(null);
@@ -49,6 +50,30 @@ function ShoppingCartStepTwo() {
         }
         else{
             setResaRestaurant(false)
+        }
+    }
+
+    const onChangeParkingPlace = (e) => {
+        setNbPlaceParking(e.target.value)
+    }
+
+    const onChangeRestaurantPlace = (e) => {
+        setNbPlaceRestaurant(e.target.value)
+    }
+
+    const onChangeRestaurantTime = (e) => {
+        setRestaurantTime(e.target.value)
+    }
+
+    const saveReservation = () => {
+        document.cookie = "resaParking="+resaParking+";path=/;";
+        document.cookie = "resaRestaurant="+resaRestaurant+";path=/;";
+        if(resaParking){
+            document.cookie = "nbPlaceParking="+nbPlaceParking+";path=/;"
+        }
+        if(resaRestaurant){
+            document.cookie = "nbPlaceRestaurant="+nbPlaceRestaurant+";path=/;";
+            document.cookie = "restaurantTime="+restaurantTime+";path=/;";
         }
     }
 
@@ -152,12 +177,18 @@ function ShoppingCartStepTwo() {
                 </div>
                 <div className="row">
                     <div className="col-sm shadow p-2 mx-2 mb-5 bg-white rounded">
-                        <div>Réservation place Parking : <input id="parkingCheckBox" type="checkbox" onChange={onChangeParking} value="true" name="parkingReservation"/> Cochez pour réserver <input id="nbPlaceParking" value={nbPlaceParking} onChange={setNbPlaceParking} type="number" min="0" max="5" disabled={!resaParking} name="nbPlaceParking"/> personnes</div>
-                        <div>Réservation place Restaurant : <input id="restaurantCheckBox" type="checkbox" onChange={onChangeRestaurant} value="true" name="restaurantReservation"/> Cochez pour réserver <input id="nbPlaceRestaurant" value={nbPlaceRestaurant} onChange={setNbPlaceRestaurant} type="number" min="0" max="5" disabled={!resaRestaurant} name="nbPlaceRestaurant"/> personnes</div>
-                        <input type="radio" name="restaurantTime" value="19:00" onChange={setRestaurantTime}/>19:00<input type="radio" name="restaurantTime" value="19:30" onChange={setRestaurantTime}/>19:30<input type="radio" name="restaurantTime" value="20:00" onChange={setRestaurantTime}/>20:00<input type="radio" name="restaurantTime" value="20:30" onChange={setRestaurantTime}/>20:30<input type="radio" name="restaurantTime" value="21:00" onChange={setRestaurantTime}/>21:00<input type="radio" name="restaurantTime" value="21:30" onChange={setRestaurantTime}/>21:30<input type="radio" name="restaurantTime" value="22:00" onChange={setRestaurantTime}/>22:00<input type="radio" value="22:30" name="restaurantTime" onChange={setRestaurantTime}/>22:30
+                        <div>Réservation place Parking : <input id="parkingCheckBox" type="checkbox" onChange={onChangeParking} value="true" name="parkingReservation"/> Cochez pour réserver <input id="nbPlaceParking" value={nbPlaceParking} onChange={onChangeParkingPlace} type="number" min="0" max="5" disabled={!resaParking} name="nbPlaceParking"/> personnes</div>
+                        <div>Réservation place Restaurant : <input id="restaurantCheckBox" type="checkbox" onChange={onChangeRestaurant} value="true" name="restaurantReservation"/> Cochez pour réserver <input id="nbPlaceRestaurant" value={nbPlaceRestaurant} onChange={onChangeRestaurantPlace} type="number" min="0" max="5" disabled={!resaRestaurant} name="nbPlaceRestaurant"/> personnes</div>
+                        <input disabled={!resaRestaurant} type="radio" name="restaurantTime" value="19:00" onChange={onChangeRestaurantTime}/>19:00<input disabled={!resaRestaurant} type="radio" name="restaurantTime" value="19:30" onChange={onChangeRestaurantTime}/>19:30<input disabled={!resaRestaurant} type="radio" name="restaurantTime" value="20:00" onChange={onChangeRestaurantTime}/>20:00<input disabled={!resaRestaurant} type="radio" name="restaurantTime" value="20:30" onChange={onChangeRestaurantTime}/>20:30<input disabled={!resaRestaurant} type="radio" name="restaurantTime" value="21:00" onChange={onChangeRestaurantTime}/>21:00<input disabled={!resaRestaurant} type="radio" name="restaurantTime" value="21:30" onChange={onChangeRestaurantTime}/>21:30<input disabled={!resaRestaurant} type="radio" name="restaurantTime" value="22:00" onChange={onChangeRestaurantTime}/>22:00<input disabled={!resaRestaurant} type="radio" value="22:30" name="restaurantTime" onChange={onChangeRestaurantTime}/>22:30
                         <div>
                             Prix total : {totalPrice} €
                         </div>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="d-flex justify-content-end">
+                        <Button className="m-3" variant="outline-secondary" >Annuler</Button>
+                        <Button className="m-3" onClick={saveReservation} variant="outline-secondary" >Valider</Button>
                     </div>
                 </div>
             </Card.Body>
