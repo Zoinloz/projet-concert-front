@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
@@ -9,12 +9,12 @@ import Breadcrumb from 'react-bootstrap/Breadcrumb'
 import concertApi from "../../services/concertApi";
 import Cookies from 'js-cookie';
 
-const ReservationPage = () => {
+const ReservationPage = ({ history }) => {
 
     const [concertInfo, setConcertInfo] = useState(null);
 
     let chosenSeats = [];
-    if(Cookies.get('listChosenSeats')) {
+    if (Cookies.get('listChosenSeats')) {
         chosenSeats = JSON.parse(Cookies.get('listChosenSeats'))
     }
 
@@ -25,7 +25,8 @@ const ReservationPage = () => {
 
     const saveObtainingMethod = () => {
         let chosenObtainingMethod = JSON.stringify(obtainingMethodChosen)
-        document.cookie = "chosenObtainingMethod="+chosenObtainingMethod+";path=/;";
+        document.cookie = "chosenObtainingMethod=" + chosenObtainingMethod + ";path=/;";
+        history.push('/shoppingCart')
     }
 
     // RADIO BUTTON
@@ -37,7 +38,7 @@ const ReservationPage = () => {
         concertApi.listObtainingMethod().then(response => {
             setlistObtainingMethod(response)
         })
-        if(Cookies.get('concertId')) {
+        if (Cookies.get('concertId')) {
             let concertId = Cookies.get('concertId')
             concertApi.getConcert(concertId).then((concertInfo) => {
                 setConcertInfo(concertInfo)
@@ -88,54 +89,54 @@ const ReservationPage = () => {
         <div>
             <Card className="w-75 mx-auto my-5 shadow-lg rounded">
                 <Card.Header as="h3" className="titleCard">Réservation</Card.Header>
-            
-                <Card.Body> 
-                <Breadcrumb>
-                    <Breadcrumb.Item active href="/reservationpage">1. Réservation</Breadcrumb.Item>
-                    <Breadcrumb.Item  href="/shoppingCart" >2. Panier d'achat</Breadcrumb.Item>
-                    <Breadcrumb.Item  href="/contactInformation" >3. Coordonnées</Breadcrumb.Item>
-                    <Breadcrumb.Item  href="/payment">4. Paiement</Breadcrumb.Item>
-                    <Breadcrumb.Item  href="/confirmation">5. Confirmation</Breadcrumb.Item>
 
-                </Breadcrumb>
+                <Card.Body>
+                    <Breadcrumb>
+                        <Breadcrumb.Item active href="/reservationpage">1. Réservation</Breadcrumb.Item>
+                        <Breadcrumb.Item >2. Panier d'achat</Breadcrumb.Item>
+                        <Breadcrumb.Item >3. Coordonnées</Breadcrumb.Item>
+                        <Breadcrumb.Item>4. Paiement</Breadcrumb.Item>
+                        <Breadcrumb.Item>5. Confirmation</Breadcrumb.Item>
 
-                <div className="container my-5 d-flex justify-content-center">
-                    <table id="seatArray">
-                    </table>
-                </div>
-                <div id="seatChosen">
-                    Place choisies : {chosenSeats.map(chosenSeat => {
+                    </Breadcrumb>
+
+                    <div className="container my-5 d-flex justify-content-center">
+                        <table id="seatArray">
+                        </table>
+                    </div>
+                    <div id="seatChosen">
+                        Place choisies : {chosenSeats.map(chosenSeat => {
                         return (chosenSeat.letter + " - " + chosenSeat.number + " : " + chosenSeat.price + " €, ")
                     })}
-                </div>
+                    </div>
 
 
 
-               <h2>2. Choisissez le mode d'obtention des billets : </h2>
-               <Form name="test">
-                   <Table bordered >
-                   <tbody>
-                   {listObtainingMethod.map(obtainingMethod => {
-                       return(
-                       <tr>
-                           <td><input key={obtainingMethod.id} name="obtainingMethod" onChange={onChangeObtainingMethod} value={JSON.stringify(obtainingMethod)} type="radio"/> {obtainingMethod.name} - {obtainingMethod.price} €</td>
-                       </tr>
-                       )
-                   })}
-                   </tbody>
-               </Table >
-               </Form>
+                    <h2>2. Choisissez le mode d'obtention des billets : </h2>
+                    <Form name="test">
+                        <Table bordered >
+                            <tbody>
+                                {listObtainingMethod.map(obtainingMethod => {
+                                    return (
+                                        <tr>
+                                            <td><input key={obtainingMethod.id} name="obtainingMethod" onChange={onChangeObtainingMethod} value={JSON.stringify(obtainingMethod)} type="radio" /> {obtainingMethod.name} - {obtainingMethod.price} €</td>
+                                        </tr>
+                                    )
+                                })}
+                            </tbody>
+                        </Table >
+                    </Form>
 
-               <div className="d-flex justify-content-end">
-                   <Button className="m-3" variant="outline-secondary" >Annuler</Button>
-                   <Button className="m-3" onClick={saveObtainingMethod} variant="outline-secondary" >Valider</Button>
-               </div>
+                    <div className="d-flex justify-content-end">
+                        <Button className="m-3" variant="outline-secondary" >Annuler</Button>
+                        <Button className="m-3" onClick={saveObtainingMethod} variant="outline-secondary" >Valider</Button>
+                    </div>
 
                 </Card.Body>
             </Card>
         </div>
 
-      )
+    )
 }
 
 // state = {
@@ -153,7 +154,7 @@ const ReservationPage = () => {
 //       this.setState({ loading: false })
 //     })
 //   }
- 
+
 //   addSeatCallbackContinousCase = ({ row, number, id }, addCb, params, removeCb) => {
 //     this.setState({
 //       loading: true
@@ -170,7 +171,7 @@ const ReservationPage = () => {
 //       this.setState({ loading: false })
 //     })
 //   }
- 
+
 //   removeSeatCallback = ({ row, number, id }, removeCb) => {
 //     this.setState({
 //       loading: true
@@ -221,7 +222,7 @@ const ReservationPage = () => {
 //             continuous
 //           />
 //         </div>
-            
+
 
 //             Tableau présentant la scène<br></br>
 //             cadre récapitualitif 
@@ -232,7 +233,7 @@ const ReservationPage = () => {
 
 //             bouton annuler / valider
 
-            
+
 //         </div>
 //     );
 // }

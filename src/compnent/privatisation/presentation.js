@@ -8,10 +8,24 @@ import cannesSalle from '../../logo/salle-cannes.jpg'
 
 
 import Carousel from 'react-bootstrap/Carousel'
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './presentation.css';
 
 function PresentationPrivatisation() {
+
+    const pageUnknow = (event) => {
+        event.preventDefault();
+        toast.error('La page est en cours de réalisation !', {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+    }
     return (
         <Card className="w-75 mx-auto my-4 shadow-lg bg-white rounded">
             <Card.Header as="h3" className="titleCard">Privatisation - Présentation</Card.Header>
@@ -92,11 +106,13 @@ function PresentationPrivatisation() {
                 <div className="container my-4">
                     <div className="row">
                         <div className="col text-center">
-                            <Button className="reservationPrivatisationButton mx-2 p-3">Pré-réserver</Button>
+                            <Button className="reservationPrivatisationButton mx-2 p-3" onClick={pageUnknow}>Pré-réserver</Button>
                         </div>
                     </div>
                 </div>
             </Card.Body>
+            <ToastContainer />
+
         </Card>
     );
 }

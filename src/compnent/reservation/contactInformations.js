@@ -19,8 +19,8 @@ function ContactInformationStepThree() {
                         2. Panier d'achat
                     </Breadcrumb.Item>
                     <Breadcrumb.Item active >3. Coordonnées</Breadcrumb.Item>
-                    <Breadcrumb.Item href="/payment">4. Paiement</Breadcrumb.Item>
-                    <Breadcrumb.Item href="/confirmation">5. Confirmation</Breadcrumb.Item>
+                    <Breadcrumb.Item>4. Paiement</Breadcrumb.Item>
+                    <Breadcrumb.Item>5. Confirmation</Breadcrumb.Item>
                 </Breadcrumb>
 
                 <div className="container">

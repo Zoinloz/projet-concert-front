@@ -11,6 +11,8 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import concertApi from '../../services/concertApi';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import './listConcert.css';
 
@@ -57,6 +59,15 @@ const AdminConcertAdd = ({ history }) => {
         e.preventDefault();
         axios.post('http://localhost:8000/concert_event', evenementsInput).then((result) => {
             console.log(result);
+            toast.success('🦄 Le concert a été créé! 🦄', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
             // history.push('/admin/ListConcert');
         });
 
@@ -133,6 +144,8 @@ const AdminConcertAdd = ({ history }) => {
 
     return (
         <Card className="mx-auto my-4 shadow-lg bg-white rounded " style={{ width: "90%" }}>
+            <ToastContainer />
+
             <Card.Header as="h4" className="titleCard text-center">
                 Administration - Ajout d'un concert
       </Card.Header>

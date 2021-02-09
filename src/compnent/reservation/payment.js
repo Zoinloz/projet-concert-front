@@ -4,11 +4,11 @@ import HeaderPageTitleReservation from './../../asset/HeaderPageTitleReservation
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Table from "react-bootstrap/Table";
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import concertApi from "../../services/concertApi";
 
-function PaymentStepFour() {
+function PaymentStepFour({ history }) {
 
     const [concertInfo, setConcertInfo] = useState(null);
 
@@ -19,28 +19,28 @@ function PaymentStepFour() {
     let nbPlaceParking = 0;
     let nbPlaceRestaurant = 0;
     let restaurantTime = null;
-    if(Cookies.get('chosenObtainingMethod')){
+    if (Cookies.get('chosenObtainingMethod')) {
         chosenObtainingMethod = JSON.parse(Cookies.get('chosenObtainingMethod'))
         chosenObtainingMethod = JSON.parse(chosenObtainingMethod.obtainingMethod)
     }
 
-    if(Cookies.get('resaParking')){
+    if (Cookies.get('resaParking')) {
         resaParking = Cookies.get('resaParking')
-        if(resaParking){
+        if (resaParking) {
             nbPlaceParking = Cookies.get('nbPlaceParking')
         }
     }
 
-    if(Cookies.get('resaRestaurant')){
+    if (Cookies.get('resaRestaurant')) {
         resaRestaurant = Cookies.get('resaRestaurant')
-        if(resaRestaurant){
+        if (resaRestaurant) {
             nbPlaceRestaurant = Cookies.get('nbPlaceRestaurant')
             restaurantTime = Cookies.get('restaurantTime')
         }
     }
 
     let chosenSeats = [];
-    if(Cookies.get('listChosenSeats')) {
+    if (Cookies.get('listChosenSeats')) {
         chosenSeats = JSON.parse(Cookies.get('listChosenSeats'))
     }
 
@@ -66,6 +66,7 @@ function PaymentStepFour() {
         }
         concertApi.paiement(data).then((response) => {
             console.log(response)
+            history.push('/confirmation')
         })
     }
 
@@ -85,7 +86,7 @@ function PaymentStepFour() {
                     <Breadcrumb.Item href="/shoppingCart">2. Panier d'achat</Breadcrumb.Item>
                     <Breadcrumb.Item href="/contactInformation">3. Coordonnées</Breadcrumb.Item>
                     <Breadcrumb.Item active href="/payment">4. Paiement</Breadcrumb.Item>
-                    <Breadcrumb.Item href="/confirmation">5. Confirmation</Breadcrumb.Item>
+                    <Breadcrumb.Item >5. Confirmation</Breadcrumb.Item>
                 </Breadcrumb>
 
                 <div className="container">
@@ -117,13 +118,13 @@ function PaymentStepFour() {
                         {chosenObtainingMethod.name} - {chosenObtainingMethod.price} €
                     </div>
                     {resaParking &&
-                    <div className="row">
-                        Réservation place parking : {nbPlaceParking} place(s)
+                        <div className="row">
+                            Réservation place parking : {nbPlaceParking} place(s)
                     </div>
                     }
                     {resaRestaurant &&
-                    <div className="row">
-                        Réservation restaurant : Réservation à {restaurantTime} pour {nbPlaceRestaurant} personnes
+                        <div className="row">
+                            Réservation restaurant : Réservation à {restaurantTime} pour {nbPlaceRestaurant} personnes
                     </div>
                     }
                     <div className="row">

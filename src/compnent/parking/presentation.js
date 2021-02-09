@@ -4,8 +4,22 @@ import React from 'react';
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import iconImage from '../../logo/iconImage.png'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function ParkingPres() {
+    const pageUnknow = (event) => {
+        event.preventDefault();
+        toast.error('La page est en cours de réalisation !', {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+    }
     return (
 
         <Card className="w-75 mx-auto my-4 shadow-lg bg-white rounded">
@@ -84,11 +98,13 @@ function ParkingPres() {
                     <div className="row">
 
                         <div className="col text-center">
-                            <Button className="reservationRestorationButton mx-2 p-3">Réserver</Button>
+                            <Button className="reservationRestorationButton mx-2 p-3" onClick={pageUnknow}>Réserver</Button>
                         </div>
                     </div>
                 </div>
             </Card.Body>
+            <ToastContainer />
+
         </Card>
     );
 }
