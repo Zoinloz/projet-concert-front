@@ -26,10 +26,38 @@ const ConcertPoster = ({ match }) => {
 
     let [listChosenSeats] = useState([]);
 
-    const addSeat = (seat) =>
+    const addSeat = (seat, cell) =>
     {
         listChosenSeats.push(seat)
-        document.getElementById('seatChosen').innerHTML += "<span>" + seat.letter + '-' + seat.number + "</span>, "
+        document.getElementById('seatChosen').innerHTML += "<span id=\"seat"+seat.id+"\">" + seat.letter + '-' + seat.number + ",</span> "
+        let cellClone = cell.cloneNode(true);
+
+        cell.parentNode.replaceChild(cellClone, cell);
+        cellClone.className += ' seatChosen'
+        cellClone.addEventListener('click', function(){clickSeatRemove(seat, cellClone)})
+    }
+
+    const clickSeatAdd = (seat, cell) => {
+        addSeat(seat, cell)
+    }
+
+    const clickSeatRemove = (seat, cell) => {
+        removeSeat(seat, cell)
+    }
+
+    const removeSeat = (seat, cell) => {
+        listChosenSeats = listChosenSeats.filter(function( obj ) {
+            return obj.id !== seat.id;
+        });
+        let cellClone = cell.cloneNode(true);
+
+        document.getElementById("seat"+seat.id).remove()
+
+        cell.parentNode.replaceChild(cellClone, cell);
+        cellClone.className = 'seatTd'
+        cellClone.addEventListener('click', function () {
+            clickSeatAdd(seat, cellClone)
+        })
     }
 
     const validateSeats = () =>
@@ -52,19 +80,23 @@ const ConcertPoster = ({ match }) => {
                             let cell = activeRow.insertCell()
                             cell.className = 'seatTd'
                             cell.innerHTML = "<td>" + seat.letter + " - " + seat.number + "</td>"
-                            cell.addEventListener('click', function(){
-                                addSeat(seat);
-                                cell.className += ' seatChosen'
-                            })
+                            if(seat.tickets.length === 0) {
+                                cell.addEventListener('click', function(){clickSeatAdd(seat, cell)})
+                            }
+                            else{
+                                cell.className += ' seatTaken'
+                            }
                             return true
                         } else {
                             let cell = activeRow.insertCell()
                             cell.className = 'seatTd'
                             cell.innerHTML = "<td>" + seat.letter + " - " + seat.number + "</td>"
-                            cell.addEventListener('click', function(){
-                                addSeat(seat);
-                                cell.className += ' seatChosen'
-                            })
+                            if(seat.tickets.length === 0) {
+                                cell.addEventListener('click', function(){clickSeatAdd(seat, cell)})
+                            }
+                            else{
+                                cell.className += ' seatTaken'
+                            }
                             if(seat.letter === "C"){
                                 activeRow = table.insertRow()
                                 activeRow.className = 'trSeat'
@@ -80,10 +112,12 @@ const ConcertPoster = ({ match }) => {
                         let cell = activeRow.insertCell()
                         cell.className = 'seatTd'
                         cell.innerHTML = "<td>" + seat.letter +  " - " + seat.number + "</td>"
-                        cell.addEventListener('click', function(){
-                            addSeat(seat);
-                            cell.className += ' seatChosen'
-                        })
+                        if(seat.tickets.length === 0) {
+                            cell.addEventListener('click', function(){clickSeatAdd(seat, cell)})
+                        }
+                        else{
+                            cell.className += ' seatTaken'
+                        }
                         return true;
                     }
                 })
@@ -108,7 +142,7 @@ const ConcertPoster = ({ match }) => {
             <Card className="w-75 mx-auto my-4 shadow-lg bg-white rounded">
                 <Card.Header className="titleConcertPage">
                     <div className="container">
-                        <h2 class="reservationTitle">Réserver</h2>
+                        <h2 className="reservationTitle">Réserver</h2>
                         <div className="row">
                             <div className="col-sm mx-auto">
                                 <img

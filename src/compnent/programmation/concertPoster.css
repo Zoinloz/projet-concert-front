@@ -42,5 +42,12 @@
 }
 
 .seatChosen{
-    background-color: grey;
+    background-color: cyan;
+}
+#seatChosen{
+    color: black;
+}
+.seatTaken{
+    background-color: red;
+    cursor: not-allowed;
 }
