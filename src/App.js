@@ -77,22 +77,23 @@ function App() {
             {/* <Route exact path="/admin/addConcert" component={AdminConcertList} /> */}
             <PrivateRoute admin='true' path='/admin/ListConcert' component={AdminConcertList} />
             <PrivateRoute admin='true' path='/admin/addConcert' component={AdminConcertAdd} />
-            
-            <PrivateRoute path='/shoppingCart' component={ShoppingCartStepTwo} />
+
+            {/* <PrivateRoute path='/shoppingCart' component={ShoppingCartStepTwo} />
             <PrivateRoute path='/contactInformation' component={ContactInformationStepThree} />
             <PrivateRoute path='/informationsUserLogged' component={UserLoggedReservationStepThree} />
             <PrivateRoute path='/payment' component={PaymentStepFour} />
-            <PrivateRoute path='/confirmation' component={ConfirmationStepFive} />
+            <PrivateRoute path='/confirmation' component={ConfirmationStepFive} /> */}
 
             <Route exact path="/reservationpage" component={ReservationPage} />
-    
-            {/* <Route exact path="/reservationStepOne" component={ReservationStepOne} /> 
-                <Route exact path="/shoppingCart" component={ShoppingCartStepTwo} />
-                <Route exact path="/contactInformation" component={ContactInformationStepThree} />
-                <Route exact path="/informationsUserLogged" component={UserLoggedReservationStepThree} />
-                <Route exact path="/payment" component={PaymentStepFour} />
-                <Route exact path="/confirmation" component={ConfirmationStepFive} />
-            */}
+
+
+            {/* <Route exact path="/reservationStepOne" component={ReservationStepOne} />  */}
+            <Route exact path="/shoppingCart" component={ShoppingCartStepTwo} />
+            <Route exact path="/contactInformation" component={ContactInformationStepThree} />
+            <Route exact path="/informationsUserLogged" component={UserLoggedReservationStepThree} />
+            <Route exact path="/payment" component={PaymentStepFour} />
+            <Route exact path="/confirmation" component={ConfirmationStepFive} />
+
 
           </Switch>
           <Footer />

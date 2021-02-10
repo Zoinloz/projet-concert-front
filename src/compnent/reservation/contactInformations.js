@@ -3,10 +3,48 @@ import Breadcrumb from 'react-bootstrap/Breadcrumb'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import './contactInformations.css'
-import React from "react";
+import AuthContext from '../../context/AuthContext';
+import AuthApi from '../../services/authApi';
+import React, { useContext, useState } from 'react';
 
 
-function ContactInformationStepThree() {
+
+// function ContactInformationStepThree({history}) {
+const ContactInformationStepThree = ({ history }) => {
+
+
+    const { setIsAuth } = useContext(AuthContext);
+
+    const [credentials, setCredentials] = useState({
+        username: '',
+        password: ''
+    })
+
+    const [error, setError] = useState("")
+
+    const handleChange = (event) => {
+        const value = event.currentTarget.value
+        const name = event.currentTarget.name
+
+        setCredentials({ ...credentials, [name]: value })
+    }
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
+        try {
+            await AuthApi.auth(credentials);
+            setError("");
+            setIsAuth(true);
+            history.replace('/informationsUserLogged')
+        } catch (errorRequest) {
+            setError('error de login')
+        }
+
+
+        console.log(credentials);
+    }
+
     return (
         <Card className="w-75 mx-auto my-4 shadow-lg bg-white rounded">
             <Card.Header as="h3" className="titleCard">
@@ -28,15 +66,18 @@ function ContactInformationStepThree() {
                         <div className="col-sm shadow p-2 mx-2 mb-5 bg-white rounded">
                             <h4 className="text-center">Vous avez déja un compte</h4>
                             <h6 className="text-center">Connectez-vous</h6>
-                            <Form className="w-50 mx-auto">
+                            <Form className="w-50 mx-auto" onSubmit={handleSubmit}>
                                 <Form.Group controlId="formReservationEmail">
                                     <Form.Label>Votre adresse e-mail</Form.Label>
-                                    <Form.Control type="email" placeholder="Email" />
+                                    <Form.Control value={credentials.username}
+                                        onChange={handleChange} type="email" placeholder="Email" name="username"
+                                        className={"form-control" + (error && " is-invalid")} />
                                 </Form.Group>
                                 <Form.Group controlId="formReservationPassword">
                                     <Form.Label>Votre mot de passe</Form.Label>
-                                    <Form.Control type="password" placeholder="Password" />
-                                </Form.Group>
+                                    <Form.Control value={credentials.password}
+                                        onChange={handleChange} type="password" placeholder="Password" name="password"
+                                        id="password" />                                </Form.Group>
                                 <div className="text-center">
                                     <Button type="submit" className="buttonCheckAccount mb-2">
                                         Valider
