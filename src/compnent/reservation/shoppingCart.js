@@ -42,7 +42,7 @@ function ShoppingCartStepTwo({ history }) {
         return totalPrice
     }
 
-    const [totalPrice, setTotalPrice] = useState(initPrice)
+    let totalPrice = initPrice();
 
 
     // RADIO BUTTON
@@ -66,12 +66,10 @@ function ShoppingCartStepTwo({ history }) {
 
     const onChangeParkingPlace = (e) => {
         setNbPlaceParking(e.target.value)
-        setTotalPrice(totalPrice + (concertInfo.event.salle.parking.price * e.target.value))
     }
 
     const onChangeRestaurantPlace = (e) => {
         setNbPlaceRestaurant(e.target.value)
-        setTotalPrice(totalPrice + (concertInfo.event.salle.restaurant.price * e.target.value))
     }
 
     const onChangeRestaurantTime = (e) => {
@@ -95,7 +93,12 @@ function ShoppingCartStepTwo({ history }) {
         else {
             history.push('/contactInformation');
         }
-        ;
+        
+        totalPrice = totalPrice + concertInfo.event.salle.parking.price * nbPlaceParking
+        totalPrice = totalPrice + concertInfo.event.salle.restaurant.price * nbPlaceRestaurant
+        document.cookie = "totalPrice=" + totalPrice + ";path=/;";
+
+        history.push('/contactInformation')
     }
 
 
@@ -115,6 +118,9 @@ function ShoppingCartStepTwo({ history }) {
                             cell.className = 'seatTd'
                             cell.id = seat.id
                             cell.innerHTML = "<td>" + seat.letter + " - " + seat.number + "</td>"
+                            if(seat.tickets.length !== 0) {
+                                cell.className += ' seatTaken'
+                            }
                             chosenSeats.forEach(chosenSeat => {
                                 if (chosenSeat.id === seat.id) {
                                     cell.className += ' seatPicked';
@@ -126,11 +132,14 @@ function ShoppingCartStepTwo({ history }) {
                             cell.className = 'seatTd'
                             cell.id = seat.id
                             cell.innerHTML = "<td>" + seat.letter + " - " + seat.number + "</td>"
+                            if(seat.tickets.length !== 0) {
+                                cell.className += ' seatTaken'
+                            }
                             if (seat.letter === "C") {
                                 activeRow = table.insertRow()
                                 activeRow.className = 'trSeat'
-                                activeRow = table.insertRow()
-                                activeRow.className = 'trSeat'
+                                let cell = activeRow.insertCell()
+                                cell.className = 'seatInvisible'
                             }
                             activeRow = table.insertRow()
                             activeRow.className = 'trSeat'
@@ -141,6 +150,9 @@ function ShoppingCartStepTwo({ history }) {
                         cell.className = 'seatTd'
                         cell.id = seat.id
                         cell.innerHTML = "<td>" + seat.letter + " - " + seat.number + "</td>"
+                        if(seat.tickets.length !== 0) {
+                            cell.className += ' seatTaken'
+                        }
                         return true;
                     }
                 })

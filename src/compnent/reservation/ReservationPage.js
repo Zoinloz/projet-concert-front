@@ -53,6 +53,9 @@ const ReservationPage = ({ history }) => {
                             cell.className = 'seatTd'
                             cell.id = seat.id
                             cell.innerHTML = "<td>" + seat.letter + " - " + seat.number + "</td>"
+                            if(seat.tickets.length !== 0) {
+                                cell.className += ' seatTaken'
+                            }
                             chosenSeats.forEach(chosenSeat => {
                                 if (chosenSeat.id === seat.id) {
                                     cell.className += ' seatPicked';
@@ -64,11 +67,14 @@ const ReservationPage = ({ history }) => {
                             cell.className = 'seatTd'
                             cell.id = seat.id
                             cell.innerHTML = "<td>" + seat.letter + " - " + seat.number + "</td>"
+                            if(seat.tickets.length !== 0) {
+                                cell.className += ' seatTaken'
+                            }
                             if (seat.letter === "C") {
                                 activeRow = table.insertRow()
                                 activeRow.className = 'trSeat'
-                                activeRow = table.insertRow()
-                                activeRow.className = 'trSeat'
+                                let cell = activeRow.insertCell()
+                                cell.className = 'seatInvisible'
                             }
                             activeRow = table.insertRow()
                             activeRow.className = 'trSeat'
@@ -79,13 +85,16 @@ const ReservationPage = ({ history }) => {
                         cell.className = 'seatTd'
                         cell.id = seat.id
                         cell.innerHTML = "<td>" + seat.letter + " - " + seat.number + "</td>"
+                        if(seat.tickets.length !== 0) {
+                            cell.className += ' seatTaken'
+                        }
                         return true;
                     }
                 })
             })
         }
     }, []);
-    return (
+    return chosenSeats.length > 0 ? (
         <div>
             <Card className="w-75 mx-auto my-5 shadow-lg rounded">
                 <Card.Header as="h3" className="titleCard">Réservation</Card.Header>
@@ -128,7 +137,6 @@ const ReservationPage = ({ history }) => {
                     </Form>
 
                     <div className="d-flex justify-content-end">
-                        <Button className="m-3" variant="outline-secondary" >Annuler</Button>
                         <Button className="m-3" onClick={saveObtainingMethod} variant="outline-secondary" >Valider</Button>
                     </div>
 
@@ -136,7 +144,20 @@ const ReservationPage = ({ history }) => {
             </Card>
         </div>
 
-    )
+    ) : ( <div>
+        <Card className="w-75 mx-auto my-5 shadow-lg rounded">
+            <Card.Header as="h3" className="titleCard">Réservation</Card.Header>
+
+            <Card.Body>
+
+                <div className="container my-5 justify-content-center">
+                    <div><h1>Votre panier est vide</h1></div>
+                    <div><h3>Allez sur la page d'un concert pour choisir des places puis revenez ici !</h3></div>
+                </div>
+
+            </Card.Body>
+        </Card>
+    </div>)
 }
 
 // state = {

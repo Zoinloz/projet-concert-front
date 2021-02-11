@@ -26,16 +26,24 @@ function PaymentStepFour({ history }) {
 
     if (Cookies.get('resaParking')) {
         resaParking = Cookies.get('resaParking')
-        if (resaParking) {
+        if (resaParking === "true") {
             nbPlaceParking = Cookies.get('nbPlaceParking')
+        }
+        else {
+            nbPlaceParking = 0;
+            document.cookie = "nbPlaceParking=" + nbPlaceParking + ";path=/;"
         }
     }
 
     if (Cookies.get('resaRestaurant')) {
         resaRestaurant = Cookies.get('resaRestaurant')
-        if (resaRestaurant) {
+        if (resaRestaurant === "true") {
             nbPlaceRestaurant = Cookies.get('nbPlaceRestaurant')
             restaurantTime = Cookies.get('restaurantTime')
+        }
+        else{
+            nbPlaceRestaurant = 0
+            document.cookie = "nbPlaceRestaurant=" + nbPlaceRestaurant + ";path=/;"
         }
     }
 
@@ -44,13 +52,12 @@ function PaymentStepFour({ history }) {
         chosenSeats = JSON.parse(Cookies.get('listChosenSeats'))
     }
 
-    let totalPrice = 0;
+    let totalPrice = Number(Cookies.get('totalPrice'))
+
     let seatId = [];
     chosenSeats.forEach(chosenSeat => {
-        totalPrice = totalPrice + chosenSeat.price
         seatId.push(chosenSeat.id)
     })
-    totalPrice = totalPrice + chosenObtainingMethod.price
 
     const paiement = () => {
         let data = {
@@ -65,9 +72,20 @@ function PaymentStepFour({ history }) {
             restaurantTime: "1985-04-12T23:20:50.52Z"
         }
         concertApi.paiement(data).then((response) => {
-            console.log(response)
-            history.push('/confirmation')
+            document.cookie.split(";").forEach(function(c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); });
+            history.push('/confirmation', {response})
         })
+    }
+
+    const formatDate = (dateString) => {
+        const date = new Date(dateString);
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        return date.toLocaleDateString('fr-FR', options)
+    }
+
+    const formatTime = (timeString) => {
+        const date = new Date(timeString);
+        return date.toLocaleTimeString('fr-FR')
     }
 
     useEffect(() => {
@@ -93,18 +111,22 @@ function PaymentStepFour({ history }) {
                     <div className="row">
                         <div className="col-sm shadow p-2 mx-2 mb-5 bg-white rounded">
                             <Table bordered >
-                                <tbody>
+                                <thead>
+                                    <tr>
                                     <th>Artiste/Groupe</th>
                                     <th>Lieu</th>
                                     <th>Date et heure</th>
                                     <th>Catégorie de tarif</th>
                                     <th>Tarif</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
                                     {chosenSeats.map(chosenSeat => {
                                         return (
-                                            <tr>
+                                            <tr key={chosenSeat.id}>
                                                 <td>{concertInfo.event.artistName}</td>
                                                 <td>{concertInfo.event.salle.city}</td>
-                                                <td></td>
+                                                <td>{formatDate(concertInfo.date)} - {formatTime(concertInfo.time)}</td>
                                                 <td>Catégorie {chosenSeat.category}</td>
                                                 <td>{chosenSeat.price} €</td>
                                             </tr>
@@ -117,18 +139,19 @@ function PaymentStepFour({ history }) {
                     <div className="row">Obtention des billets :
                         {chosenObtainingMethod.name} - {chosenObtainingMethod.price} €
                     </div>
-                    {resaParking &&
+                    {resaParking === "true" &&
                         <div className="row">
-                            Réservation place parking : {nbPlaceParking} place(s)
-                    </div>
+                            Réservation place parking : {nbPlaceParking} place(s) - {concertInfo.event.salle.parking.price * nbPlaceParking} €
+                        </div>
                     }
-                    {resaRestaurant &&
+                    {resaRestaurant === "true" &&
                         <div className="row">
-                            Réservation restaurant : Réservation à {restaurantTime} pour {nbPlaceRestaurant} personnes
-                    </div>
+                            Réservation restaurant : Réservation à {restaurantTime} pour {nbPlaceRestaurant} personnes - {concertInfo.event.salle.restaurant.price * nbPlaceRestaurant} €
+                        </div>
                     }
+
                     <div className="row">
-                        Prix total : {totalPrice} €
+                        Prix total :  <b>{totalPrice}</b> €
                     </div>
                     <div className="row">
                         <div className="d-flex justify-content-end">

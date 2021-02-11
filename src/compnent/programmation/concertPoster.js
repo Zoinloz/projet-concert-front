@@ -8,7 +8,7 @@ import './concertPoster.css';
 import React, { useEffect, useState } from 'react';
 import concertApi from '../../services/concertApi';
 
-const ConcertPoster = ({ match }) => {
+const ConcertPoster = ({ match, history }) => {
 
     // Liste des concerts
     const [listConcerts, setListConcert] = useState([]);
@@ -24,7 +24,7 @@ const ConcertPoster = ({ match }) => {
 
     const [concertInfo, setConcertInfo] = useState(null);
 
-    let [listChosenSeats] = useState([]);
+    let [listChosenSeats, setListChosenSeats] = useState([]);
 
     const addSeat = (seat, cell) =>
     {
@@ -46,9 +46,10 @@ const ConcertPoster = ({ match }) => {
     }
 
     const removeSeat = (seat, cell) => {
-        listChosenSeats = listChosenSeats.filter(function( obj ) {
+        const list = listChosenSeats
+        setListChosenSeats(list.filter(function( obj ) {
             return obj.id !== seat.id;
-        });
+        }));
         let cellClone = cell.cloneNode(true);
 
         document.getElementById("seat"+seat.id).remove()
@@ -65,6 +66,7 @@ const ConcertPoster = ({ match }) => {
         let listChosenSeatsStr = JSON.stringify(listChosenSeats)
         document.cookie = "listChosenSeats="+listChosenSeatsStr+";path=/;";
         document.cookie = "concertId="+concertInfo.id+";path=/;";
+        history.push('/reservationpage')
     }
 
     useEffect(() => {
@@ -100,8 +102,8 @@ const ConcertPoster = ({ match }) => {
                             if(seat.letter === "C"){
                                 activeRow = table.insertRow()
                                 activeRow.className = 'trSeat'
-                                activeRow = table.insertRow()
-                                activeRow.className = 'trSeat'
+                                let cell = activeRow.insertCell()
+                                cell.className = 'seatInvisible'
                             }
                             activeRow = table.insertRow()
                             activeRow.className = 'trSeat'
@@ -168,7 +170,7 @@ const ConcertPoster = ({ match }) => {
                             <div id="seatChosen">
                                 Place choisies :
                             </div>
-                            <button onClick={validateSeats}>Validate</button>
+                            <button className="buttonReservationConcert btn btn-primary" onClick={validateSeats}>Validate</button>
                         </div>
                     </div>
 
