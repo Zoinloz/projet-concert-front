@@ -33,6 +33,17 @@ function ShoppingCartStepTwo({ history }) {
         chosenObtainingMethod = JSON.parse(chosenObtainingMethod.obtainingMethod)
     }
 
+    const formatDate = (dateString) => {
+        const date = new Date(dateString);
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        return date.toLocaleDateString('fr-FR', options)
+    }
+
+    const formatTime = (timeString) => {
+        const date = new Date(timeString);
+        return date.toLocaleTimeString('fr-FR')
+    }
+
     const initPrice = () => {
         let totalPrice = 0;
         chosenSeats.forEach(chosenSeat => {
@@ -87,18 +98,16 @@ function ShoppingCartStepTwo({ history }) {
             document.cookie = "restaurantTime=" + restaurantTime + ";path=/;";
         }
 
+        totalPrice = totalPrice + concertInfo.event.salle.parking.price * nbPlaceParking
+        totalPrice = totalPrice + concertInfo.event.salle.restaurant.price * nbPlaceRestaurant
+        document.cookie = "totalPrice=" + totalPrice + ";path=/;";
+
         if (isAuth) {
             history.push('/informationsUserLogged')
         }
         else {
             history.push('/contactInformation');
         }
-        
-        totalPrice = totalPrice + concertInfo.event.salle.parking.price * nbPlaceParking
-        totalPrice = totalPrice + concertInfo.event.salle.restaurant.price * nbPlaceRestaurant
-        document.cookie = "totalPrice=" + totalPrice + ";path=/;";
-
-        history.push('/contactInformation')
     }
 
 
@@ -195,7 +204,7 @@ function ShoppingCartStepTwo({ history }) {
                                         <tr>
                                             <td>{concertInfo.event.artistName}</td>
                                             <td>{concertInfo.event.salle.city}</td>
-                                            <td></td>
+                                            <td>{formatDate(concertInfo.date)} - {formatTime(concertInfo.time)}</td>
                                             <td>Catégorie {chosenSeat.category}</td>
                                             <td>{chosenSeat.price} €</td>
                                         </tr>
